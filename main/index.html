@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="./src/output.css" rel="stylesheet">
 </head>
+
 <body>
-    <h1 class="bg-red-600">hello</h1>
+    <!--npx tailwindcss -i ./main/src/input.css -o ./main/src/output.css --watch-->
+    <div class="w-screen h-screen flex flex-col justify-center items-center">
+        <img src="./img/small/login.jpg" alt="img" class="w-full h-full object-cover blur-sm md:hidden">
+        <img src="./img/medium/login.jpg" alt="img" class="hidden w-full h-full object-cover blur-sm md:block">
+        <h1
+            class="header absolute text-white animate-[comingup_1s_ease-in-out] text-3xl font-bold font-newFont md:text-4xl xl:text-6xl">
+            Welcome to <span class="text-blue-800">CineMania</span></h1>
+        <h5
+            class="header2 absolute text-white animate-[appearingEffects_7s_ease-in-out] text-base font-semibold font-newFont top-[52vh] md:text-lg xl:text-2xl">
+            Watch Your Favourite <span class="text-purple-800">Movies</span> or <span class="text-rose-700">TV
+                Shows</span> Only on <span class="text-blue-800">CineMania</span></h5>
+        <div class="loginForm bg-white opacity-0 transition-all w-[65vw] h-[55vh] absolute sm:w-[50vw] md:w-[40vw] xl:w-[30vw] xl:h-[60vh] ">
+        </div>
+    </div>
+    <script src="main.js"></script>
 </body>
+
 </html>
