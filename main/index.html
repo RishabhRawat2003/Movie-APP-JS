@@ -4,24 +4,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CineMania-Login-Page</title>
     <link href="./src/output.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ef961f7c58.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<body>
+<body class="overflow-hidden">
     <!--npx tailwindcss -i ./main/src/input.css -o ./main/src/output.css --watch-->
     <div class="w-screen h-screen flex flex-col justify-center items-center">
+        <!--Image for small device Starts-->
         <img src="./img/small/login.jpg" alt="img" class="w-full h-full object-cover blur-sm md:hidden">
+        <!--Image for small device Ends-->
+
+        <!--Image for big device Starts-->
         <img src="./img/medium/login.jpg" alt="img" class="hidden w-full h-full object-cover blur-sm md:block">
+        <!--Image for big device Ends-->
+
+        <!--Header Animation starts-->
         <h1
             class="header absolute text-white animate-[comingup_1s_ease-in-out] text-3xl font-bold font-newFont md:text-4xl xl:text-6xl">
-            Welcome to <span class="text-blue-800">CineMania</span></h1>
+            Welcome to <span class="text-rose-500">CineMania</span></h1>
         <h5
-            class="header2 absolute text-white animate-[appearingEffects_7s_ease-in-out] text-base font-semibold font-newFont top-[52vh] md:text-lg xl:text-2xl">
-            Watch Your Favourite <span class="text-purple-800">Movies</span> or <span class="text-rose-700">TV
-                Shows</span> Only on <span class="text-blue-800">CineMania</span></h5>
-        <div class="loginForm bg-white opacity-0 transition-all w-[65vw] h-[55vh] absolute sm:w-[50vw] md:w-[40vw] xl:w-[30vw] xl:h-[60vh] ">
+            class="header2 absolute text-white animate-[appearingEffects_7s_ease-in-out] text-[10px] font-semibold font-newFont top-[52vh] md:text-lg xl:text-2xl">
+            Watch Your Favourite <span class="text-orange-400">Movies</span> or <span class="text-red-700">TV
+                Shows</span> Only on <span class="text-rose-500">CineMania</span></h5>
+        <!--Header Animation Ends-->
+
+        <!--Main Login Form Starts-->
+        <div
+            class="loginForm bg-gray-300 rounded-md opacity-0 transition-all max-w-[90vw] h-auto absolute xl:px-10 xl:py-3">
+            <!--Login Header Starts-->
+            <h1 class="text-center my-3 text-2xl font-bold font-serif">Login</h1>
+            <!--Login Header Ends-->
+
+            <!--div for username Starts-->
+            <div class="mx-4 my-8 flex items-center">
+                <div class="border-[1px] border-gray-600 h-8 w-8 flex justify-center items-center rounded-l-md"><i
+                        class="fa-regular fa-user" style="color: #000000;"></i></div>
+                <div class="border-[1px] border-gray-600 h-8 w-auto rounded-r-md"><input type="text"
+                        placeholder="Username or Email" class="username h-full rounded-r-md outline-none p-2"></div>
+            </div>
+            <!--div for username Ends-->
+
+            <!--div for password Starts-->
+            <div class="ml-4 flex items-center">
+                <div class="border-[1px] border-gray-600 h-8 w-8 flex justify-center items-center rounded-l-md"><span
+                        class="material-symbols-outlined cursor-default select-none">
+                        lock
+                    </span></div>
+                <div class="border-[1px] border-gray-600 h-8 w-auto rounded-r-md"><input type="password"
+                        placeholder="Password" class="password h-full rounded-r-md outline-none p-2">
+                </div>
+                <span class="h-6 w-6 flex justify-center items-center ml-2"><i
+                        class="icons fa-regular fa-eye-slash cursor-pointer mr-3" style="color: #000000;"></i></span>
+            </div>
+            <!--div for password Ends-->
+
+            <!--div for Remember me and forgot passowrd Starts-->
+            <div class="mx-3 my-6 flex justify-between">
+                <span class="text-xs font-sans select-none flex jus items-center"><input type="checkbox" id="save"
+                        class="h-3 w-3 sm:h-auto sm:w-auto"> <label class="cursor-pointer mx-1" for="save">Remember
+                        me</label></span>
+                <span class="text-xs font-semibold text-blue-800 cursor-pointer font-sans">Forgot Password ?</span>
+            </div>
+            <!--div for Remember me and forgot passowrd Ends-->
+
+            <!--div for login Starts-->
+            <div class="mx-3 my-3 flex justify-center items-center m-auto w-auto"><button
+                    class="loginBtn bg-blue-600 p-2 w-32 rounded-full text-white font-sans active:bg-blue-800 md:hover:bg-blue-800">Login</button>
+            </div>
+            <!--div for login Ends-->
+
+            <!--Other Methods of Sign up Starts-->
+            <p class="text-center text-xs">Or Sign Up Using :</p>
+            <div class="flex justify-center items-center h-auto w-auto gap-2 mt-2">
+                <span
+                    class="md:hover:bg-white duration-200 active:bg-white w-6 h-6 bg-slate-300 rounded-full flex justify-center items-center cursor-pointer">
+                    <i class="fa-brands fa-google" style="color: #000000;"></i>
+                </span><span
+                    class="md:hover:bg-white duration-200 active:bg-white w-6 h-6 bg-slate-300 rounded-full flex justify-center items-center cursor-pointer">
+                    <i class="fa-brands fa-x-twitter" style="color: #000205;"></i>
+                </span><span
+                    class="md:hover:bg-white duration-200 active:bg-white w-6 h-6 bg-slate-300 rounded-full flex justify-center items-center cursor-pointer"><i
+                        class="fa-brands fa-facebook" style="color: #2d58d7;"></i></span>
+            </div>
+            <!--Other Methods of Sign up Ends-->
+
+            <!--Continue as Guest div Starts-->
+            <div
+                class="text-center mt-1 cursor-pointer md:hover:text-blue-700 md:hover:underline active:underline active:text-blue-700 select-none">
+                <a href="mainWindow.html?param=Guest"><span>Or Continue as Guest</span></a>
+            </div>
+            <!--Continue as Guest div Ends-->
+
+            <!--Create Account Starts-->
+            <p class="text-center text-sm mt-1 mb-2">Don't Have Account? <span
+                    class="text-blue-900 cursor-pointer select-none">Create Account</span></p>
+            <!--Create Account Ends-->
         </div>
+        <!--Main Login Form Ends-->
     </div>
     <script src="main.js"></script>
 </body>
