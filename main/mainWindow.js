@@ -4,7 +4,7 @@ console.log(paramValue)
 
 
 
-async function topBoxOffice(){
+async function topBoxOffice() {
     const options = {
         method: 'GET',
         headers: {
@@ -13,7 +13,7 @@ async function topBoxOffice(){
         }
     };
 
-    const response = await fetch('https://moviesverse1.p.rapidapi.com/top-box-office',options)
+    const response = await fetch('https://moviesverse1.p.rapidapi.com/top-box-office', options)
     const data = await response.json()
     return data
 }
@@ -25,45 +25,61 @@ const topMovie = topBoxOffice()
 
 const sideBarIcon = document.querySelector('.sidebarIcon')
 const dropDown = document.querySelector('.dropDownSidebar')
-const userNameFirstLetter = document.querySelector('.firstLetter')
-const userName = document.querySelector('.userName')
-const userNameFirstLetter2 = document.querySelector('.firstLetter2') //for big screens
-const userName2 = document.querySelector('.userName2') //for big screens
-const editProfile = document.querySelector('.editProfile')
-const loginLogout = document.querySelector('.loginLogout')
+const userNameFirstLetter = document.querySelectorAll('.firstLetter')
+const userName = document.querySelectorAll('.userName')
+const editProfile = document.querySelectorAll('.editProfile')
+const loginLogout = document.querySelectorAll('.loginLogout')
+const userNameIcon = document.querySelector('.userNameIcon') //for big devices
+const sidebarUser = document.querySelector('.userSidebar') //for big devices
 
-userNameFirstLetter.innerHTML = paramValue.slice(0,1)
-userNameFirstLetter2.innerHTML = paramValue.slice(0,1)
+userNameFirstLetter.forEach((items) => {
+    items.innerHTML = paramValue.slice(0, 1)
+})
 
-
-sideBarIcon.addEventListener('click',function(e){
+sideBarIcon.addEventListener('click', function (e) {
     e.preventDefault()
     const trueOrFalse = sideBarIcon.classList.contains('fa-bars-staggered')
-    if(trueOrFalse){
+    if (trueOrFalse) {
         sideBarIcon.classList.remove('fa-bars-staggered')
         sideBarIcon.classList.add('fa-xmark')
-        dropDown.setAttribute('class','dropDownSidebar bg-slate-700 opacity-90 h-80 w-44 absolute top-16 right-5 rounded-md')
+        dropDown.setAttribute('class', 'dropDownSidebar bg-slate-700 opacity-90 h-80 w-44 absolute top-16 right-5 rounded-md')
     }
-    else{
+    else {
         sideBarIcon.classList.remove('fa-xmark')
         sideBarIcon.classList.add('fa-bars-staggered')
-        dropDown.setAttribute('class','dropDownSidebar bg-slate-700 hidden opacity-90 h-0 w-44 absolute top-16 right-5 rounded-md')
+        dropDown.setAttribute('class', 'dropDownSidebar bg-slate-700 hidden opacity-90 h-0 w-44 absolute top-16 right-5 rounded-md')
     }
 })
 
-if(paramValue==='Guest'){
-    userName.innerHTML = paramValue + ' Account'
-    userName2.innerHTML = paramValue + ' Account'
-    loginLogout.innerHTML = 'Login'
-    editProfile.classList.add('hidden')
-    loginLogout.addEventListener('click',function(e){
-        e.preventDefault()
-        window.location.href = 'index.html'
+userNameIcon.addEventListener('click', function (e) {
+    e.preventDefault()
+    sidebarUser.classList.toggle('hidden')
+})
+
+if (paramValue === 'Guest') {
+    userName.forEach((items) => {
+        items.innerHTML = paramValue
     })
-}else{
-    userName.innerHTML = paramValue.slice(0,8)
-    userName2.innerHTML = paramValue.slice(0,8)
-    editProfile.classList.remove('hidden')
-    loginLogout.innerHTML = 'Logout'
-    editProfile.classList.remove('hidden')
+    editProfile.forEach((items) => {
+        items.classList.add('hidden')
+    })
+    loginLogout.forEach((items) => {
+        items.innerHTML = 'Login'
+        items.addEventListener('click', function (e) {
+            e.preventDefault()
+            window.location.href = 'index.html'
+        })
+    })
+} else {
+    userName.forEach((items) => {
+        items.innerHTML = paramValue.slice(0, 8)
+    })
+    editProfile.forEach((items) => {
+        items.classList.remove('hidden')
+    })
+    loginLogout.forEach((items) => {
+        items.innerHTML = 'Logout'
+        items.classList.remove('hidden')
+    })
+
 }
