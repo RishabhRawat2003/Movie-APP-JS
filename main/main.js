@@ -15,7 +15,7 @@ setTimeout(() => {
 
 //settimeout for chaning login form opacity
 setTimeout(() => {
-    mainForm.classList.add('opacity-75')
+    mainForm.classList.add('opacity-80')
 }, 4000);
 
 //eventlistner for show password icon 
