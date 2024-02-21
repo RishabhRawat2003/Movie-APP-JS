@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CinaMania Watch Your Favourite Movies Here</title>
     <link rel="stylesheet" href="./src/output.css">
+    <link rel="stylesheet" href="./src/bowserAppearn.css">
     <script src="https://kit.fontawesome.com/ef961f7c58.js" crossorigin="anonymous"></script>
 </head>
 
@@ -133,16 +134,20 @@
             </div>
             <!--Navbar Content For big devices ends-->
 
+            <!--Search Icons and Bars starts-->
             <div
-                class="h-16 w-20 flex justify-center items-center gap-6 mr-4 md:w-52 md:gap-2 md:mr-2 lg:gap-5 lg:mr-5">
+                class="h-16 w-auto flex justify-center items-center mr-3">
+
+                <input type="text" placeholder="Search Movies or Series" class="search hidden duration-200 w-40 h-7 mx-1 bg-slate-300 outline-none rounded-md px-2 lg:w-48 xl:w-52">
+
                 <!--Search Icon Starts-->
-                <span class="h-14 flex items-center w-6">
+                <span class="searchIcon h-14 flex items-center w-6 mx-1">
                     <i class="fa-solid fa-magnifying-glass fa-xl hover:cursor-pointer" style="color: #ffffff;"></i>
                 </span>
                 <!--Search Icon Ends-->
 
                 <!--Username for big devices Starts-->
-                <span class="userName h-14 w-28 text-white font-bold hidden md:flex justify-center items-center"></span>
+                <span class="userName h-14 w-auto text-white font-bold mx-4 hidden md:flex justify-center items-center"></span>
                 <!--Username for big devices Ends-->
 
                 <!--Username Icon for big devices Starts-->
@@ -154,12 +159,14 @@
                 <!--Username Icon for big devices Ends-->
 
                 <!--SideBar Icon for Small devices Starts-->
-                <span class="h-14 flex items-center w-6 md:hidden">
+                <span class="h-14 mx-3 flex items-center w-6 md:hidden">
                     <i class="sidebarIcon fa-solid fa-bars-staggered fa-xl hover:cursor-pointer"
                         style="color: #ffffff;"></i>
                 </span>
                 <!--SideBar Icon for Small devices Ends-->
             </div>
+            <!--Search Icons and Bars Ends-->
+
         </div>
     </header>
     <!--Header Ends-->

@@ -13,4 +13,7 @@ input[type="password"]::-webkit-search-results-decoration {
     display: none;
 }
 
+.search::placeholder {
+    color: gray; 
+  }
 

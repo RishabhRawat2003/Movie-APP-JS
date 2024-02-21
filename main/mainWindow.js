@@ -1,7 +1,5 @@
 const urlParams = new URLSearchParams(window.location.search);
 const paramValue = urlParams.get('param');
-console.log(paramValue)
-
 
 
 async function topBoxOffice() {
@@ -21,7 +19,7 @@ async function topBoxOffice() {
 const topMovie = topBoxOffice()
 
 
-
+//Header Functionality starts
 
 const sideBarIcon = document.querySelector('.sidebarIcon')
 const dropDown = document.querySelector('.dropDownSidebar')
@@ -31,9 +29,29 @@ const editProfile = document.querySelectorAll('.editProfile')
 const loginLogout = document.querySelectorAll('.loginLogout')
 const userNameIcon = document.querySelector('.userNameIcon') //for big devices
 const sidebarUser = document.querySelector('.userSidebar') //for big devices
+const searchIcon = document.querySelector('.searchIcon')
+const searchField = document.querySelector('.search')
+
+//Search Functionality Starts
+searchField.addEventListener('input', function (e) {
+    e.preventDefault()
+    searchField.value = e.target.value
+})
+
+searchIcon.addEventListener('click', function (e) {
+    e.preventDefault()
+    if (searchField.value.length < 1) {
+        searchField.classList.toggle('hidden')
+        searchField.value = ''
+    }
+    else if (searchField.value.length > 2) {
+        // Search Api Here
+    }
+})
+//Search Functionality ends
 
 userNameFirstLetter.forEach((items) => {
-    items.innerHTML = paramValue.slice(0, 1)
+    items.innerHTML = paramValue.slice(0, 1).toUpperCase()
 })
 
 sideBarIcon.addEventListener('click', function (e) {
@@ -83,3 +101,5 @@ if (paramValue === 'Guest') {
     })
 
 }
+
+//Header Functionality Ends
