@@ -11,6 +11,7 @@
 </head>
 
 <body class="bg-slate-800">
+    <!--Header Functionality Starts-->
     <!--Header Starts-->
     <header>
         <div class="h-20 w-full  flex justify-between">
@@ -117,7 +118,7 @@
             <!--Logo Ends-->
 
             <!--Navbar Content For big devices starts-->
-            <div class="h-16 w-auto hidden md:flex md:justify-center md:*:items-center">
+            <div class="h-16 w-auto hidden md:flex md:justify-center md:items-center">
                 <ul
                     class="flex h-full w-full justify-center items-center gap-6 font-semibold lg:gap-12 xl:gap-16 2xl:gap-20">
                     <li class="text-white underline cursor-pointer font-newFont text-lg xl:text-xl">Home</li>
@@ -135,10 +136,10 @@
             <!--Navbar Content For big devices ends-->
 
             <!--Search Icons and Bars starts-->
-            <div
-                class="h-16 w-auto flex justify-center items-center mr-3">
+            <div class="h-16 w-auto flex justify-center items-center mr-3">
 
-                <input type="text" placeholder="Search Movies or Series" class="search hidden duration-200 w-40 h-7 mx-1 bg-slate-300 outline-none rounded-md px-2 lg:w-48 xl:w-52">
+                <input type="text" placeholder="Search Movies or Series"
+                    class="search hidden duration-200 w-40 h-7 mx-1 bg-slate-300 outline-none rounded-md px-2 lg:w-48 xl:w-52">
 
                 <!--Search Icon Starts-->
                 <span class="searchIcon h-14 flex items-center w-6 mx-1">
@@ -147,11 +148,13 @@
                 <!--Search Icon Ends-->
 
                 <!--Username for big devices Starts-->
-                <span class="userName h-14 w-auto text-white font-bold mx-4 hidden md:flex justify-center items-center"></span>
+                <span
+                    class="userName h-14 w-auto text-white font-bold mx-4 hidden md:flex justify-center items-center"></span>
                 <!--Username for big devices Ends-->
 
                 <!--Username Icon for big devices Starts-->
-                <div class="userNameIcon select-none h-7 my-4 hidden cursor-pointer hover:scale-105 duration-200 md:flex md:justify-center md:items-center">
+                <div
+                    class="userNameIcon select-none h-7 my-4 hidden cursor-pointer hover:scale-105 duration-200 md:flex md:justify-center md:items-center">
                     <p
                         class="firstLetter h-8 w-8 bg-slate-200 rounded-full border-2 border-black flex justify-center items-center">
                     </p>
@@ -170,7 +173,6 @@
         </div>
     </header>
     <!--Header Ends-->
-
     <!--Sidebar for small devices Starts-->
     <div class="dropDownSidebar bg-slate-700 hidden opacity-90 h-0 w-44 absolute top-16 right-5 rounded-md md:hidden">
         <!--Username icon Starts-->
@@ -236,10 +238,13 @@
         </div>
     </div>
     <!--Sidebar for big devices Ends-->
+    <!--Header Functionality Ends-->
 
-    <!--Auto SLider Starts-->
-
-    <!--Auto SLider Ends-->
+    <!--Body Functionality Starts-->
+    <div class="h-full bg-slate-800 w-full">
+        <div class="slides blur-none h-full w-full flex scroll-smooth justify-start overflow-scroll"></div>
+    </div>
+    <!--Body Functionality Ends-->
 
     <script src="mainWindow.js"></script>
 </body>

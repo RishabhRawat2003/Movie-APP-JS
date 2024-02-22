@@ -16,4 +16,11 @@ input[type="password"]::-webkit-search-results-decoration {
 .search::placeholder {
     color: gray; 
   }
+.slides::-webkit-scrollbar{
+    display: none;
+}
+
+.slides{
+    scrollbar-width: none;
+}
 
