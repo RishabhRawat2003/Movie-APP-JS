@@ -24,3 +24,14 @@ input[type="password"]::-webkit-search-results-decoration {
     scrollbar-width: none;
 }
 
+.ottSlider::-webkit-scrollbar{
+    display: none;
+}
+
+.ottSlider{
+    scrollbar-width: none;
+}
+
+
+
+

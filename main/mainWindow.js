@@ -53,7 +53,7 @@ sideBarIcon.addEventListener('click', function (e) {
     if (trueOrFalse) {
         sideBarIcon.classList.remove('fa-bars-staggered')
         sideBarIcon.classList.add('fa-xmark')
-        dropDown.setAttribute('class', 'dropDownSidebar bg-slate-700 opacity-90 h-80 w-44 absolute top-16 right-5 rounded-md')
+        dropDown.setAttribute('class', 'dropDownSidebar bg-slate-700 z-40 opacity-90 h-80 w-44 absolute top-16 right-5 rounded-md')
     }
     else {
         sideBarIcon.classList.remove('fa-xmark')
@@ -113,7 +113,7 @@ shows.then((val) => {
         const rating = items.rating.average
         const summary = items.summary
         const trailer = items.url
-        console.log(items)
+        //console.log(items)
         silderImages(images,name,genres,year,summary ,rating,trailer,id)
     })
 })
@@ -130,24 +130,24 @@ function silderImages(img,nameOfTheShow ,generes, year , summary , rating ,trail
     let div = document.createElement('div')
 
     //setting attributes to the elements and also setting css
-    yearGenres.setAttribute('class','absolute bottom-52 mx-5 w-full z-10 text-gray-400 font-bold text-sm font-newFont')
-    image.setAttribute('class', 'min-h-full min-w-full object-cover opacity-40 overflow-hidden')
+    yearGenres.setAttribute('class','absolute bottom-52 mx-5 w-full z-10 text-gray-400 font-bold text-sm font-newFont xl:text-base')
+    image.setAttribute('class', 'min-h-full min-w-full object-cover opacity-40 overflow-hidden sm:object-contain ')
     anchor.setAttribute('class', 'min-h-full min-w-full overflow-hidden')
     name.setAttribute('class','absolute bottom-60 mx-5 w-full z-10 text-white font-bold text-4xl font-newFont')
-    summaryText.setAttribute('class','absolute bottom-20 w-[94%] ml-5 z-10 text-white text-xs font-bold font-newFont')
-    ratingStar.setAttribute('class','absolute top-2 z-10 mx-4 w-14 text-white font-bold text-lg')
-    div.setAttribute('class', 'absolute bottom-0 z-10 w-[97%] my-4 h-auto flex justify-evenly items-center')
-    watchTrailer.setAttribute('class','p-3 bg-green-400 mx-1 rounded-xl cursor-pointer text-sm flex text-white font-newFont font-bold z-10 ')
-    watchlist.setAttribute('class','text-white p-3 border-[1px] border-white rounded-xl text0sm font-newFont font-bold z-10 ')
+    summaryText.setAttribute('class','absolute bottom-20 w-[94%] ml-5 z-10 text-white text-xs font-bold font-newFont md:text-sm xl:text-base md:w-[70%]')
+    ratingStar.setAttribute('class','absolute top-16 z-10 mx-4 w-14 text-white font-bold text-lg')
+    div.setAttribute('class', 'absolute bottom-0 z-10 w-[97%] my-4 h-auto flex justify-evenly items-center md:justify-start md:gap-5 md:mx-5')
+    watchTrailer.setAttribute('class','p-3 bg-green-400 mx-1 rounded-xl cursor-pointer text-sm flex items-center justify-center text-white font-newFont font-bold z-10 active:bg-green-600 md:hover:bg-green-600 md:hover:scale-105 md:duration-300 lg:w-44 lg:gap-3')
+    watchlist.setAttribute('class','text-white p-3 border-[1px] border-white rounded-xl text-sm font-newFont font-bold z-10 cursor-pointer active:bg-slate-600 flex justify-center items-center md:hover:bg-slate-600 md:hover:scale-105 md:duration-300 select-none lg:w-44 lg:gap-3 lg:text-lg')
 
     
     //appending content inside elements
     watchTrailer.target = '_blank'
     watchTrailer.href = trailer
-    watchTrailer.innerHTML = '<span class="mx-1 w-5  bg-white rounded-full flex justify-center items-center"><i class="fa-solid fa-play" style="color: #4ade80;"></i></span> Watch Trailer'
+    watchTrailer.innerHTML = '<span class="mx-1 w-5 h-5 bg-white rounded-full flex justify-center items-center"><i class="fa-solid fa-play" style="color: #4ade80;"></i></span><span class="h-6 w-auto flex justify-center items-center lg:text-lg">Watch Trailer</span>'
     watchlist.innerHTML = '<i class="fa-regular fa-bookmark mx-1"></i> Add Watchlist'
     ratingStar.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${rating}`
-    summaryText.innerHTML += `${summary.slice(0,350)} <a href='singleItemInfo.html?param=${id}' class='text-blue-500 select-none cursor-pointer active:text-blue-700 active:underline font-bold font-newFont'>See More</a> `
+    summaryText.innerHTML += `${summary.slice(0,350)} <a href='singleItemInfo.html?param=${id}' class='text-blue-500 select-none cursor-pointer active:text-blue-700 active:underline font-bold font-newFont md:text-sm xl:text-base md:hover:text-blue-700 md:hover:underline'>See More</a> `
     yearGenres.innerHTML += `${year.slice(0,4)} • ${generes}`
     name.innerHTML = nameOfTheShow
     image.src = img
@@ -172,5 +172,4 @@ setInterval(() => {
     }else{
         slides.scrollLeft += slides.firstElementChild.offsetWidth
     }
-    console.log(slides.scrollLeft);
 }, 7000);

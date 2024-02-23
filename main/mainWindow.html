@@ -13,7 +13,7 @@
 <body class="bg-slate-800">
     <!--Header Functionality Starts-->
     <!--Header Starts-->
-    <header>
+    <header class="w-full absolute h-auto top-0 z-40">
         <div class="h-20 w-full  flex justify-between">
             <!--Logo Starts-->
             <div class="h-16 w-auto">
@@ -174,7 +174,7 @@
     </header>
     <!--Header Ends-->
     <!--Sidebar for small devices Starts-->
-    <div class="dropDownSidebar bg-slate-700 hidden opacity-90 h-0 w-44 absolute top-16 right-5 rounded-md md:hidden">
+    <div class="dropDownSidebar bg-slate-700 hidden opacity-90 h-0 w-44 absolute top-16 right-5 rounded-md md:hidden ">
         <!--Username icon Starts-->
         <div class="h-7 my-4 flex justify-center items-center">
             <p
@@ -210,7 +210,7 @@
     <!--Sidebar for small devices Ends-->
 
     <!--Sidebar for big devices Starts-->
-    <div class="userSidebar h-60 w-40 bg-slate-700 hidden opacity-90 absolute right-1 top-14 rounded-lg">
+    <div class="userSidebar h-60 w-40 bg-slate-700 hidden opacity-90 absolute right-1 top-14 rounded-lg z-40">
         <!--Username icon Starts-->
         <div class="h-7 my-4 flex justify-center items-center">
             <p
@@ -241,9 +241,45 @@
     <!--Header Functionality Ends-->
 
     <!--Body Functionality Starts-->
-    <div class="h-full bg-slate-800 relative w-full sm:hidden">
+    <!--Auto Slider Starts-->
+    <div class="h-full bg-slate-800 relative z-0 top-0 w-full sm:h-[80vh]">
         <div class="slides blur-none h-full w-full flex scroll-smooth justify-start overflow-hidden"></div>
     </div>
+    <!--Auto Slider Ends-->
+
+    <!--Ott Platform Logos Starts-->
+    <div class="ottSlider w-full h-28 flex items-center gap-4 overflow-scroll">
+        <a href="https://www.netflix.com/in/" target="_blank"
+            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/netflixlogo.webp"
+                alt="Netflix Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
+        <a href="https://www.hotstar.com/in/movies" target="_blank"
+            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/disney.jpg"
+                alt="Disney Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
+        <a href="https://www.jiocinema.com/" target="_blank"
+            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/jiologo.webp"
+                alt="JioCinema Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
+        <a href="https://www.mxplayer.in/" target="_blank"
+            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/mxlogo.jpg"
+                alt="Mx Player Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
+        <a href="https://www.primevideo.com/offers/nonprimehomepage/ref=dv_web_force_root" target="_blank"
+            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/primelogo.jpg"
+                alt="Amazon Prime Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
+        <a href="https://www.sonyliv.com/" target="_blank"
+            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/sonylivlogo.jpg"
+                alt="Sony Liv Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
+        <a href="" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
+                src="./img/small/vootlogo.jpg" alt="Voot Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
+        <a href="https://www.zee5.com/" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
+                src="./img/small/zee5logo.png" alt="Zee5 Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
+        <a href="https://www.marvel.com/" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
+                src="./img/small/marvellogo.jpg" alt="Zee5 Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
+        <a href="https://www.hbo.com/" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
+                src="./img/small/hbo.jpg" alt="Zee5 Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
+        <a href="https://altt.co.in/" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
+                src="./img/small/altlogo.jpg" alt="Zee5 Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
+    </div>
+    <!--Ott Platform Logos Ends-->
+
     <!--Body Functionality Ends-->
 
     <script src="mainWindow.js"></script>
