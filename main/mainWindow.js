@@ -112,42 +112,59 @@ shows.then((val) => {
         const year = items.premiered
         const rating = items.rating.average
         const summary = items.summary
+        const trailer = items.url
         console.log(items)
-        silderImages(images,name,genres,year,summary)
+        silderImages(images,name,genres,year,summary ,rating,trailer,id)
     })
 })
 
-function silderImages(img,nameOfTheShow ,generes, year , summary) {
+function silderImages(img,nameOfTheShow ,generes, year , summary , rating ,trailer,id) {
     let anchor = document.createElement('a')
     let image = document.createElement('img')
     let name = document.createElement('span')
     let yearGenres = document.createElement('p')
     let summaryText = document.createElement('span')
-    let watchTrailer = document.createElement('span')
+    let watchTrailer = document.createElement('a')
     let watchlist = document.createElement('span')
+    let ratingStar = document.createElement('p')
+    let div = document.createElement('div')
+
+    //setting attributes to the elements and also setting css
     yearGenres.setAttribute('class','absolute bottom-52 mx-5 w-full z-10 text-gray-400 font-bold text-sm font-newFont')
-    summaryText.setAttribute('class','absolute mt-2 bottom-16 mx-5 w-80 z-10 text-white font-bold text-xs font-newFont')
     image.setAttribute('class', 'min-h-full min-w-full object-cover opacity-40 overflow-hidden')
     anchor.setAttribute('class', 'min-h-full min-w-full overflow-hidden')
     name.setAttribute('class','absolute bottom-60 mx-5 w-full z-10 text-white font-bold text-4xl font-newFont')
-    watchTrailer.setAttribute('class','absolute bottom-0 mx-5 w-40 z-10 text-white font-bold text-lg font-newFont')
-    watchlist.setAttribute('class','absolute top-0 mx-5 w-40 z-10 text-white font-bold text-lg font-newFont')
-    summaryText.innerHTML += `${summary.slice(0,400)} <a class="select-none text-blue-500 cursor-pointer active:underline active:text-blue-700">See More</a>` 
+    summaryText.setAttribute('class','absolute bottom-20 w-[94%] ml-5 z-10 text-white text-xs font-bold font-newFont')
+    ratingStar.setAttribute('class','absolute top-2 z-10 mx-4 w-14 text-white font-bold text-lg')
+    div.setAttribute('class', 'absolute bottom-0 z-10 w-[97%] my-4 h-auto flex justify-evenly items-center')
+    watchTrailer.setAttribute('class','p-3 bg-green-400 mx-1 rounded-xl cursor-pointer text-sm flex text-white font-newFont font-bold z-10 ')
+    watchlist.setAttribute('class','text-white p-3 border-[1px] border-white rounded-xl text0sm font-newFont font-bold z-10 ')
+
+    
+    //appending content inside elements
+    watchTrailer.target = '_blank'
+    watchTrailer.href = trailer
+    watchTrailer.innerHTML = '<span class="mx-1 w-5  bg-white rounded-full flex justify-center items-center"><i class="fa-solid fa-play" style="color: #4ade80;"></i></span> Watch Trailer'
+    watchlist.innerHTML = '<i class="fa-regular fa-bookmark mx-1"></i> Add Watchlist'
+    ratingStar.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${rating}`
+    summaryText.innerHTML += `${summary.slice(0,350)} <a href='singleItemInfo.html?param=${id}' class='text-blue-500 select-none cursor-pointer active:text-blue-700 active:underline font-bold font-newFont'>See More</a> `
     yearGenres.innerHTML += `${year.slice(0,4)} • ${generes}`
-    watchTrailer.innerHTML = 'Watch trailer'
-    watchlist.innerHTML = 'Add Watchlist'
     name.innerHTML = nameOfTheShow
     image.src = img
+
+    //appending elements
+    div.appendChild(watchTrailer)
+    div.appendChild(watchlist)
+    anchor.appendChild(ratingStar)
     anchor.appendChild(name)
     anchor.appendChild(yearGenres)
     anchor.appendChild(summaryText)
-    anchor.appendChild(watchTrailer)
-    anchor.appendChild(watchlist)
+    anchor.appendChild(div)
     anchor.appendChild(image)
     slides.appendChild(anchor)
 }
 
-/*
+
 setInterval(() => {
     let a = slides.firstElementChild.offsetWidth * 9
     if(slides.scrollLeft >= a){
@@ -157,4 +174,3 @@ setInterval(() => {
     }
     console.log(slides.scrollLeft);
 }, 7000);
-*/
