@@ -39,3 +39,11 @@ input[type="password"]::-webkit-search-results-decoration {
 .trending{
     scrollbar-width: none;
 }
+
+.justRelease::-webkit-scrollbar{
+    display: none;
+}
+
+.justRelease{
+    scrollbar-width: none;
+}

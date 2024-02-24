@@ -23,38 +23,154 @@ async function allTrending() {
     const data = await response.json()
     return data
 }
-async function moveGenres() {
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: `Bearer ${Api_Key}`
-        }
-    };
 
-    const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
-    const data = await response.json()
-    return data
-}
-async function tvShowGenres() {
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: `Bearer ${Api_Key}`
-        }
-    };
-
-    const response = await fetch('https://api.themoviedb.org/3/genre/tv/list?language=en', options)
-    const data = await response.json()
-    return data
-}
 
 const shows = allShows()
 const trending = allTrending()
-const genreMovie = moveGenres()
-const genreShow = tvShowGenres()
 
+
+//All the genres id and name list 
+const list2 = [{
+    "id": 28,
+    "name": "Action"
+},
+{
+    "id": 12,
+    "name": "Adventure"
+},
+{
+    "id": 16,
+    "name": "Animation"
+},
+{
+    "id": 35,
+    "name": "Comedy"
+},
+{
+    "id": 80,
+    "name": "Crime"
+},
+{
+    "id": 99,
+    "name": "Documentary"
+},
+{
+    "id": 18,
+    "name": "Drama"
+},
+{
+    "id": 10751,
+    "name": "Family"
+},
+{
+    "id": 14,
+    "name": "Fantasy"
+},
+{
+    "id": 36,
+    "name": "History"
+},
+{
+    "id": 27,
+    "name": "Horror"
+},
+{
+    "id": 10402,
+    "name": "Music"
+},
+{
+    "id": 9648,
+    "name": "Mystery"
+},
+{
+    "id": 10749,
+    "name": "Romance"
+},
+{
+    "id": 878,
+    "name": "Science Fiction"
+},
+{
+    "id": 10770,
+    "name": "TV Movie"
+},
+{
+    "id": 53,
+    "name": "Thriller"
+},
+{
+    "id": 10752,
+    "name": "War"
+},
+{
+    "id": 37,
+    "name": "Western"
+},
+{
+    "id": 10759,
+    "name": "Action & Adventure"
+},
+{
+    "id": 16,
+    "name": "Animation"
+},
+{
+    "id": 35,
+    "name": "Comedy"
+},
+{
+    "id": 80,
+    "name": "Crime"
+},
+{
+    "id": 99,
+    "name": "Documentary"
+},
+{
+    "id": 18,
+    "name": "Drama"
+},
+{
+    "id": 10751,
+    "name": "Family"
+},
+{
+    "id": 10762,
+    "name": "Kids"
+},
+{
+    "id": 9648,
+    "name": "Mystery"
+},
+{
+    "id": 10763,
+    "name": "News"
+},
+{
+    "id": 10764,
+    "name": "Reality"
+},
+{
+    "id": 10765,
+    "name": "Sci-Fi & Fantasy"
+},
+{
+    "id": 10766,
+    "name": "Soap"
+},
+{
+    "id": 10767,
+    "name": "Talk"
+},
+{
+    "id": 10768,
+    "name": "War & Politics"
+},
+{
+    "id": 37,
+    "name": "Western"
+}
+]
 
 //Header Functionality starts
 
@@ -87,10 +203,13 @@ searchIcon.addEventListener('click', function (e) {
 })
 //Search Functionality ends
 
+//username First later functionality starts
 userNameFirstLetter.forEach((items) => {
     items.innerHTML = paramValue.slice(0, 1).toUpperCase()
 })
+//username First later functionality ends
 
+//sidebar icon click functionality starts
 sideBarIcon.addEventListener('click', function (e) {
     e.preventDefault()
     const trueOrFalse = sideBarIcon.classList.contains('fa-bars-staggered')
@@ -105,12 +224,16 @@ sideBarIcon.addEventListener('click', function (e) {
         dropDown.setAttribute('class', 'dropDownSidebar bg-slate-700 hidden opacity-90 h-0 w-44 absolute top-16 right-5 rounded-md')
     }
 })
+//sidebar icon click functionality ends
 
+//username icon click functionality starts
 userNameIcon.addEventListener('click', function (e) {
     e.preventDefault()
     sidebarUser.classList.toggle('hidden')
 })
+//username icon click functionality ends
 
+//param value functionality starts
 if (paramValue === 'Guest') {
     userName.forEach((items) => {
         items.innerHTML = paramValue
@@ -138,6 +261,7 @@ if (paramValue === 'Guest') {
     })
 
 }
+//param value functionality starts
 
 //Header Functionality Ends
 
@@ -148,7 +272,11 @@ const slides = document.querySelector('.slides')
 const popularWeekSlider = document.querySelector('.trending')
 const leftArrow = document.querySelector('.leftArrow')
 const rightArrow = document.querySelector('.rightArrow')
+const justReleaseSlider = document.querySelector('.justRelease')
+const leftArrow2 = document.querySelector('.leftArrow2')
+const rightArrow2 = document.querySelector('.rightArrow2')
 
+//auto slider functionality starts
 shows.then((val) => {
     const movieDetails = val.slice(10, 20)
     movieDetails.map((items) => {
@@ -190,6 +318,7 @@ function silderImages(img, nameOfTheShow, generes, year, summary, rating, traile
 
     //appending content inside elements
     watchTrailer.target = '_blank'
+    image.alt = 'img'
     watchTrailer.href = trailer
     watchTrailer.innerHTML = '<span class="mx-1 w-5 h-5 bg-white rounded-full flex justify-center items-center"><i class="fa-solid fa-play" style="color: #4ade80;"></i></span><span class="h-6 w-auto flex justify-center items-center lg:text-lg">Watch Trailer</span>'
     watchlist.innerHTML = '<i class="fa-regular fa-bookmark mx-1"></i> Add Watchlist'
@@ -220,8 +349,62 @@ setInterval(() => {
         slides.scrollLeft += slides.firstElementChild.offsetWidth
     }
 }, 7000);
+//auto slider functionality ends
 
 
+//just release slider functionality starts
+
+shows.then((val)=>{
+    const allItemsDetails = val.slice(50,70)
+    allItemsDetails.map((items)=>{
+        const id = items.id 
+        const name = items.name
+        const rating = items.rating.average
+        const thumbnail = items.image.original
+        justReleaseSliderFunc(name,id,rating,thumbnail)
+    })
+})
+
+function justReleaseSliderFunc(name,id,rating,thumbnail){
+    let anchor = document.createElement('a')
+    let img = document.createElement('img')
+    let title = document.createElement('p')
+    let ratingStar = document.createElement('p')
+
+    //setting attributes and css
+    anchor.setAttribute('class','h-64 w-44 relative mx-3 rounded-md shadow-lg')
+    img.setAttribute('class','h-full min-w-44 object-cover rounded-md opacity-60')
+    title.setAttribute('class','text-lg text-slate-200 font-bold font-newFont absolute bottom-7 mx-2 md:text-xl md:my-2')
+    ratingStar.setAttribute('class','text-sm mx-2 w-full text-white font-bold font-newFont absolute bottom-2 md:text-lg')
+
+    //inserting content inside elements
+    anchor.href = `singleItemInfo.html?param=${id}`
+    img.src = thumbnail
+    img.alt = 'img'
+    title.innerHTML = name
+    ratingStar.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i>  ${rating.toFixed(1)}`
+
+    //appending it in body
+    anchor.appendChild(img)
+    anchor.appendChild(title)
+    anchor.appendChild(ratingStar)
+    justReleaseSlider.appendChild(anchor)
+}
+
+
+rightArrow2.addEventListener('click', function (e) {
+    e.preventDefault()
+    justReleaseSlider.scrollLeft += 400
+})
+
+leftArrow2.addEventListener('click', function (e) {
+    e.preventDefault()
+    justReleaseSlider.scrollLeft -= 400
+})
+
+//just release slider functionality ends
+
+//popular of week slider functionality starts
 trending.then((val) => {
     const trendingArr = val.results
     trendingArr.map((items) => {
@@ -232,147 +415,6 @@ trending.then((val) => {
         const rating = items.vote_average
         const type = items.media_type
         const genre = items.genre_ids // array of genres id
-        const list2 = [{
-            "id": 28,
-            "name": "Action"
-        },
-        {
-            "id": 12,
-            "name": "Adventure"
-        },
-        {
-            "id": 16,
-            "name": "Animation"
-        },
-        {
-            "id": 35,
-            "name": "Comedy"
-        },
-        {
-            "id": 80,
-            "name": "Crime"
-        },
-        {
-            "id": 99,
-            "name": "Documentary"
-        },
-        {
-            "id": 18,
-            "name": "Drama"
-        },
-        {
-            "id": 10751,
-            "name": "Family"
-        },
-        {
-            "id": 14,
-            "name": "Fantasy"
-        },
-        {
-            "id": 36,
-            "name": "History"
-        },
-        {
-            "id": 27,
-            "name": "Horror"
-        },
-        {
-            "id": 10402,
-            "name": "Music"
-        },
-        {
-            "id": 9648,
-            "name": "Mystery"
-        },
-        {
-            "id": 10749,
-            "name": "Romance"
-        },
-        {
-            "id": 878,
-            "name": "Science Fiction"
-        },
-        {
-            "id": 10770,
-            "name": "TV Movie"
-        },
-        {
-            "id": 53,
-            "name": "Thriller"
-        },
-        {
-            "id": 10752,
-            "name": "War"
-        },
-        {
-            "id": 37,
-            "name": "Western"
-        },
-        {
-            "id": 10759,
-            "name": "Action & Adventure"
-        },
-        {
-            "id": 16,
-            "name": "Animation"
-        },
-        {
-            "id": 35,
-            "name": "Comedy"
-        },
-        {
-            "id": 80,
-            "name": "Crime"
-        },
-        {
-            "id": 99,
-            "name": "Documentary"
-        },
-        {
-            "id": 18,
-            "name": "Drama"
-        },
-        {
-            "id": 10751,
-            "name": "Family"
-        },
-        {
-            "id": 10762,
-            "name": "Kids"
-        },
-        {
-            "id": 9648,
-            "name": "Mystery"
-        },
-        {
-            "id": 10763,
-            "name": "News"
-        },
-        {
-            "id": 10764,
-            "name": "Reality"
-        },
-        {
-            "id": 10765,
-            "name": "Sci-Fi & Fantasy"
-        },
-        {
-            "id": 10766,
-            "name": "Soap"
-        },
-        {
-            "id": 10767,
-            "name": "Talk"
-        },
-        {
-            "id": 10768,
-            "name": "War & Politics"
-        },
-        {
-            "id": 37,
-            "name": "Western"
-        }
-        ]
         function findMatchingNames(genre, list2) {
             const matchingNames = [];
 
@@ -389,7 +431,6 @@ trending.then((val) => {
         if (matchingNames.length <= 3) {
             const main_genre = matchingNames
             trendingWeek(thumbnail, name, id, rating, type, main_genre)
-
         }
     })
 })
@@ -404,22 +445,24 @@ function trendingWeek(thumbnail, name, id, rating, type, main_genre) {
     let ratingType = document.createElement('p')
     let div = document.createElement('div')
 
-
+    //setting attributes and css
     mainName.setAttribute('class', 'h-auto w-auto text-white my-2 mx-2 font-bold text-xs xl:text-sm')
     genre.setAttribute('class', 'h-auto w-auto text-gray-400 mx-2 font-bold text-xs xl:text-sm')
     ratingType.setAttribute('class', 'h-auto w-auto my-3 mx-2 text-white font-bold text-xs xl:text-sm')
     div.setAttribute('class', 'h-full w-full flex flex-col justify-center')
     imgDiv.setAttribute('class', 'h-full w-[166px]')
     img.setAttribute('class', 'h-full w-full object-cover md:object-cover')
-    main.setAttribute('class', 'h-40 w-auto flex justify-center mx-4 items-center shadow-lg')
+    main.setAttribute('class', 'h-40 w-auto flex justify-center ml-4 items-center shadow-lg')
+
+    //inserting content inside elements
     main.href = `singleItemInfo.html?param=${id}`
+    img.alt = 'img'
     mainName.innerHTML = name
     genre.innerHTML = main_genre
     ratingType.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i>  ${rating.toFixed(1)} |<span class="text-gray-400"> ${type.toUpperCase()}</span>`
     img.src = `https://image.tmdb.org/t/p/w500${thumbnail}`
 
-
-
+    //appending it in body
     imgDiv.appendChild(img)
     main.appendChild(imgDiv)
     div.appendChild(mainName)
@@ -438,3 +481,8 @@ leftArrow.addEventListener('click', function (e) {
     e.preventDefault()
     popularWeekSlider.scrollLeft -= 400
 })
+//popular of week slider functionality ends
+
+
+
+
