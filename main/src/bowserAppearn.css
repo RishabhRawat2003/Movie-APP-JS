@@ -32,6 +32,10 @@ input[type="password"]::-webkit-search-results-decoration {
     scrollbar-width: none;
 }
 
+.trending::-webkit-scrollbar{
+    display: none;
+}
 
-
-
+.trending{
+    scrollbar-width: none;
+}
