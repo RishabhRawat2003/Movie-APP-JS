@@ -47,3 +47,12 @@ input[type="password"]::-webkit-search-results-decoration {
 .justRelease{
     scrollbar-width: none;
 }
+
+.featured::-webkit-scrollbar{
+    display: none;
+}
+
+.featured{
+    scrollbar-width: none;
+}
+

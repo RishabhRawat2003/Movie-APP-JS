@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const paramValue = urlParams.get('param');
 
-const Api_Key = 'Api Key'
+const Api_Key = 'API_Key'
 
 
 async function allShows() {
@@ -24,9 +24,23 @@ async function allTrending() {
     return data
 }
 
+async function topRatedMovies() {
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${Api_Key}`
+        }
+    };
+
+    const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
+    const data = await response.json()
+    return data
+}
 
 const shows = allShows()
 const trending = allTrending()
+const topMovies = topRatedMovies()
 
 
 //All the genres id and name list 
@@ -270,11 +284,14 @@ if (paramValue === 'Guest') {
 
 const slides = document.querySelector('.slides')
 const popularWeekSlider = document.querySelector('.trending')
-const leftArrow = document.querySelector('.leftArrow')
-const rightArrow = document.querySelector('.rightArrow')
+const leftArrow = document.querySelector('.popularSliderLeftArrow')
+const rightArrow = document.querySelector('.popularSliderRightArrow')
 const justReleaseSlider = document.querySelector('.justRelease')
-const leftArrow2 = document.querySelector('.leftArrow2')
-const rightArrow2 = document.querySelector('.rightArrow2')
+const justReleaseSliderLeftArrow = document.querySelector('.justReleaseLeftArrow')
+const justReleaseSliderRightArrow = document.querySelector('.justReleaseRightArrow')
+const featuredSlider = document.querySelector('.featured')
+const featuredSliderArrowLeft = document.querySelector('.leftArrowFeatured')
+const featuredSliderArrowRight = document.querySelector('.rightArrowFeatured')
 
 //auto slider functionality starts
 shows.then((val) => {
@@ -392,12 +409,12 @@ function justReleaseSliderFunc(name,id,rating,thumbnail){
 }
 
 
-rightArrow2.addEventListener('click', function (e) {
+justReleaseSliderRightArrow.addEventListener('click', function (e) {
     e.preventDefault()
     justReleaseSlider.scrollLeft += 400
 })
 
-leftArrow2.addEventListener('click', function (e) {
+justReleaseSliderLeftArrow.addEventListener('click', function (e) {
     e.preventDefault()
     justReleaseSlider.scrollLeft -= 400
 })
@@ -483,6 +500,97 @@ leftArrow.addEventListener('click', function (e) {
 })
 //popular of week slider functionality ends
 
+topMovies.then((val)=>{
+    const result = val.results
+    result.map((items)=>{
+        //console.log(items);
+        const id = items.id
+        const bgImage = items.backdrop_path
+        const genreId = items.genre_ids
+        const title = items.original_title
+        const summary = items.overview
+        const mainImg = items.poster_path
+        const year = items.release_date
+        const rating = items.vote_average
+        function findMatchingNames(genreId, list2) {
+            const matchingNames = [];
 
+            genreId.forEach(id => {
+                const matchingObject = list2.find(obj => obj.id === id);
+                if (matchingObject) {
+                    matchingNames.push(matchingObject.name);
+                }
+            });
 
+            return matchingNames;
+        }
+        const matchingNames = findMatchingNames(genreId, list2);
+        allFeaturedDetails(bgImage,mainImg,matchingNames,rating,title,summary,year,id)
+    })
+})
 
+function allFeaturedDetails(bgImg,mainImg,genre,star,title,summary,year,id){
+    const mainContainer = document.createElement('div')
+    const sliderDiv = document.createElement('div')
+    const imageDiv = document.createElement('div')
+    const mainImage = document.createElement('img')
+    const bgImage = document.createElement('img')
+    const h1 = document.createElement('h1')
+    const p1 = document.createElement('p')
+    const mainTitle = document.createElement('p')
+    let ratingType = document.createElement('p')
+    const overview = document.createElement('p')
+    let watchTrailer = document.createElement('span')
+    let watchlist = document.createElement('span')
+
+    //setting attributes to the elements and also setting css
+    mainContainer.setAttribute('class','min-h-full min-w-full relative')
+    h1.setAttribute('class','text-2xl mx-2 my-2 text-white absolute top-1 font-semibold font-newFont z-20 md:text-3xl')
+    p1.setAttribute('class','mx-2 my-1 text-gray-400 absolute top-10 font-newFont z-20 md:text-xl')
+    mainTitle.setAttribute('class','text-lg mx-2 my-1 text-white absolute bottom-40 font-bold font-newFont z-20 md:text-2xl')
+    ratingType.setAttribute('class','text-sm mx-2 my-1 text-white absolute bottom-32 font-bold font-newFont z-20 md:text-xl')
+    overview.setAttribute('class','text-xs mx-2 my-1 text-gray-400 absolute bottom-16 font-bold font-newFont z-20 md:text-lg lg:bottom-20')
+    bgImage.setAttribute('class','min-w-full min-h-full object-cover opacity-40 z-10')
+    watchTrailer.setAttribute('class','h-auto w-auto p-2 px-3 flex absolute bottom-2 mx-3 z-20 cursor-pointer bg-green-400 rounded-xl md:mx-4 md:hover:bg-green-600 md:hover:scale-105 duration-200 active:bg-green-600')
+    watchlist.setAttribute('class','h-auto w-auto p-2 px-3 flex absolute bottom-2 right-0 mx-3 z-20 cursor-pointer rounded-xl border-[1px] gap-2 border-white flex justify-center items-center text-white active:bg-slate-600 md:hover:bg-slate-600 md:hover:scale-105 duration-200 md:right-[55vw] lg:right-[65vw] xl:right-[72vw] 2xl:right-[76vw]')
+    sliderDiv.setAttribute('class','h-[50vh] w-full top-20 absolute gap-5 flex z-20 overflow-scroll')
+    imageDiv.setAttribute('class','h-full w-auto absolute z-20 right-1 rounded-xl lg:right-4 xl:right-6')
+    mainImage.setAttribute('class','h-full w-full object-contain z-20 rounded-xl')
+
+    //appending content inside elements
+    mainImage.src = `https://image.tmdb.org/t/p/w500${mainImg}`
+    mainImage.alt = 'img'
+    p1.innerHTML = 'Best Featured For You Today'
+    h1.innerHTML = 'Featured in CinaMania'
+    bgImage.src = `https://image.tmdb.org/t/p/w500${bgImg}`
+    bgImage.alt = 'img'
+    mainTitle.innerHTML= title
+    ratingType.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${(star.toFixed(1))/2} <span class="text-gray-400">| ${year.slice(0,4)} • ${genre}</span>`
+    overview.innerHTML = summary.slice(0,150) + `<span class="text-blue-500 text-xs active:text-blue-700 active:underline md:text-lg"><a href=singleItemInfo.html?param=${id}> See More</a></span>`
+    watchTrailer.innerHTML = '<span class="mx-1 w-5 h-5 bg-white rounded-full flex justify-center items-center"><i class="fa-solid fa-play" style="color: #4ade80;"></i></span><span class="h-6 w-auto flex justify-center items-center text-white font-semibold font-newFont lg:text-lg">Watch Trailer</span>'
+    watchlist.innerHTML = '<i class="fa-regular fa-bookmark mx-1"></i> Add Watchlist'
+
+    //appending elements
+    mainContainer.appendChild(h1)
+    mainContainer.appendChild(p1)
+    mainContainer.appendChild(mainTitle)
+    mainContainer.appendChild(ratingType)
+    mainContainer.appendChild(overview)
+    mainContainer.appendChild(watchTrailer)
+    mainContainer.appendChild(watchlist)
+    mainContainer.appendChild(bgImage)
+    imageDiv.appendChild(mainImage)
+    sliderDiv.appendChild(imageDiv)
+    featuredSlider.appendChild(mainContainer)
+    mainContainer.appendChild(sliderDiv)    
+}
+
+featuredSliderArrowRight.addEventListener('click', function (e) {
+    e.preventDefault()
+    featuredSlider.scrollLeft += featuredSlider.offsetWidth
+})
+
+featuredSliderArrowLeft.addEventListener('click', function (e) {
+    e.preventDefault()
+    featuredSlider.scrollLeft -= featuredSlider.offsetWidth
+})
