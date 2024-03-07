@@ -56,3 +56,18 @@ input[type="password"]::-webkit-search-results-decoration {
     scrollbar-width: none;
 }
 
+.moviesSlider::-webkit-scrollbar{
+    display: none;
+}
+
+.moviesSlider{
+    scrollbar-width: none;
+}
+
+.seriesSlider::-webkit-scrollbar{
+    display: none;
+}
+
+.seriesSlider{
+    scrollbar-width: none;
+}

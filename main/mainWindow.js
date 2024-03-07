@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const paramValue = urlParams.get('param');
 
-const Api_Key = 'API_Key'
+const Api_Key = 'API_KEY'
 
 
 async function allShows() {
@@ -38,9 +38,39 @@ async function topRatedMovies() {
     return data
 }
 
+async function moviesOnly() {
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${Api_Key}`
+        }
+    };
+
+    const response = await fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
+    const data = await response.json()
+    return data
+}
+
+async function seriesOnly() {
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${Api_Key}`
+        }
+    };
+
+    const response = await fetch('https://api.themoviedb.org/3/trending/tv/day?language=en-US', options)
+    const data = await response.json()
+    return data
+}
+
 const shows = allShows()
 const trending = allTrending()
 const topMovies = topRatedMovies()
+const movies = moviesOnly()
+const series = seriesOnly()
 
 
 //All the genres id and name list 
@@ -275,25 +305,14 @@ if (paramValue === 'Guest') {
     })
 
 }
-//param value functionality starts
-
+//param value functionality Ends
 //Header Functionality Ends
-
 
 //Body Functionality Starts
 
-const slides = document.querySelector('.slides')
-const popularWeekSlider = document.querySelector('.trending')
-const leftArrow = document.querySelector('.popularSliderLeftArrow')
-const rightArrow = document.querySelector('.popularSliderRightArrow')
-const justReleaseSlider = document.querySelector('.justRelease')
-const justReleaseSliderLeftArrow = document.querySelector('.justReleaseLeftArrow')
-const justReleaseSliderRightArrow = document.querySelector('.justReleaseRightArrow')
-const featuredSlider = document.querySelector('.featured')
-const featuredSliderArrowLeft = document.querySelector('.leftArrowFeatured')
-const featuredSliderArrowRight = document.querySelector('.rightArrowFeatured')
-
 //auto slider functionality starts
+const slides = document.querySelector('.slides')
+
 shows.then((val) => {
     const movieDetails = val.slice(10, 20)
     movieDetails.map((items) => {
@@ -368,8 +387,10 @@ setInterval(() => {
 }, 7000);
 //auto slider functionality ends
 
-
 //just release slider functionality starts
+const justReleaseSlider = document.querySelector('.justRelease')
+const justReleaseSliderLeftArrow = document.querySelector('.justReleaseLeftArrow')
+const justReleaseSliderRightArrow = document.querySelector('.justReleaseRightArrow')
 
 shows.then((val)=>{
     const allItemsDetails = val.slice(50,70)
@@ -422,6 +443,10 @@ justReleaseSliderLeftArrow.addEventListener('click', function (e) {
 //just release slider functionality ends
 
 //popular of week slider functionality starts
+const popularWeekSlider = document.querySelector('.trending')
+const leftArrow = document.querySelector('.popularSliderLeftArrow')
+const rightArrow = document.querySelector('.popularSliderRightArrow')
+
 trending.then((val) => {
     const trendingArr = val.results
     trendingArr.map((items) => {
@@ -500,6 +525,12 @@ leftArrow.addEventListener('click', function (e) {
 })
 //popular of week slider functionality ends
 
+
+//featured slider functionality starts
+const featuredSlider = document.querySelector('.featured')
+const featuredSliderArrowLeft = document.querySelector('.leftArrowFeatured')
+const featuredSliderArrowRight = document.querySelector('.rightArrowFeatured')
+
 topMovies.then((val)=>{
     const result = val.results
     result.map((items)=>{
@@ -540,7 +571,7 @@ function allFeaturedDetails(bgImg,mainImg,genre,star,title,summary,year,id){
     const mainTitle = document.createElement('p')
     let ratingType = document.createElement('p')
     const overview = document.createElement('p')
-    let watchTrailer = document.createElement('span')
+    let watchTrailer = document.createElement('a')
     let watchlist = document.createElement('span')
 
     //setting attributes to the elements and also setting css
@@ -558,6 +589,7 @@ function allFeaturedDetails(bgImg,mainImg,genre,star,title,summary,year,id){
     mainImage.setAttribute('class','h-full w-full object-contain z-20 rounded-xl')
 
     //appending content inside elements
+    watchTrailer.href = `singleItemInfo.html?param=${id}`
     mainImage.src = `https://image.tmdb.org/t/p/w500${mainImg}`
     mainImage.alt = 'img'
     p1.innerHTML = 'Best Featured For You Today'
@@ -566,7 +598,7 @@ function allFeaturedDetails(bgImg,mainImg,genre,star,title,summary,year,id){
     bgImage.alt = 'img'
     mainTitle.innerHTML= title
     ratingType.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${(star.toFixed(1))/2} <span class="text-gray-400">| ${year.slice(0,4)} • ${genre}</span>`
-    overview.innerHTML = summary.slice(0,150) + `<span class="text-blue-500 text-xs active:text-blue-700 active:underline md:text-lg"><a href=singleItemInfo.html?param=${id}> See More</a></span>`
+    overview.innerHTML = summary.slice(0,150) + `<span class="text-blue-500 text-xs active:text-blue-700 active:underline md:text-lg md:hover:text-blue-700 md:hover:underline"><a href=singleItemInfo.html?param=${id}> See More</a></span>`
     watchTrailer.innerHTML = '<span class="mx-1 w-5 h-5 bg-white rounded-full flex justify-center items-center"><i class="fa-solid fa-play" style="color: #4ade80;"></i></span><span class="h-6 w-auto flex justify-center items-center text-white font-semibold font-newFont lg:text-lg">Watch Trailer</span>'
     watchlist.innerHTML = '<i class="fa-regular fa-bookmark mx-1"></i> Add Watchlist'
 
@@ -594,3 +626,138 @@ featuredSliderArrowLeft.addEventListener('click', function (e) {
     e.preventDefault()
     featuredSlider.scrollLeft -= featuredSlider.offsetWidth
 })
+
+//featured slider functionality Ends
+
+//Movies Slider functionality starts
+const moviesSliderDiv = document.querySelector('.moviesSlider')
+const moviesSliderArrowLeft = document.querySelector('.leftArrowMoviesSlider')
+const moviesSliderArrowRight = document.querySelector('.rightArrowMoviesSlider')
+
+movies.then((val)=>{
+    const items = val.results
+    items.map((allItems)=>{
+        const id = allItems.id
+        const title = allItems.original_title
+        const type = allItems.media_type
+        const image = allItems.poster_path
+        const rating = allItems.vote_average
+        const genre = allItems.genre_ids
+        function findMatchingNames(genre, list2) {
+            const matchingNames = [];
+
+            genre.forEach(id => {
+                const matchingObject = list2.find(obj => obj.id === id);
+                if (matchingObject) {
+                    matchingNames.push(matchingObject.name);
+                }
+            });
+
+            return matchingNames;
+        }
+        const matchingNames = findMatchingNames(genre, list2);
+        moviesSlider(id,title,type,image,rating,matchingNames)
+    })
+})
+
+function moviesSlider(id,name,type,poster,stars,genres){
+    const mainAnchor = document.createElement('a')
+    const image = document.createElement('img')
+    const title = document.createElement('p')
+    const rating = document.createElement('span')
+
+    mainAnchor.setAttribute('class','h-full min-w-[60vw] mx-2 flex flex-col sm:min-w-[35vw] md:min-w-[30vw] lg:min-w-[25vw] xl:min-w-[20vw] 2xl:min-w-[15vw]')
+    image.setAttribute('class','h-80 min-w-full object-cover rounded-xl')
+    title.setAttribute('class','text-base font-semibold text-white mx-3 my-2 font-newFont')
+    rating.setAttribute('class','text-white text-sm mx-3')
+
+    mainAnchor.href = `singleItemInfo.html?param=${id}`
+    image.src = `https://image.tmdb.org/t/p/w500${poster}`
+    image.alt = 'Image'
+    title.innerHTML = name
+    rating.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${(stars.toFixed(1))/2} <span class="text-gray-500 font-bold text-xs">| ${genres[0]} • ${type.toUpperCase()}</span> `
+
+    mainAnchor.appendChild(image)
+    mainAnchor.appendChild(title)
+    mainAnchor.appendChild(rating)
+    moviesSliderDiv.appendChild(mainAnchor)
+}
+
+moviesSliderArrowRight.addEventListener('click', function (e) {
+    e.preventDefault()
+    moviesSliderDiv.scrollLeft += 500
+})
+
+moviesSliderArrowLeft.addEventListener('click', function (e) {
+    e.preventDefault()
+    moviesSliderDiv.scrollLeft -= 500
+})
+
+//Movies Slider functionality Ends
+
+//Series Slider functionality Starts
+
+const seriesSliderDiv = document.querySelector('.seriesSlider')
+const seriesSliderArrowLeft = document.querySelector('.leftArrowSeriesSlider')
+const seriesSliderArrowRight = document.querySelector('.rightArrowSeriesSlider')
+
+series.then((val)=>{
+    const items = val.results.slice(0,19)
+    items.map((allItems)=>{
+        const id = allItems.id
+        const title = allItems.name
+        const type = allItems.media_type
+        const image = allItems.poster_path
+        const rating = allItems.vote_average
+        const genre = allItems.genre_ids
+        function findMatchingNames(genre, list2) {
+            const matchingNames = [];
+
+            genre.forEach(id => {
+                const matchingObject = list2.find(obj => obj.id === id);
+                if (matchingObject) {
+                    matchingNames.push(matchingObject.name);
+                }
+            });
+
+            return matchingNames;
+        }
+        const matchingNames = findMatchingNames(genre, list2);
+        seriesSlider(id,title,type,image,rating,matchingNames)
+    })
+})
+
+function seriesSlider(id,name,type,poster,stars,genres){
+    const mainAnchor = document.createElement('a')
+    const image = document.createElement('img')
+    const title = document.createElement('p')
+    const rating = document.createElement('span')
+
+    mainAnchor.setAttribute('class','h-full min-w-[60vw] mx-2 flex flex-col sm:min-w-[35vw] md:min-w-[30vw] lg:min-w-[25vw] xl:min-w-[20vw] 2xl:min-w-[15vw]')
+    image.setAttribute('class','h-80 min-w-full object-cover rounded-xl')
+    title.setAttribute('class','text-base font-semibold text-white mx-3 my-2 font-newFont')
+    rating.setAttribute('class','text-white text-sm mx-3')
+
+    mainAnchor.href = `singleItemInfo.html?param=${id}`
+    image.src = `https://image.tmdb.org/t/p/w500${poster}`
+    image.alt = 'Image'
+    title.innerHTML = name
+    rating.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${(stars.toFixed(1))/2} <span class="text-gray-500 font-bold text-xs">| ${genres[0]} • ${type.toUpperCase()}</span> `
+
+    mainAnchor.appendChild(image)
+    mainAnchor.appendChild(title)
+    mainAnchor.appendChild(rating)
+    seriesSliderDiv.appendChild(mainAnchor)
+}
+
+seriesSliderArrowRight.addEventListener('click', function (e) {
+    e.preventDefault()
+    seriesSliderDiv.scrollLeft += 500
+})
+
+seriesSliderArrowLeft.addEventListener('click', function (e) {
+    e.preventDefault()
+    seriesSliderDiv.scrollLeft -= 500
+})
+
+//Series Slider functionality Ends
