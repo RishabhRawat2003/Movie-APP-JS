@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const paramValue = urlParams.get('param');
 
-const Api_Key = 'API_KEY'
+const Api_Key = 'Api_Key'
 
 
 async function allShows() {
@@ -597,7 +597,7 @@ function allFeaturedDetails(bgImg,mainImg,genre,star,title,summary,year,id){
     bgImage.src = `https://image.tmdb.org/t/p/w500${bgImg}`
     bgImage.alt = 'img'
     mainTitle.innerHTML= title
-    ratingType.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${(star.toFixed(1))/2} <span class="text-gray-400">| ${year.slice(0,4)} • ${genre}</span>`
+    ratingType.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${star.toFixed(1)} <span class="text-gray-400">| ${year.slice(0,4)} • ${genre}</span>`
     overview.innerHTML = summary.slice(0,150) + `<span class="text-blue-500 text-xs active:text-blue-700 active:underline md:text-lg md:hover:text-blue-700 md:hover:underline"><a href=singleItemInfo.html?param=${id}> See More</a></span>`
     watchTrailer.innerHTML = '<span class="mx-1 w-5 h-5 bg-white rounded-full flex justify-center items-center"><i class="fa-solid fa-play" style="color: #4ade80;"></i></span><span class="h-6 w-auto flex justify-center items-center text-white font-semibold font-newFont lg:text-lg">Watch Trailer</span>'
     watchlist.innerHTML = '<i class="fa-regular fa-bookmark mx-1"></i> Add Watchlist'
@@ -675,7 +675,7 @@ function moviesSlider(id,name,type,poster,stars,genres){
     image.src = `https://image.tmdb.org/t/p/w500${poster}`
     image.alt = 'Image'
     title.innerHTML = name
-    rating.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${(stars.toFixed(1))/2} <span class="text-gray-500 font-bold text-xs">| ${genres[0]} • ${type.toUpperCase()}</span> `
+    rating.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${stars.toFixed(1)} <span class="text-gray-500 font-bold text-xs">| ${genres[0]} • ${type.toUpperCase()}</span> `
 
     mainAnchor.appendChild(image)
     mainAnchor.appendChild(title)
@@ -742,7 +742,7 @@ function seriesSlider(id,name,type,poster,stars,genres){
     image.src = `https://image.tmdb.org/t/p/w500${poster}`
     image.alt = 'Image'
     title.innerHTML = name
-    rating.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${(stars.toFixed(1))/2} <span class="text-gray-500 font-bold text-xs">| ${genres[0]} • ${type.toUpperCase()}</span> `
+    rating.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${stars.toFixed(1)} <span class="text-gray-500 font-bold text-xs">| ${genres[0]} • ${type.toUpperCase()}</span> `
 
     mainAnchor.appendChild(image)
     mainAnchor.appendChild(title)
