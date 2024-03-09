@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const paramValue = urlParams.get('param');
 
-const Api_Key = 'Api_Key'
+const Api_Key = 'API_KEY'
 
 
 async function allShows() {
@@ -306,6 +306,20 @@ if (paramValue === 'Guest') {
 
 }
 //param value functionality Ends
+
+//Navbar Click Event Listener Functionality Starts
+const genreBtn = document.querySelectorAll('.genreBtn')
+genreBtn.forEach((items)=>{
+    items.addEventListener('click', function (e) {
+        e.preventDefault()
+        window.location.href = `genreWindow.html?param=${paramValue}`;
+    
+    })
+})
+
+
+//Navbar Click Event Listener Functionality Ends
+
 //Header Functionality Ends
 
 //Body Functionality Starts
@@ -392,28 +406,28 @@ const justReleaseSlider = document.querySelector('.justRelease')
 const justReleaseSliderLeftArrow = document.querySelector('.justReleaseLeftArrow')
 const justReleaseSliderRightArrow = document.querySelector('.justReleaseRightArrow')
 
-shows.then((val)=>{
-    const allItemsDetails = val.slice(50,70)
-    allItemsDetails.map((items)=>{
-        const id = items.id 
+shows.then((val) => {
+    const allItemsDetails = val.slice(50, 70)
+    allItemsDetails.map((items) => {
+        const id = items.id
         const name = items.name
         const rating = items.rating.average
         const thumbnail = items.image.original
-        justReleaseSliderFunc(name,id,rating,thumbnail)
+        justReleaseSliderFunc(name, id, rating, thumbnail)
     })
 })
 
-function justReleaseSliderFunc(name,id,rating,thumbnail){
+function justReleaseSliderFunc(name, id, rating, thumbnail) {
     let anchor = document.createElement('a')
     let img = document.createElement('img')
     let title = document.createElement('p')
     let ratingStar = document.createElement('p')
 
     //setting attributes and css
-    anchor.setAttribute('class','h-64 w-44 relative mx-3 rounded-md shadow-lg')
-    img.setAttribute('class','h-full min-w-44 object-cover rounded-md opacity-60')
-    title.setAttribute('class','text-lg text-slate-200 font-bold font-newFont absolute bottom-7 mx-2 md:text-xl md:my-2')
-    ratingStar.setAttribute('class','text-sm mx-2 w-full text-white font-bold font-newFont absolute bottom-2 md:text-lg')
+    anchor.setAttribute('class', 'h-64 w-44 relative mx-3 rounded-md shadow-lg')
+    img.setAttribute('class', 'h-full min-w-44 object-cover rounded-md opacity-60')
+    title.setAttribute('class', 'text-lg text-slate-200 font-bold font-newFont absolute bottom-7 mx-2 md:text-xl md:my-2')
+    ratingStar.setAttribute('class', 'text-sm mx-2 w-full text-white font-bold font-newFont absolute bottom-2 md:text-lg')
 
     //inserting content inside elements
     anchor.href = `singleItemInfo.html?param=${id}`
@@ -531,9 +545,9 @@ const featuredSlider = document.querySelector('.featured')
 const featuredSliderArrowLeft = document.querySelector('.leftArrowFeatured')
 const featuredSliderArrowRight = document.querySelector('.rightArrowFeatured')
 
-topMovies.then((val)=>{
+topMovies.then((val) => {
     const result = val.results
-    result.map((items)=>{
+    result.map((items) => {
         //console.log(items);
         const id = items.id
         const bgImage = items.backdrop_path
@@ -556,11 +570,11 @@ topMovies.then((val)=>{
             return matchingNames;
         }
         const matchingNames = findMatchingNames(genreId, list2);
-        allFeaturedDetails(bgImage,mainImg,matchingNames,rating,title,summary,year,id)
+        allFeaturedDetails(bgImage, mainImg, matchingNames, rating, title, summary, year, id)
     })
 })
 
-function allFeaturedDetails(bgImg,mainImg,genre,star,title,summary,year,id){
+function allFeaturedDetails(bgImg, mainImg, genre, star, title, summary, year, id) {
     const mainContainer = document.createElement('div')
     const sliderDiv = document.createElement('div')
     const imageDiv = document.createElement('div')
@@ -575,18 +589,18 @@ function allFeaturedDetails(bgImg,mainImg,genre,star,title,summary,year,id){
     let watchlist = document.createElement('span')
 
     //setting attributes to the elements and also setting css
-    mainContainer.setAttribute('class','min-h-full min-w-full relative')
-    h1.setAttribute('class','text-2xl mx-2 my-2 text-white absolute top-1 font-semibold font-newFont z-20 md:text-3xl')
-    p1.setAttribute('class','mx-2 my-1 text-gray-400 absolute top-10 font-newFont z-20 md:text-xl')
-    mainTitle.setAttribute('class','text-lg mx-2 my-1 text-white absolute bottom-40 font-bold font-newFont z-20 md:text-2xl')
-    ratingType.setAttribute('class','text-sm mx-2 my-1 text-white absolute bottom-32 font-bold font-newFont z-20 md:text-xl')
-    overview.setAttribute('class','text-xs mx-2 my-1 text-gray-400 absolute bottom-16 font-bold font-newFont z-20 md:text-lg lg:bottom-20')
-    bgImage.setAttribute('class','min-w-full min-h-full object-cover opacity-40 z-10')
-    watchTrailer.setAttribute('class','h-auto w-auto p-2 px-3 flex absolute bottom-2 mx-3 z-20 cursor-pointer bg-green-400 rounded-xl md:mx-4 md:hover:bg-green-600 md:hover:scale-105 duration-200 active:bg-green-600')
-    watchlist.setAttribute('class','h-auto w-auto p-2 px-3 flex absolute bottom-2 right-0 mx-3 z-20 cursor-pointer rounded-xl border-[1px] gap-2 border-white flex justify-center items-center text-white active:bg-slate-600 md:hover:bg-slate-600 md:hover:scale-105 duration-200 md:right-[55vw] lg:right-[65vw] xl:right-[72vw] 2xl:right-[76vw]')
-    sliderDiv.setAttribute('class','h-[50vh] w-full top-20 absolute gap-5 flex z-20 overflow-scroll')
-    imageDiv.setAttribute('class','h-full w-auto absolute z-20 right-1 rounded-xl lg:right-4 xl:right-6')
-    mainImage.setAttribute('class','h-full w-full object-contain z-20 rounded-xl')
+    mainContainer.setAttribute('class', 'min-h-full min-w-full relative')
+    h1.setAttribute('class', 'text-2xl mx-2 my-2 text-white absolute top-1 font-semibold font-newFont z-20 md:text-3xl')
+    p1.setAttribute('class', 'mx-2 my-1 text-gray-400 absolute top-10 font-newFont z-20 md:text-xl')
+    mainTitle.setAttribute('class', 'text-lg mx-2 my-1 text-white absolute bottom-40 font-bold font-newFont z-20 md:text-2xl')
+    ratingType.setAttribute('class', 'text-sm mx-2 my-1 text-white absolute bottom-32 font-bold font-newFont z-20 md:text-xl')
+    overview.setAttribute('class', 'text-xs mx-2 my-1 text-gray-400 absolute bottom-16 font-bold font-newFont z-20 md:text-lg lg:bottom-20')
+    bgImage.setAttribute('class', 'min-w-full min-h-full object-cover opacity-40 z-10')
+    watchTrailer.setAttribute('class', 'h-auto w-auto p-2 px-3 flex absolute bottom-2 mx-3 z-20 cursor-pointer bg-green-400 rounded-xl md:mx-4 md:hover:bg-green-600 md:hover:scale-105 duration-200 active:bg-green-600')
+    watchlist.setAttribute('class', 'h-auto w-auto p-2 px-3 flex absolute bottom-2 right-0 mx-3 z-20 cursor-pointer rounded-xl border-[1px] gap-2 border-white flex justify-center items-center text-white active:bg-slate-600 md:hover:bg-slate-600 md:hover:scale-105 duration-200 md:right-[55vw] lg:right-[65vw] xl:right-[72vw] 2xl:right-[76vw]')
+    sliderDiv.setAttribute('class', 'h-[50vh] w-full top-20 absolute gap-5 flex z-20 overflow-scroll')
+    imageDiv.setAttribute('class', 'h-full w-auto absolute z-20 right-1 rounded-xl lg:right-4 xl:right-6')
+    mainImage.setAttribute('class', 'h-full w-full object-contain z-20 rounded-xl')
 
     //appending content inside elements
     watchTrailer.href = `singleItemInfo.html?param=${id}`
@@ -596,9 +610,9 @@ function allFeaturedDetails(bgImg,mainImg,genre,star,title,summary,year,id){
     h1.innerHTML = 'Featured in CinaMania'
     bgImage.src = `https://image.tmdb.org/t/p/w500${bgImg}`
     bgImage.alt = 'img'
-    mainTitle.innerHTML= title
-    ratingType.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${star.toFixed(1)} <span class="text-gray-400">| ${year.slice(0,4)} • ${genre}</span>`
-    overview.innerHTML = summary.slice(0,150) + `<span class="text-blue-500 text-xs active:text-blue-700 active:underline md:text-lg md:hover:text-blue-700 md:hover:underline"><a href=singleItemInfo.html?param=${id}> See More</a></span>`
+    mainTitle.innerHTML = title
+    ratingType.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${star.toFixed(1)} <span class="text-gray-400">| ${year.slice(0, 4)} • ${genre}</span>`
+    overview.innerHTML = summary.slice(0, 150) + `<span class="text-blue-500 text-xs active:text-blue-700 active:underline md:text-lg md:hover:text-blue-700 md:hover:underline"><a href=singleItemInfo.html?param=${id}> See More</a></span>`
     watchTrailer.innerHTML = '<span class="mx-1 w-5 h-5 bg-white rounded-full flex justify-center items-center"><i class="fa-solid fa-play" style="color: #4ade80;"></i></span><span class="h-6 w-auto flex justify-center items-center text-white font-semibold font-newFont lg:text-lg">Watch Trailer</span>'
     watchlist.innerHTML = '<i class="fa-regular fa-bookmark mx-1"></i> Add Watchlist'
 
@@ -614,7 +628,7 @@ function allFeaturedDetails(bgImg,mainImg,genre,star,title,summary,year,id){
     imageDiv.appendChild(mainImage)
     sliderDiv.appendChild(imageDiv)
     featuredSlider.appendChild(mainContainer)
-    mainContainer.appendChild(sliderDiv)    
+    mainContainer.appendChild(sliderDiv)
 }
 
 featuredSliderArrowRight.addEventListener('click', function (e) {
@@ -634,9 +648,9 @@ const moviesSliderDiv = document.querySelector('.moviesSlider')
 const moviesSliderArrowLeft = document.querySelector('.leftArrowMoviesSlider')
 const moviesSliderArrowRight = document.querySelector('.rightArrowMoviesSlider')
 
-movies.then((val)=>{
+movies.then((val) => {
     const items = val.results
-    items.map((allItems)=>{
+    items.map((allItems) => {
         const id = allItems.id
         const title = allItems.original_title
         const type = allItems.media_type
@@ -656,20 +670,20 @@ movies.then((val)=>{
             return matchingNames;
         }
         const matchingNames = findMatchingNames(genre, list2);
-        moviesSlider(id,title,type,image,rating,matchingNames)
+        moviesSlider(id, title, type, image, rating, matchingNames)
     })
 })
 
-function moviesSlider(id,name,type,poster,stars,genres){
+function moviesSlider(id, name, type, poster, stars, genres) {
     const mainAnchor = document.createElement('a')
     const image = document.createElement('img')
     const title = document.createElement('p')
     const rating = document.createElement('span')
 
-    mainAnchor.setAttribute('class','h-full min-w-[60vw] mx-2 flex flex-col sm:min-w-[35vw] md:min-w-[30vw] lg:min-w-[25vw] xl:min-w-[20vw] 2xl:min-w-[15vw]')
-    image.setAttribute('class','h-80 min-w-full object-cover rounded-xl')
-    title.setAttribute('class','text-base font-semibold text-white mx-3 my-2 font-newFont')
-    rating.setAttribute('class','text-white text-sm mx-3')
+    mainAnchor.setAttribute('class', 'h-full min-w-[60vw] mx-2 flex flex-col sm:min-w-[35vw] md:min-w-[30vw] lg:min-w-[25vw] xl:min-w-[20vw] 2xl:min-w-[15vw]')
+    image.setAttribute('class', 'h-80 min-w-full object-cover rounded-xl')
+    title.setAttribute('class', 'text-base font-semibold text-white mx-3 my-2 font-newFont')
+    rating.setAttribute('class', 'text-white text-sm mx-3')
 
     mainAnchor.href = `singleItemInfo.html?param=${id}`
     image.src = `https://image.tmdb.org/t/p/w500${poster}`
@@ -701,9 +715,9 @@ const seriesSliderDiv = document.querySelector('.seriesSlider')
 const seriesSliderArrowLeft = document.querySelector('.leftArrowSeriesSlider')
 const seriesSliderArrowRight = document.querySelector('.rightArrowSeriesSlider')
 
-series.then((val)=>{
-    const items = val.results.slice(0,19)
-    items.map((allItems)=>{
+series.then((val) => {
+    const items = val.results.slice(0, 19)
+    items.map((allItems) => {
         const id = allItems.id
         const title = allItems.name
         const type = allItems.media_type
@@ -723,20 +737,20 @@ series.then((val)=>{
             return matchingNames;
         }
         const matchingNames = findMatchingNames(genre, list2);
-        seriesSlider(id,title,type,image,rating,matchingNames)
+        seriesSlider(id, title, type, image, rating, matchingNames)
     })
 })
 
-function seriesSlider(id,name,type,poster,stars,genres){
+function seriesSlider(id, name, type, poster, stars, genres) {
     const mainAnchor = document.createElement('a')
     const image = document.createElement('img')
     const title = document.createElement('p')
     const rating = document.createElement('span')
 
-    mainAnchor.setAttribute('class','h-full min-w-[60vw] mx-2 flex flex-col sm:min-w-[35vw] md:min-w-[30vw] lg:min-w-[25vw] xl:min-w-[20vw] 2xl:min-w-[15vw]')
-    image.setAttribute('class','h-80 min-w-full object-cover rounded-xl')
-    title.setAttribute('class','text-base font-semibold text-white mx-3 my-2 font-newFont')
-    rating.setAttribute('class','text-white text-sm mx-3')
+    mainAnchor.setAttribute('class', 'h-full min-w-[60vw] mx-2 flex flex-col sm:min-w-[35vw] md:min-w-[30vw] lg:min-w-[25vw] xl:min-w-[20vw] 2xl:min-w-[15vw]')
+    image.setAttribute('class', 'h-80 min-w-full object-cover rounded-xl')
+    title.setAttribute('class', 'text-base font-semibold text-white mx-3 my-2 font-newFont')
+    rating.setAttribute('class', 'text-white text-sm mx-3')
 
     mainAnchor.href = `singleItemInfo.html?param=${id}`
     image.src = `https://image.tmdb.org/t/p/w500${poster}`

@@ -4,16 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CinaMania Watch Your Favourite Movies Here</title>
+    <title>Genre--Choose your Favourite Category to Watch best Quality Movies and Tv Shows</title>
     <link rel="stylesheet" href="./src/output.css">
-    <link rel="stylesheet" href="./src/bowserAppearn.css">
     <script src="https://kit.fontawesome.com/ef961f7c58.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="bg-slate-800">
     <!--Header Functionality Starts-->
     <!--Header Starts-->
-    <header class="w-full absolute h-auto top-0 z-40">
+    <header class="w-full relative h-auto top-0 z-40">
         <div class="h-20 w-full  flex justify-between">
             <!--Logo Starts-->
             <div class="h-16 w-auto">
@@ -121,10 +120,11 @@
             <div class="h-16 w-auto hidden md:flex md:justify-center md:items-center">
                 <ul
                     class="flex h-full w-full justify-center items-center gap-6 font-semibold lg:gap-12 xl:gap-16 2xl:gap-20">
-                    <li class="text-white underline cursor-pointer font-newFont text-lg xl:text-xl">Home</li>
+                    <li class="homeBtn text-gray-500 cursor-pointer hover:text-white hover:underline font-newFont text-lg xl:text-xl">Home</li>
                     <li
-                        class="genreBtn text-gray-500 hover:text-white hover:underline cursor-pointer font-newFont text-lg xl:text-xl">
-                        Genre</li>
+                        class="text-white underline cursor-pointer font-newFont text-lg xl:text-xl">
+                        Genre
+                    </li>
                     <li
                         class="text-gray-500 hover:text-white hover:underline cursor-pointer font-newFont text-lg xl:text-xl">
                         Movies-News</li>
@@ -135,18 +135,8 @@
             </div>
             <!--Navbar Content For big devices ends-->
 
-            <!--Search Icons and Bars starts-->
+            <!--Bars starts-->
             <div class="h-16 w-auto flex justify-center items-center mr-3">
-
-                <input type="text" placeholder="Search Movies or Series"
-                    class="search hidden duration-200 w-40 h-7 mx-1 bg-slate-300 outline-none rounded-md px-2 lg:w-48 xl:w-52">
-
-                <!--Search Icon Starts-->
-                <span class="searchIcon h-14 flex items-center w-6 mx-1">
-                    <i class="fa-solid fa-magnifying-glass fa-xl hover:cursor-pointer" style="color: #ffffff;"></i>
-                </span>
-                <!--Search Icon Ends-->
-
                 <!--Username for big devices Starts-->
                 <span
                     class="userName h-14 w-auto text-white font-bold mx-4 hidden md:flex justify-center items-center"></span>
@@ -168,7 +158,7 @@
                 </span>
                 <!--SideBar Icon for Small devices Ends-->
             </div>
-            <!--Search Icons and Bars Ends-->
+            <!--Bars Ends-->
 
         </div>
     </header>
@@ -195,8 +185,8 @@
 
         <div class="h-[2px] w-[80%] bg-gray-800 mx-auto mt-2"></div>
         <div class="w-full h-auto my-2 flex flex-col justify-center gap-3 select-none">
-            <p class="text-center text-white text-lg font-bold underline cursor-pointer">Home</p>
-            <p class="genreBtn text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
+            <p class="homeBtn text-center text-gray-500 active:text-white active:underline text-lg font-bold  cursor-pointer">Home</p>
+            <p class="text-center text-white text-lg font-bold underline cursor-pointer">
                 Genre</p>
             <p class="text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
                 Movies-News</p>
@@ -241,112 +231,24 @@
     <!--Header Functionality Ends-->
 
     <!--Body Functionality Starts-->
-    <!--Auto Slider Starts-->
-    <div class="h-full bg-slate-800 relative z-0 top-0 w-full sm:h-[80vh]">
-        <div class="slides blur-none h-full w-full flex scroll-smooth justify-start overflow-hidden"></div>
+    <div class="my-3 h-16 w-full flex justify-center items-center lg:justify-start px-7">
+        <div class="w-auto h-full flex justify-between items-center bg-blue-500 rounded-full text-white font-bold relative">
+            <span class="ball h-full w-24 flex justify-center items-center p-3 rounded-full cursor-pointer bg-red-500 absolute z-10 left-0 duration-500 lg:w-32"></span>
+            <span class="movies h-full w-24 flex justify-center items-center p-3 rounded-full cursor-pointer z-20 lg:w-32">Movies</span>
+            <span class="tvShow h-full w-24 flex justify-center items-center p-3 rounded-full cursor-pointer z-20 lg:w-32">Tv Show</span>
+        </div>
     </div>
-    <!--Auto Slider Ends-->
-
-    <!--Ott Platform Logos Slider Starts-->
-    <div class="ottSlider w-full h-28 flex items-center gap-4 overflow-scroll">
-        <a href="https://www.netflix.com/in/" target="_blank"
-            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/netflixlogo.webp"
-                alt="Netflix Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.hotstar.com/in/movies" target="_blank"
-            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/disney.jpg"
-                alt="Disney Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.jiocinema.com/" target="_blank"
-            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/jiologo.webp"
-                alt="JioCinema Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.mxplayer.in/" target="_blank"
-            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/mxlogo.jpg"
-                alt="Mx Player Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.primevideo.com/offers/nonprimehomepage/ref=dv_web_force_root" target="_blank"
-            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/primelogo.jpg"
-                alt="Amazon Prime Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.sonyliv.com/" target="_blank"
-            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/sonylivlogo.jpg"
-                alt="Sony Liv Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
-                src="./img/small/vootlogo.jpg" alt="Voot Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.zee5.com/" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
-                src="./img/small/zee5logo.png" alt="Zee5 Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.marvel.com/" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
-                src="./img/small/marvellogo.jpg" alt="Zee5 Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.hbo.com/" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
-                src="./img/small/hbo.jpg" alt="Zee5 Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://altt.co.in/" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
-                src="./img/small/altlogo.jpg" alt="Zee5 Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
+    <div class="genreList my-3 h-auto w-full ">
+        <div class="moviesList px-2 h-full w-full flex flex-wrap"></div>
+        <div class="seriesList h-full w-full flex flex-wrap px-2"></div>
     </div>
-    <!--Ott Platform Logos Slider Ends-->
-
-    <!--Just Release Slider Starts-->
-    <div class="h-auto w-[95%] my-5 mx-auto relative">
-        <h1 class="text-xl font-bold font-newFont text-white md:text-2xl lg:text-3xl">Just Release</h1>
-        <div class="justRelease scroll-smooth w-full h-auto overflow-scroll flex my-3"></div>
-        <span
-            class="justReleaseLeftArrow h-auto w-auto rounded-full p-1 px-3 absolute top-[153px] left-0 bg-slate-600 hidden md:block hover:bg-slate-900 cursor-pointer opacity-60 hover:opacity-100"><i
-                class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></span>
-        <span
-            class="justReleaseRightArrow h-auto w-auto rounded-full p-1 px-3 absolute top-[153px] right-0 bg-slate-600 hidden md:block hover:bg-slate-900 cursor-pointer opacity-60 hover:opacity-100"><i
-                class="fa-solid fa-chevron-left fa-rotate-180" style="color: #ffffff;"></i></span>
+    <div class="genreName h-auto w-full px-4 text-xl text-white font-semibold my-3 font-newFont underline underline-offset-2 md:px-5 lg:px-7 lg:text-3xl"></div>
+    <div class="itemsList my-5 h-auto w-full flex flex-wrap justify-evenly items-center gap-3 xl:gap-6">
     </div>
-    <!--Just Release Slider Ends-->
-
-    <!--Popular of the week Slider starts-->
-    <div class="h-auto w-[95%] my-5 mx-auto relative">
-        <h1 class="text-xl font-bold font-newFont text-white md:text-2xl lg:text-3xl">Popular Of The Week</h1>
-        <div class="trending scroll-smooth w-full h-auto overflow-scroll flex my-3"></div>
-        <span
-            class="popularSliderLeftArrow h-auto w-auto rounded-full p-1 px-3 absolute top-[104px] left-0 bg-slate-600 hidden md:block hover:bg-slate-900 cursor-pointer opacity-60 hover:opacity-100"><i
-                class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></span>
-        <span
-            class="popularSliderRightArrow h-auto w-auto rounded-full p-1 px-3 absolute top-[104px] right-0 bg-slate-600 hidden md:block hover:bg-slate-900 cursor-pointer opacity-60 hover:opacity-100"><i
-                class="fa-solid fa-chevron-left fa-rotate-180" style="color: #ffffff;"></i></span>
-    </div>
-    <!--Popular of the week Slider Ends-->
-
-    <!--Featured Slider Starts-->
-    <div class="h-[90vh] w-full my-3 relative flex">
-        <div class="featured full w-full relative flex overflow-hidden shadow-xl scroll-smooth"></div>
-        <span
-            class="leftArrowFeatured h-auto w-auto rounded-full p-1 px-3 absolute top-[50%] left-2 bg-slate-600 active:bg-slate-900 active:opacity-100 md:hover:bg-slate-900 cursor-pointer opacity-60 md:hover:opacity-100 z-30"><i
-                class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></span>
-        <span
-            class="rightArrowFeatured h-auto w-auto rounded-full p-1 px-3 absolute top-[50%] right-2 bg-slate-600 active:bg-slate-900 active:opacity-100 md:hover:bg-slate-900 cursor-pointer opacity-60 md:hover:opacity-100 z-30"><i
-                class="fa-solid fa-chevron-left fa-rotate-180" style="color: #ffffff;"></i></span>
-    </div>
-    <!--Featured Slider Ends-->
-
-    <!--Movies Slider Starts-->
-    <div class="h-auto w-full my-3 relative">
-        <h1 class="text-2xl text-white font-bold font-newFont mx-3 mb-3 md:text-3xl md:mx-6">Movies</h1>
-        <div class="moviesSlider h-[57vh] w-full flex overflow-scroll pl-3 scroll-smooth overflow-y-hidden"></div>
-        <span
-            class="leftArrowMoviesSlider h-auto w-auto rounded-full p-1 px-3 absolute top-[50%] left-2 bg-slate-600 hidden md:block md:hover:bg-slate-900 cursor-pointer opacity-60 md:hover:opacity-100 z-30"><i
-                class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></span>
-        <span
-            class="rightArrowMoviesSlider h-auto w-auto rounded-full p-1 px-3 absolute top-[50%] right-2 bg-slate-600 hidden md:block md:hover:bg-slate-900 cursor-pointer opacity-60 md:hover:opacity-100 z-30"><i
-                class="fa-solid fa-chevron-left fa-rotate-180" style="color: #ffffff;"></i></span>
-    </div>
-    <!--Movies Slider Ends-->
-
-    <!--Series Slider Starts-->
-    <div class="h-auto w-full my-3 relative">
-        <h1 class="text-2xl text-white font-bold font-newFont mx-3 mb-3 md:text-3xl md:mx-6">Series</h1>
-        <div class="seriesSlider h-[57vh] w-full flex overflow-scroll pl-3 scroll-smooth overflow-y-hidden"></div>
-        <span
-            class="leftArrowSeriesSlider h-auto w-auto rounded-full p-1 px-3 absolute top-[50%] left-2 bg-slate-600 hidden md:block md:hover:bg-slate-900 cursor-pointer opacity-60 md:hover:opacity-100 z-30"><i
-                class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></span>
-        <span
-            class="rightArrowSeriesSlider h-auto w-auto rounded-full p-1 px-3 absolute top-[50%] right-2 bg-slate-600 hidden md:block md:hover:bg-slate-900 cursor-pointer opacity-60 md:hover:opacity-100 z-30"><i
-                class="fa-solid fa-chevron-left fa-rotate-180" style="color: #ffffff;"></i></span>
-    </div>
-    <!--Series Slider Ends-->
     <!--Body Functionality Ends-->
 
     <!--Footer functionality starts-->
-    <footer class="h-auto w-full border-t-[1px] border-t-gray-400 flex flex-col relative">
+    <footer class="footer h-auto w-full border-t-[1px] border-t-gray-400 flex-col relative hidden">
         <div class="h-auto w-full text-white font-newFont font-semibold text-2xl p-3 lg:text-3xl md:w-96 lg:w-[55vw]">
             Our platform is trusted by millions & features best updated movies all around the world.
         </div>
@@ -417,7 +319,7 @@
     </footer>
     <!--Footer functionality Ends-->
 
-    <script src="mainWindow.js"></script>
+    <script src="genre.js"></script>
 </body>
 
 </html>
