@@ -598,7 +598,7 @@ function allFeaturedDetails(bgImg, mainImg, genre, star, title, summary, year, i
     bgImage.setAttribute('class', 'min-w-full min-h-full object-cover opacity-40 z-10')
     watchTrailer.setAttribute('class', 'h-auto w-auto p-2 px-3 flex absolute bottom-2 mx-3 z-20 cursor-pointer bg-green-400 rounded-xl md:mx-4 md:hover:bg-green-600 md:hover:scale-105 duration-200 active:bg-green-600')
     watchlist.setAttribute('class', 'h-auto w-auto p-2 px-3 flex absolute bottom-2 right-0 mx-3 z-20 cursor-pointer rounded-xl border-[1px] gap-2 border-white flex justify-center items-center text-white active:bg-slate-600 md:hover:bg-slate-600 md:hover:scale-105 duration-200 md:right-[55vw] lg:right-[65vw] xl:right-[72vw] 2xl:right-[76vw]')
-    sliderDiv.setAttribute('class', 'h-[50vh] w-full top-20 absolute gap-5 flex z-20 overflow-scroll')
+    sliderDiv.setAttribute('class', 'featuredSliderDiv h-[50vh] w-full top-20 absolute gap-5 flex z-20 overflow-scroll')
     imageDiv.setAttribute('class', 'h-full w-auto absolute z-20 right-1 rounded-xl lg:right-4 xl:right-6')
     mainImage.setAttribute('class', 'h-full w-full object-contain z-20 rounded-xl')
 

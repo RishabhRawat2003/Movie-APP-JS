@@ -749,6 +749,11 @@ video {
   margin-bottom: 2rem;
 }
 
+.my-9 {
+  margin-top: 2.25rem;
+  margin-bottom: 2.25rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -779,6 +784,14 @@ video {
 
 .mt-2 {
   margin-top: 0.5rem;
+}
+
+.mt-7 {
+  margin-top: 1.75rem;
+}
+
+.mt-9 {
+  margin-top: 2.25rem;
 }
 
 .flex {
@@ -871,10 +884,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.min-h-\[100vh\] {
-  min-height: 100vh;
 }
 
 .min-h-full {
@@ -1282,19 +1291,14 @@ video {
   padding-right: 0.75rem;
 }
 
-.px-7 {
-  padding-left: 1.75rem;
-  padding-right: 1.75rem;
-}
-
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.px-7 {
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
 }
 
 .pl-3 {

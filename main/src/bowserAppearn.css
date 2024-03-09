@@ -71,3 +71,11 @@ input[type="password"]::-webkit-search-results-decoration {
 .seriesSlider{
     scrollbar-width: none;
 }
+
+.featuredSliderDiv::-webkit-scrollbar{
+    display: none;
+}
+
+.featuredSliderDiv{
+    scrollbar-width: none;
+}

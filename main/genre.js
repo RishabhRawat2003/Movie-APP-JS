@@ -184,10 +184,20 @@ movieGenre.then((val) => {
 
 function genreMoviesLists(name, id) {
     const genreName = document.createElement('span')
-    genreName.setAttribute('class', 'w-auto h-auto p-1 px-3 text-sm text-white font-bold bg-blue-500 rounded-full mx-1 my-1 cursor-pointer md:text-base md:p-2 md:px-4 lg:text-lg lg:p-3 lg:px-5 lg:mx-2 lg:my-2')
+    genreName.setAttribute('class', 'genreMoviesList w-auto h-auto p-1 px-3 text-sm text-white font-bold bg-blue-500 rounded-full mx-1 my-1 cursor-pointer md:text-base md:p-2 md:px-4 lg:text-lg lg:p-3 lg:px-5 lg:mx-2 lg:my-2')
     genreName.id = id
     genreName.innerHTML = name
     movieList.appendChild(genreName)
+    const genreListsItems = document.querySelectorAll('.genreMoviesList')
+    genreListsItems.forEach(span => {
+        span.addEventListener('click', () => {
+            genreListsItems.forEach(s => {
+                s.classList.remove('bg-red-500');
+            });
+            span.classList.add('bg-red-500');
+        });
+    });
+
     genreName.addEventListener('click', function (e) {
         e.preventDefault()
         footer.classList.remove('hidden')
@@ -247,10 +257,19 @@ seriesGenre.then((val) => {
 
 function genreSeriesLists(name, id) {
     const genreName = document.createElement('span')
-    genreName.setAttribute('class', 'w-auto h-auto p-1 px-3 text-sm text-white font-bold bg-blue-500 rounded-full mx-1 my-1 cursor-pointer md:text-base md:p-2 md:px-4 lg:text-lg lg:p-3 lg:px-5 lg:mx-2 lg:my-2')
+    genreName.setAttribute('class', 'genreSeriesList w-auto h-auto p-1 px-3 text-sm text-white font-bold bg-blue-500 rounded-full mx-1 my-1 cursor-pointer md:text-base md:p-2 md:px-4 lg:text-lg lg:p-3 lg:px-5 lg:mx-2 lg:my-2')
     genreName.id = id
     genreName.innerHTML = name
     seriesList.appendChild(genreName)
+    const genreSeriesList = document.querySelectorAll('.genreSeriesList')
+    genreSeriesList.forEach(span => {
+        span.addEventListener('click', () => {
+            genreSeriesList.forEach(s => {
+                s.classList.remove('bg-red-500');
+            });
+            span.classList.add('bg-red-500');
+        });
+    });
     genreName.addEventListener('click', function (e) {
         e.preventDefault()
         footer.classList.remove('hidden')
