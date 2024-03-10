@@ -134,11 +134,19 @@ if (paramValue === 'Guest') {
 //param value functionality Ends
 
 //Navbar Click Event Listener Functionality Starts
+const moviesNews = document.querySelectorAll('.moviesNews')
 const homeBtn = document.querySelectorAll('.homeBtn')
 homeBtn.forEach((items) => {
     items.addEventListener('click', function (e) {
         e.preventDefault()
         window.location.href = `mainWindow.html?param=${paramValue}`;
+    })
+})
+moviesNews.forEach((items)=>{
+    items.addEventListener('click', function (e) {
+        e.preventDefault()
+        window.location.href = `moviesNews.html?param=${paramValue}`;
+    
     })
 })
 
@@ -156,6 +164,7 @@ const mainList = document.querySelector('.itemsList')
 const footer = document.querySelector('.footer')
 const genreNameDiv = document.querySelector('.genreName')
 
+//Event Listener in Movies and Tv Show button Starts
 seriesList.classList.add('hidden')
 movies.addEventListener('click', function (e) {
     e.preventDefault()
@@ -171,7 +180,10 @@ series.addEventListener('click', function (e) {
     seriesList.classList.remove('hidden')
     movieList.classList.add('hidden')
 })
+//Event Listener in Movies and Tv Show button Ends
 
+
+//Movie Genre list Functionality starts
 movieGenre.then((val) => {
     const arrGenres = val.genres
     arrGenres.map((items) => {
@@ -200,8 +212,7 @@ function genreMoviesLists(name, id) {
 
     genreName.addEventListener('click', function (e) {
         e.preventDefault()
-        footer.classList.remove('hidden')
-        footer.classList.add('flex')
+        footer.classList.add('hidden')
         genreNameDiv.innerHTML = ''
         mainList.innerHTML = ''
         genreNameDiv.innerHTML += e.target.textContent + ':'
@@ -221,7 +232,9 @@ function genreMoviesLists(name, id) {
         })
     })
 }
+//Movie Genre list Functionality ends
 
+//Movie Genre list items Functionality starts
 function moviesListByGenre(name , id , thumbnail , year , rating){
     const main = document.createElement('a')
     const image = document.createElement('img')
@@ -242,9 +255,12 @@ function moviesListByGenre(name , id , thumbnail , year , rating){
     main.appendChild(title)
     main.appendChild(stars)
     mainList.appendChild(main)
+    footer.classList.remove('hidden')
+    footer.classList.add('flex')
 }
+//Movie Genre list items Functionality Ends
 
-
+//Series Genre list Functionality starts
 seriesGenre.then((val) => {
     const arrGenres = val.genres
     arrGenres.map((items) => {
@@ -272,8 +288,7 @@ function genreSeriesLists(name, id) {
     });
     genreName.addEventListener('click', function (e) {
         e.preventDefault()
-        footer.classList.remove('hidden')
-        footer.classList.add('flex')
+        footer.classList.add('hidden')
         genreNameDiv.innerHTML = ''
         mainList.innerHTML = ''
         genreNameDiv.innerHTML += e.target.textContent + ':'
@@ -293,8 +308,9 @@ function genreSeriesLists(name, id) {
         })
     })
 }
+//Series Genre list Functionality ends
 
-
+//Series Genre list items Functionality starts
 function seriesListByGenre(name , id , thumbnail , year , rating){
     const main = document.createElement('a')
     const image = document.createElement('img')
@@ -315,4 +331,9 @@ function seriesListByGenre(name , id , thumbnail , year , rating){
     main.appendChild(title)
     main.appendChild(stars)
     mainList.appendChild(main)
+    footer.classList.remove('hidden')
+    footer.classList.add('flex')
 }
+//Series Genre list items Functionality Ends
+
+//body Functionality Ends

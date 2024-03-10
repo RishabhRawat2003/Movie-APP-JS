@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genre--Choose your Favourite Category to Watch best Quality Movies and Tv Shows</title>
+    <title>News Related to Your Favourite Movies , Tv Show and Actor/Actress</title>
     <link rel="stylesheet" href="./src/output.css">
     <script src="https://kit.fontawesome.com/ef961f7c58.js" crossorigin="anonymous"></script>
 </head>
-
 <body class="bg-slate-800">
     <!--Header Functionality Starts-->
     <!--Header Starts-->
@@ -122,11 +120,11 @@
                     class="flex h-full w-full justify-center items-center gap-6 font-semibold lg:gap-12 xl:gap-16 2xl:gap-20">
                     <li class="homeBtn text-gray-500 cursor-pointer hover:text-white hover:underline font-newFont text-lg xl:text-xl">Home</li>
                     <li
-                        class="text-white underline cursor-pointer font-newFont text-lg xl:text-xl">
+                        class="genreBtn cursor-pointer text-gray-500 hover:text-white hover:underline  font-newFont text-lg xl:text-xl">
                         Genre
                     </li>
                     <li
-                        class="moviesNews text-gray-500 hover:text-white hover:underline cursor-pointer font-newFont text-lg xl:text-xl">
+                        class="text-white underline cursor-pointer font-newFont text-lg xl:text-xl">
                         Movies-News</li>
                     <li
                         class="text-gray-500 hover:text-white hover:underline cursor-pointer font-newFont text-lg xl:text-xl">
@@ -186,9 +184,9 @@
         <div class="h-[2px] w-[80%] bg-gray-800 mx-auto mt-2"></div>
         <div class="w-full h-auto my-2 flex flex-col justify-center gap-3 select-none">
             <p class="homeBtn text-center text-gray-500 active:text-white active:underline text-lg font-bold  cursor-pointer">Home</p>
-            <p class="text-center text-white text-lg font-bold underline cursor-pointer">
+            <p class="genreBtn text-center text-gray-500 active:text-white active:underline  text-lg font-bold  cursor-pointer">
                 Genre</p>
-            <p class="moviesNews text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
+            <p class="text-center text-white underline text-lg font-bold cursor-pointer">
                 Movies-News</p>
             <p class="text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
                 About</p>
@@ -230,21 +228,16 @@
     <!--Sidebar for big devices Ends-->
     <!--Header Functionality Ends-->
 
-    <!--Body Functionality Starts-->
+    <!--Body Functionality Stars-->
     <div class="my-3 h-16 w-full flex justify-center items-center lg:justify-start px-7">
-        <div class="w-auto h-full flex justify-between items-center bg-blue-500 rounded-full text-white font-bold relative">
-            <span class="ball h-full w-24 flex justify-center items-center p-3 rounded-full cursor-pointer bg-red-500 absolute z-10 left-0 duration-500 lg:w-32"></span>
-            <span class="movies h-full w-24 flex justify-center items-center p-3 rounded-full cursor-pointer z-20 lg:w-32">Movies</span>
-            <span class="tvShow h-full w-24 flex justify-center items-center p-3 rounded-full cursor-pointer z-20 lg:w-32">Tv Show</span>
+        <div class="w-auto h-full flex justify-between items-center bg-blue-500 rounded-full text-white font-bold relative font-sans">
+            <span class="ball h-full w-32 flex justify-center items-center p-3 rounded-full cursor-pointer bg-red-500 absolute z-10 left-0 lg:w-40"></span>
+            <span class="moviesNewsSpan h-full w-auto flex justify-center items-center p-3 rounded-full cursor-pointer z-20 lg:w-40">Movies-News</span>
+            <span class="celebritiesNewsSpan h-full w-auto flex justify-center items-center p-3 rounded-full cursor-pointer z-20 lg:w-40">Celebrities-News</span>
         </div>
     </div>
-    <div class="genreList my-3 h-auto w-full ">
-        <div class="moviesList px-2 h-full w-full flex flex-wrap"></div>
-        <div class="seriesList h-full w-full flex flex-wrap px-2"></div>
-    </div>
-    <div class="genreName h-auto w-full px-4 text-xl text-white font-semibold my-3 font-newFont underline underline-offset-2 md:px-5 lg:px-7 lg:text-3xl"></div>
-    <div class="itemsList my-9 h-auto w-full flex flex-wrap justify-evenly items-center gap-3 xl:gap-6">
-    </div>
+    <div class="newsAboutMovies w-full h-auto my-8 flex flex-col items-center md:flex-row md:flex-wrap md:justify-center"></div>
+    <div class="newsAboutCelebrities w-full h-auto my-8 flex flex-col items-center md:flex-row md:flex-wrap md:justify-center"></div>
     <!--Body Functionality Ends-->
 
     <!--Footer functionality starts-->
@@ -319,7 +312,6 @@
     </footer>
     <!--Footer functionality Ends-->
 
-    <script src="genre.js"></script>
+    <script src="moviesNews.js"></script>
 </body>
-
 </html>

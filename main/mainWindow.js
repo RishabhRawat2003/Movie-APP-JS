@@ -308,11 +308,20 @@ if (paramValue === 'Guest') {
 //param value functionality Ends
 
 //Navbar Click Event Listener Functionality Starts
+const moviesNews = document.querySelectorAll('.moviesNews')
 const genreBtn = document.querySelectorAll('.genreBtn')
 genreBtn.forEach((items)=>{
     items.addEventListener('click', function (e) {
         e.preventDefault()
         window.location.href = `genreWindow.html?param=${paramValue}`;
+    
+    })
+})
+
+moviesNews.forEach((items)=>{
+    items.addEventListener('click', function (e) {
+        e.preventDefault()
+        window.location.href = `moviesNews.html?param=${paramValue}`;
     
     })
 })
