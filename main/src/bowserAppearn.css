@@ -79,3 +79,12 @@ input[type="password"]::-webkit-search-results-decoration {
 .featuredSliderDiv{
     scrollbar-width: none;
 }
+
+.imagesSlider::-webkit-scrollbar{
+    display: none;
+}
+
+.imagesSlider{
+    scrollbar-width: none;
+}
+

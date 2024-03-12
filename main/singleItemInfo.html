@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="./src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="./src/bowserAppearn.css">
+    <script src="https://kit.fontawesome.com/ef961f7c58.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <h1>Hello newi</h1>
+
+<body class="bg-slate-800">
+    <div class="mainDiv w-full h-auto flex flex-col lg:flex-row">
+        <!--Image SLider Starts-->
+        <div class="h-auto w-full relative border-gray-500 shadow-2xl shadow-gray-900 border-[1px] sm:h-[70vh] lg:h-[75vh] lg:w-[70vw] xl:h-[85vh]">
+            <div
+                class="imagesSlider h-full w-full flex relative overflow-scroll scroll-smooth">
+            </div>
+            <span
+                class="leftArrowSlider h-auto w-auto rounded-full p-1 px-3 absolute top-[50%] left-1 bg-slate-600 active:bg-slate-900 active:opacity-100 md:hover:bg-slate-900 cursor-pointer opacity-60 md:hover:opacity-100 z-30"><i
+                    class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></span>
+            <span
+                class="rightArrowSlider h-auto w-auto rounded-full p-1 px-3 absolute top-[50%] right-1 bg-slate-600 active:bg-slate-900 active:opacity-100 md:hover:bg-slate-900 cursor-pointer opacity-60 md:hover:opacity-100 z-30"><i
+                    class="fa-solid fa-chevron-left fa-rotate-180" style="color: #ffffff;"></i></span>
+        </div>
+        <!--Image SLider Ends-->
+
+    </div>
+    <script src="singleItemInfo.js"></script>
 </body>
+
 </html>

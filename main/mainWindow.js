@@ -3,9 +3,30 @@ const paramValue = urlParams.get('param');
 
 const Api_Key = 'API_KEY'
 
+async function topImageSlider() {
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${Api_Key}`
+        }
+    };
 
-async function allShows() {
-    const response = await fetch('https://api.tvmaze.com/shows')
+    const response = await fetch('https://api.themoviedb.org/3/trending/person/day?language=en-US', options)
+    const data = await response.json()
+    return data
+}
+
+async function forJustRelease() {
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${Api_Key}`
+        }
+    };
+
+    const response = await fetch('https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1', options)
     const data = await response.json()
     return data
 }
@@ -66,11 +87,12 @@ async function seriesOnly() {
     return data
 }
 
-const shows = allShows()
+const forTopImageSlider = topImageSlider()
 const trending = allTrending()
 const topMovies = topRatedMovies()
 const movies = moviesOnly()
 const series = seriesOnly()
+const forJustReleaseSlider = forJustRelease()
 
 
 //All the genres id and name list 
@@ -310,19 +332,20 @@ if (paramValue === 'Guest') {
 //Navbar Click Event Listener Functionality Starts
 const moviesNews = document.querySelectorAll('.moviesNews')
 const genreBtn = document.querySelectorAll('.genreBtn')
-genreBtn.forEach((items)=>{
+
+genreBtn.forEach((items) => {
     items.addEventListener('click', function (e) {
         e.preventDefault()
         window.location.href = `genreWindow.html?param=${paramValue}`;
-    
+
     })
 })
 
-moviesNews.forEach((items)=>{
+moviesNews.forEach((items) => {
     items.addEventListener('click', function (e) {
         e.preventDefault()
         window.location.href = `moviesNews.html?param=${paramValue}`;
-    
+
     })
 })
 
@@ -336,23 +359,34 @@ moviesNews.forEach((items)=>{
 //auto slider functionality starts
 const slides = document.querySelector('.slides')
 
-shows.then((val) => {
-    const movieDetails = val.slice(10, 20)
-    movieDetails.map((items) => {
-        const images = items.image.original
-        const id = items.id
-        let genres = items.genres //array of generes
-        const name = items.name
-        const year = items.premiered
-        const rating = items.rating.average
-        const summary = items.summary
-        const trailer = items.url
-        //console.log(items)
-        silderImages(images, name, genres, year, summary, rating, trailer, id)
+forTopImageSlider.then((val) => {
+    const valueArray = val.results
+    valueArray.map((items) => {
+        const images = items.known_for[0].poster_path
+        const id = items.known_for[0].id 
+        let genres = items.known_for[0].genre_ids
+        const name = items.known_for[0].original_title || items.known_for[0].original_name
+        const rating = items.known_for[0].vote_average
+        const summary = items.known_for[0].overview
+        function findMatchingNames(genres, list2) {
+            const matchingNames = [];
+
+            genres.forEach(id => {
+                const matchingObject = list2.find(obj => obj.id === id);
+                if (matchingObject) {
+                    matchingNames.push(matchingObject.name);
+                }
+            });
+
+            return matchingNames;
+        }
+        const matchingNames = findMatchingNames(genres, list2);
+        silderImages(images, name, matchingNames, summary, rating, id)
+
     })
 })
 
-function silderImages(img, nameOfTheShow, generes, year, summary, rating, trailer, id) {
+function silderImages(img, nameOfTheShow, genres, summary, rating, id) {
     let anchor = document.createElement('a')
     let image = document.createElement('img')
     let name = document.createElement('span')
@@ -378,14 +412,14 @@ function silderImages(img, nameOfTheShow, generes, year, summary, rating, traile
     //appending content inside elements
     watchTrailer.target = '_blank'
     image.alt = 'img'
-    watchTrailer.href = trailer
+    watchTrailer.href = `singleItemInfo.html?param=${id}`
     watchTrailer.innerHTML = '<span class="mx-1 w-5 h-5 bg-white rounded-full flex justify-center items-center"><i class="fa-solid fa-play" style="color: #4ade80;"></i></span><span class="h-6 w-auto flex justify-center items-center lg:text-lg">Watch Trailer</span>'
     watchlist.innerHTML = '<i class="fa-regular fa-bookmark mx-1"></i> Add Watchlist'
-    ratingStar.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${rating}`
+    ratingStar.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${rating.toFixed(1)}`
     summaryText.innerHTML += `${summary.slice(0, 350)} <a href='singleItemInfo.html?param=${id}' class='text-blue-500 select-none cursor-pointer active:text-blue-600 active:underline font-bold font-newFont md:text-sm xl:text-base md:hover:text-blue-600 md:hover:underline'>See More</a> `
-    yearGenres.innerHTML += `${year.slice(0, 4)} • ${generes}`
+    yearGenres.innerHTML += `${genres}`
     name.innerHTML = nameOfTheShow
-    image.src = img
+    image.src = `https://image.tmdb.org/t/p/w500${img}`
 
     //appending elements
     div.appendChild(watchTrailer)
@@ -415,13 +449,14 @@ const justReleaseSlider = document.querySelector('.justRelease')
 const justReleaseSliderLeftArrow = document.querySelector('.justReleaseLeftArrow')
 const justReleaseSliderRightArrow = document.querySelector('.justReleaseRightArrow')
 
-shows.then((val) => {
-    const allItemsDetails = val.slice(50, 70)
-    allItemsDetails.map((items) => {
+forJustReleaseSlider.then((val) => {
+    const valueArray = val.results
+    valueArray.map((items) => {
+        //console.log(items);
         const id = items.id
-        const name = items.name
-        const rating = items.rating.average
-        const thumbnail = items.image.original
+        const name = items.original_name
+        const rating = items.vote_average
+        const thumbnail = items.poster_path
         justReleaseSliderFunc(name, id, rating, thumbnail)
     })
 })
@@ -435,12 +470,12 @@ function justReleaseSliderFunc(name, id, rating, thumbnail) {
     //setting attributes and css
     anchor.setAttribute('class', 'h-64 w-44 relative mx-3 rounded-md shadow-lg')
     img.setAttribute('class', 'h-full min-w-44 object-cover rounded-md opacity-60')
-    title.setAttribute('class', 'text-lg text-slate-200 font-bold font-newFont absolute bottom-7 mx-2 md:text-xl md:my-2')
+    title.setAttribute('class', 'text-base text-slate-200 font-bold font-newFont absolute bottom-7 mx-2 md:text-lg md:my-2')
     ratingStar.setAttribute('class', 'text-sm mx-2 w-full text-white font-bold font-newFont absolute bottom-2 md:text-lg')
 
     //inserting content inside elements
     anchor.href = `singleItemInfo.html?param=${id}`
-    img.src = thumbnail
+    img.src = `https://image.tmdb.org/t/p/w500${thumbnail}`
     img.alt = 'img'
     title.innerHTML = name
     ratingStar.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i>  ${rating.toFixed(1)}`

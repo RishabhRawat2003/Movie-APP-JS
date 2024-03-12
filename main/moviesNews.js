@@ -177,7 +177,7 @@ function moviesNewsFunc(mainImg , title , overview , mainLink){
     const overviewPara = document.createElement('p')
 
     mainDiv.setAttribute('class','w-full h-20 flex bg-slate-500 my-2 py-2 rounded-lg md:flex-col md:h-80 md:w-80 md:mx-3 md:py-0 xl:h-96 xl:py-3')
-    imageElm.setAttribute('class','w-24 h-full object-cover rounded-lg md:min-w-full md:min-h-44')
+    imageElm.setAttribute('class','min-w-24 h-full object-cover rounded-lg md:min-w-full md:min-h-44')
     contentDiv.setAttribute('class','w-auto h-full ml-3 flex flex-col items-center md:gap-3')
     titlePara.setAttribute('class','w-auto h-auto text-xs text-white font-semibold font-newFont sm:text-sm md:mt-2 xl:text-base')
     overviewPara.setAttribute('class','w-auto h-auto text-slate-800 text-sm hidden md:block')
@@ -219,7 +219,7 @@ function celebritiesNewsFunc(mainImg , title , overview , mainLink){
     const overviewPara = document.createElement('p')
 
     mainDiv.setAttribute('class','w-full h-20 flex bg-slate-500 my-2 py-2 rounded-lg md:flex-col md:h-80 md:w-80 md:mx-3 md:py-0 xl:h-96 xl:py-3')
-    imageElm.setAttribute('class','w-24 h-full object-cover rounded-lg md:min-w-full md:min-h-44')
+    imageElm.setAttribute('class','min-w-24 h-full object-cover rounded-lg md:min-w-full md:min-h-44')
     contentDiv.setAttribute('class','w-auto h-full ml-3 flex flex-col items-center md:gap-3')
     titlePara.setAttribute('class','w-auto h-auto text-xs text-white font-semibold font-newFont sm:text-sm md:mt-2 xl:text-base')
     overviewPara.setAttribute('class','w-auto h-auto text-slate-800 text-sm hidden md:block')
