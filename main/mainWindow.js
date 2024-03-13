@@ -410,13 +410,12 @@ function silderImages(img, nameOfTheShow, genres, summary, rating, id) {
 
 
     //appending content inside elements
-    watchTrailer.target = '_blank'
     image.alt = 'img'
-    watchTrailer.href = `singleItemInfo.html?param=${id}`
+    watchTrailer.href = `singleItemInfo.html?param=${'movies'+id}`
     watchTrailer.innerHTML = '<span class="mx-1 w-5 h-5 bg-white rounded-full flex justify-center items-center"><i class="fa-solid fa-play" style="color: #4ade80;"></i></span><span class="h-6 w-auto flex justify-center items-center lg:text-lg">Watch Trailer</span>'
     watchlist.innerHTML = '<i class="fa-regular fa-bookmark mx-1"></i> Add Watchlist'
     ratingStar.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${rating.toFixed(1)}`
-    summaryText.innerHTML += `${summary.slice(0, 350)} <a href='singleItemInfo.html?param=${id}' class='text-blue-500 select-none cursor-pointer active:text-blue-600 active:underline font-bold font-newFont md:text-sm xl:text-base md:hover:text-blue-600 md:hover:underline'>See More</a> `
+    summaryText.innerHTML += `${summary.slice(0, 350)} <a href='singleItemInfo.html?param=${'movies'+id}' class='text-blue-500 select-none cursor-pointer active:text-blue-600 active:underline font-bold font-newFont md:text-sm xl:text-base md:hover:text-blue-600 md:hover:underline'>See More</a> `
     yearGenres.innerHTML += `${genres}`
     name.innerHTML = nameOfTheShow
     image.src = `https://image.tmdb.org/t/p/w500${img}`
@@ -444,7 +443,7 @@ setInterval(() => {
 }, 7000);
 //auto slider functionality ends
 
-//just release slider functionality starts
+//Top rated slider functionality starts
 const justReleaseSlider = document.querySelector('.justRelease')
 const justReleaseSliderLeftArrow = document.querySelector('.justReleaseLeftArrow')
 const justReleaseSliderRightArrow = document.querySelector('.justReleaseRightArrow')
@@ -454,7 +453,7 @@ forJustReleaseSlider.then((val) => {
     valueArray.map((items) => {
         //console.log(items);
         const id = items.id
-        const name = items.original_name
+        const name = items.name
         const rating = items.vote_average
         const thumbnail = items.poster_path
         justReleaseSliderFunc(name, id, rating, thumbnail)
@@ -474,7 +473,7 @@ function justReleaseSliderFunc(name, id, rating, thumbnail) {
     ratingStar.setAttribute('class', 'text-sm mx-2 w-full text-white font-bold font-newFont absolute bottom-2 md:text-lg')
 
     //inserting content inside elements
-    anchor.href = `singleItemInfo.html?param=${id}`
+    anchor.href = `singleItemInfo.html?param=${'series'+id}`
     img.src = `https://image.tmdb.org/t/p/w500${thumbnail}`
     img.alt = 'img'
     title.innerHTML = name
@@ -498,7 +497,7 @@ justReleaseSliderLeftArrow.addEventListener('click', function (e) {
     justReleaseSlider.scrollLeft -= 400
 })
 
-//just release slider functionality ends
+//Top rated lider functionality ends
 
 //popular of week slider functionality starts
 const popularWeekSlider = document.querySelector('.trending')
@@ -544,6 +543,7 @@ function trendingWeek(thumbnail, name, id, rating, type, main_genre) {
     let genre = document.createElement('p')
     let ratingType = document.createElement('p')
     let div = document.createElement('div')
+    let forMovieParam = type ==='movie' ?type +'s' : 'series'
 
     //setting attributes and css
     mainName.setAttribute('class', 'h-auto w-auto text-white my-2 mx-2 font-bold text-xs xl:text-sm')
@@ -555,7 +555,7 @@ function trendingWeek(thumbnail, name, id, rating, type, main_genre) {
     main.setAttribute('class', 'h-40 w-auto flex justify-center ml-4 items-center shadow-lg')
 
     //inserting content inside elements
-    main.href = `singleItemInfo.html?param=${id}`
+    main.href = `singleItemInfo.html?param=${forMovieParam+id}`
     img.alt = 'img'
     mainName.innerHTML = name
     genre.innerHTML = main_genre
@@ -596,7 +596,7 @@ topMovies.then((val) => {
         const id = items.id
         const bgImage = items.backdrop_path
         const genreId = items.genre_ids
-        const title = items.original_title
+        const title = items.title
         const summary = items.overview
         const mainImg = items.poster_path
         const year = items.release_date
@@ -647,7 +647,7 @@ function allFeaturedDetails(bgImg, mainImg, genre, star, title, summary, year, i
     mainImage.setAttribute('class', 'h-full w-full object-contain z-20 rounded-xl')
 
     //appending content inside elements
-    watchTrailer.href = `singleItemInfo.html?param=${id}`
+    watchTrailer.href = `singleItemInfo.html?param=${'movies'+id}`
     mainImage.src = `https://image.tmdb.org/t/p/w500${mainImg}`
     mainImage.alt = 'img'
     p1.innerHTML = 'Best Featured For You Today'
@@ -656,7 +656,7 @@ function allFeaturedDetails(bgImg, mainImg, genre, star, title, summary, year, i
     bgImage.alt = 'img'
     mainTitle.innerHTML = title
     ratingType.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${star.toFixed(1)} <span class="text-gray-400">| ${year.slice(0, 4)} • ${genre}</span>`
-    overview.innerHTML = summary.slice(0, 150) + `<span class="text-blue-500 text-xs active:text-blue-700 active:underline md:text-lg md:hover:text-blue-700 md:hover:underline"><a href=singleItemInfo.html?param=${id}> See More</a></span>`
+    overview.innerHTML = summary.slice(0, 150) + `<span class="text-blue-500 text-xs active:text-blue-700 active:underline md:text-lg md:hover:text-blue-700 md:hover:underline"><a href=singleItemInfo.html?param=${'movies'+id}> See More</a></span>`
     watchTrailer.innerHTML = '<span class="mx-1 w-5 h-5 bg-white rounded-full flex justify-center items-center"><i class="fa-solid fa-play" style="color: #4ade80;"></i></span><span class="h-6 w-auto flex justify-center items-center text-white font-semibold font-newFont lg:text-lg">Watch Trailer</span>'
     watchlist.innerHTML = '<i class="fa-regular fa-bookmark mx-1"></i> Add Watchlist'
 
@@ -696,7 +696,7 @@ movies.then((val) => {
     const items = val.results
     items.map((allItems) => {
         const id = allItems.id
-        const title = allItems.original_title
+        const title = allItems.title
         const type = allItems.media_type
         const image = allItems.poster_path
         const rating = allItems.vote_average
@@ -729,7 +729,7 @@ function moviesSlider(id, name, type, poster, stars, genres) {
     title.setAttribute('class', 'text-base font-semibold text-white mx-3 my-2 font-newFont')
     rating.setAttribute('class', 'text-white text-sm mx-3')
 
-    mainAnchor.href = `singleItemInfo.html?param=${id}`
+    mainAnchor.href = `singleItemInfo.html?param=${'movies'+id}`
     image.src = `https://image.tmdb.org/t/p/w500${poster}`
     image.alt = 'Image'
     title.innerHTML = name
@@ -796,7 +796,7 @@ function seriesSlider(id, name, type, poster, stars, genres) {
     title.setAttribute('class', 'text-base font-semibold text-white mx-3 my-2 font-newFont')
     rating.setAttribute('class', 'text-white text-sm mx-3')
 
-    mainAnchor.href = `singleItemInfo.html?param=${id}`
+    mainAnchor.href = `singleItemInfo.html?param=${'series'+id}`
     image.src = `https://image.tmdb.org/t/p/w500${poster}`
     image.alt = 'Image'
     title.innerHTML = name
