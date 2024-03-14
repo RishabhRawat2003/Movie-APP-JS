@@ -1,3 +1,146 @@
+//All the genres id and name list 
+const list2 = [{
+    "id": 28,
+    "name": "Action"
+},
+{
+    "id": 12,
+    "name": "Adventure"
+},
+{
+    "id": 16,
+    "name": "Animation"
+},
+{
+    "id": 35,
+    "name": "Comedy"
+},
+{
+    "id": 80,
+    "name": "Crime"
+},
+{
+    "id": 99,
+    "name": "Documentary"
+},
+{
+    "id": 18,
+    "name": "Drama"
+},
+{
+    "id": 10751,
+    "name": "Family"
+},
+{
+    "id": 14,
+    "name": "Fantasy"
+},
+{
+    "id": 36,
+    "name": "History"
+},
+{
+    "id": 27,
+    "name": "Horror"
+},
+{
+    "id": 10402,
+    "name": "Music"
+},
+{
+    "id": 9648,
+    "name": "Mystery"
+},
+{
+    "id": 10749,
+    "name": "Romance"
+},
+{
+    "id": 878,
+    "name": "Science Fiction"
+},
+{
+    "id": 10770,
+    "name": "TV Movie"
+},
+{
+    "id": 53,
+    "name": "Thriller"
+},
+{
+    "id": 10752,
+    "name": "War"
+},
+{
+    "id": 37,
+    "name": "Western"
+},
+{
+    "id": 10759,
+    "name": "Action & Adventure"
+},
+{
+    "id": 16,
+    "name": "Animation"
+},
+{
+    "id": 35,
+    "name": "Comedy"
+},
+{
+    "id": 80,
+    "name": "Crime"
+},
+{
+    "id": 99,
+    "name": "Documentary"
+},
+{
+    "id": 18,
+    "name": "Drama"
+},
+{
+    "id": 10751,
+    "name": "Family"
+},
+{
+    "id": 10762,
+    "name": "Kids"
+},
+{
+    "id": 9648,
+    "name": "Mystery"
+},
+{
+    "id": 10763,
+    "name": "News"
+},
+{
+    "id": 10764,
+    "name": "Reality"
+},
+{
+    "id": 10765,
+    "name": "Sci-Fi & Fantasy"
+},
+{
+    "id": 10766,
+    "name": "Soap"
+},
+{
+    "id": 10767,
+    "name": "Talk"
+},
+{
+    "id": 10768,
+    "name": "War & Politics"
+},
+{
+    "id": 37,
+    "name": "Western"
+}
+]
+
 const urlParams = new URLSearchParams(window.location.search);
 const paramValue1 = urlParams.get('param');
 const paramValue = paramValue1.slice(6)
@@ -51,9 +194,39 @@ if (moviesOrSeriesParam === 'movies') {
         return data
     }
 
+    async function recommendedMovies() {
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${Api_Key}`
+            }
+        };
+
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${paramValue}/recommendations?language=en-US&page=1`, options)
+        const data = await response.json()
+        return data
+    }
+
+    async function similarMovies() {
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${Api_Key}`
+            }
+        };
+
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${paramValue}/similar`, options)
+        const data = await response.json()
+        return data
+    }
+
     const imagesListMovies = imagesForMovies()
     const moviesDetails = detailsForMovies()
     const crewMember = moviesCrew()
+    const recommended = recommendedMovies()
+    const similar = similarMovies()
 
     //image Slider functionality starts
     const imagesSlider = document.querySelector('.imagesSlider')
@@ -99,7 +272,6 @@ if (moviesOrSeriesParam === 'movies') {
         const overview = val.overview
         const release = val.release_date
         const tagline = val.tagline
-
         // runtime calculation starts
         const runtime = val.runtime
         let a = String(runtime / 60)
@@ -109,12 +281,12 @@ if (moviesOrSeriesParam === 'movies') {
         let minut = minutes.slice(0, 2) + 'm'
         let movieRuntime = hours + minut
         // runtime calculation ends
-
         let arrayGenres = []
         genres.map((items) => {
             arrayGenres.push(items.name)
         })
         moviesDetailsFunc(name, overview, release, tagline, arrayGenres, movieRuntime)
+        document.title = name + "-" + tagline
     })
 
     function moviesDetailsFunc(name, overview, release, tagline, arrayGenres, movieRuntime) {
@@ -175,46 +347,47 @@ if (moviesOrSeriesParam === 'movies') {
     }
     //moviesDetails functionality ends
 
-    //Top Cast functionality stars
+    //Top Cast functionality starts
     const topCastSlider = document.querySelector('.topCastSlider')
+    const leftArrowTopCastSlider = document.querySelector('.leftArrowTopCastSlider')
+    const rightArrowTopCastSlider = document.querySelector('.rightArrowTopCastSlider')
 
-    crewMember.then((val)=>{
-        const cast = val.cast
-        const heading = document.createElement('h1')
-        heading.setAttribute('class','my-4 px-3 text-lg text-white font-semibold font-newFont')
-        heading.innerHTML = 'Top Cast :'
-        mainDiv.appendChild(heading)
-        cast.map((items)=>{
+    crewMember.then((val) => {
+        const cast = val.cast.slice(0, 10)
+        cast.map((items) => {
             //console.log(items);
             const characterName = items.character
             const realName = items.original_name
-            const image = items.profile_path 
-            topCastFunc(image , characterName , realName)
-            
+            const image = items.profile_path
+            topCastFunc(image, characterName, realName)
+
         })
     })
 
-    function topCastFunc(images , characterName , realName){
+    function topCastFunc(images, characterName, realName) {
         const castSlider = document.createElement('div')
         const imgDiv = document.createElement('div')
         const infoDiv = document.createElement('div')
+        const imageSpanElem = document.createElement('span')
         const image = document.createElement('img')
         const charName = document.createElement('p')
         const realNameElem = document.createElement('p')
 
-        castSlider.setAttribute('class','h-20 w-auto flex justify-center items-center')
-        imgDiv.setAttribute('class','h-full w-auto flex justify-center items-center')
-        infoDiv.setAttribute('class','h-full w-auto flex flex-col')
-        image.setAttribute('class','rounded-full p-3 object-cover flex justify-center items-center')
-        charName.setAttribute('class','text-white text-sm font-newFont')
-        realNameElem.setAttribute('class','text-gray-500 text-xs font-newFont')
+        castSlider.setAttribute('class', 'h-20 w-auto flex justify-center gap-2 items-center')
+        imgDiv.setAttribute('class', 'h-20 w-24 flex justify-center items-center')
+        infoDiv.setAttribute('class', 'h-full w-auto flex flex-col justify-center')
+        imageSpanElem.setAttribute('class', 'h-20 w-24 rounded-full p-3 flex justify-center items-center')
+        image.setAttribute('class', 'h-20 w-24 rounded-full object-cover text-white text-xs')
+        charName.setAttribute('class', 'h-auto w-32 font-semibold text-white text-sm font-newFont lg:text-lg lg:w-40')
+        realNameElem.setAttribute('class', 'h-auto w-32 font-semibold text-gray-500 text-xs font-newFont lg:text-base lg:w-40')
 
-        image.src = `https://image.tmdb.org/t/p/w500${images==='null'?'' : images}`
-        image.alt = 'image'
+        image.src = `https://image.tmdb.org/t/p/w500${images}`
+        image.alt = 'image Unavailable'
         charName.innerHTML = characterName
         realNameElem.innerHTML = realName
 
-        imgDiv.appendChild(image)
+        imageSpanElem.appendChild(image)
+        imgDiv.appendChild(imageSpanElem)
         infoDiv.appendChild(charName)
         infoDiv.appendChild(realNameElem)
         castSlider.appendChild(imgDiv)
@@ -222,7 +395,152 @@ if (moviesOrSeriesParam === 'movies') {
         topCastSlider.appendChild(castSlider)
     }
 
-    //Top Cast functionality stars
+    rightArrowTopCastSlider.addEventListener('click', function (e) {
+        e.preventDefault()
+        topCastSlider.scrollLeft += 300
+    })
+
+    leftArrowTopCastSlider.addEventListener('click', function (e) {
+        e.preventDefault()
+        topCastSlider.scrollLeft -= 300
+
+    })
+    //Top Cast functionality ends
+
+    //Recommended movies slider starts
+    const recommendedMoviesSlider = document.querySelector('.recommendedMoviesSlider')
+    const leftArrowRecommendedMoviesSlider = document.querySelector('.leftArrowRecommendedMoviesSlider')
+    const rightArrowRecommendedMoviesSliderDiv = document.querySelector('.rightArrowRecommendedMoviesSliderDiv')
+
+    recommended.then((val)=>{
+        const arrMovie = val.results
+        arrMovie.map((items)=>{
+            //console.log(items);
+            const id = items.id
+            const thumbnail = items.backdrop_path ? items.backdrop_path : items.poster_path
+            const name = items.title
+            const rating = items.vote_average
+            const genres = items.genre_ids
+            const type = items.media_type
+            function findMatchingNames(genres, list2) {
+                const matchingNames = [];
+    
+                genres.forEach(id => {
+                    const matchingObject = list2.find(obj => obj.id === id);
+                    if (matchingObject) {
+                        matchingNames.push(matchingObject.name);
+                    }
+                });
+    
+                return matchingNames;
+            }
+            const matchingNames = findMatchingNames(genres, list2);
+            recommendedMoviesFunc(name , rating , thumbnail , matchingNames , type , id)
+        })
+    })
+
+    function recommendedMoviesFunc(name , rating , thumbnail , matchingNames , type , id){
+        const mainAnchor = document.createElement('a')
+        const image = document.createElement('img')
+        const nameElem = document.createElement('p')
+        const ratingGenresElem = document.createElement('p')
+        const mainType = type + 's'
+
+        mainAnchor.setAttribute('class','h-full min-w-[64vw] flex flex-col sm:min-w-[44vw] md:min-w-[35vw] lg:min-w-[30vw] xl:min-w-[24vw] 2xl:min-w-[19vw]')
+        image.setAttribute('class','h-40 w-full rounded-xl object-cover text-white text-xs')
+        nameElem.setAttribute('class','text-sm font-semibold text-white px-3 mt-2 mb-1')
+        ratingGenresElem.setAttribute('class','text-sm font-semibold text-white px-3 mb-1.5')
+
+        mainAnchor.href = `singleItemInfo.html?param=${mainType + id}`
+        image.src = `https://image.tmdb.org/t/p/w500${thumbnail}`
+        image.alt = 'image unavailable'
+        nameElem.innerHTML = name
+        ratingGenresElem.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${rating.toFixed(1)}` + `<span class="ml-1.5 text-sm text-gray-500">${matchingNames[0]} • ${type.toUpperCase()}</span>`
+
+
+        mainAnchor.appendChild(image)
+        mainAnchor.appendChild(nameElem)
+        mainAnchor.appendChild(ratingGenresElem)
+        recommendedMoviesSlider.appendChild(mainAnchor)
+    }
+
+    rightArrowRecommendedMoviesSliderDiv.addEventListener('click', function (e) {
+        e.preventDefault()
+        recommendedMoviesSlider.scrollLeft += 300
+    })
+
+    leftArrowRecommendedMoviesSlider.addEventListener('click', function (e) {
+        e.preventDefault()
+        recommendedMoviesSlider.scrollLeft -= 300
+    })
+    //Recommended movies slider ends
+
+    //Similar movies Slider Starts
+    const similarMoviesSlider = document.querySelector('.similarMoviesSlider')
+    const leftArrowSimilarMoviesSlider = document.querySelector('.leftArrowSimilarMoviesSlider')
+    const rightArrowSimilarMoviesSliderDiv = document.querySelector('.rightArrowSimilarMoviesSliderDiv')
+
+    similar.then((val)=>{
+        const arrSimilar = val.results
+        arrSimilar.map((items)=>{
+            console.log(items);
+            const id = items.id
+            const thumbnail = items.backdrop_path ? items.backdrop_path : items.poster_path
+            const name = items.title
+            const rating = items.vote_average
+            const genres = items.genre_ids
+            function findMatchingNames(genres, list2) {
+                const matchingNames = [];
+    
+                genres.forEach(id => {
+                    const matchingObject = list2.find(obj => obj.id === id);
+                    if (matchingObject) {
+                        matchingNames.push(matchingObject.name);
+                    }
+                });
+    
+                return matchingNames;
+            }
+            const matchingNames = findMatchingNames(genres, list2);
+            similarMoviesFunc(name , rating , thumbnail , matchingNames , id)
+        })
+    })
+
+    function similarMoviesFunc(name , rating , thumbnail , matchingNames , id){
+        const mainAnchor = document.createElement('a')
+        const image = document.createElement('img')
+        const nameElem = document.createElement('p')
+        const ratingGenresElem = document.createElement('p')
+        const mainType = 'movies'
+
+        mainAnchor.setAttribute('class','h-full min-w-[64vw] flex flex-col sm:min-w-[44vw] md:min-w-[35vw] lg:min-w-[30vw] xl:min-w-[24vw] 2xl:min-w-[19vw]')
+        image.setAttribute('class','h-40 w-full rounded-xl object-cover text-white text-xs')
+        nameElem.setAttribute('class','text-sm font-semibold text-white px-3 mt-2 mb-1')
+        ratingGenresElem.setAttribute('class','text-sm font-semibold text-white px-3 mb-1.5')
+
+        mainAnchor.href = `singleItemInfo.html?param=${mainType + id}`
+        image.src = `https://image.tmdb.org/t/p/w500${thumbnail}`
+        image.alt = 'image unavailable'
+        nameElem.innerHTML = name
+        ratingGenresElem.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${rating.toFixed(1)}` + `<span class="ml-1.5 text-sm text-gray-500">${matchingNames[0]} • ${matchingNames[1] ? matchingNames[1] : 'Action' }</span>`
+
+
+        mainAnchor.appendChild(image)
+        mainAnchor.appendChild(nameElem)
+        mainAnchor.appendChild(ratingGenresElem)
+        similarMoviesSlider.appendChild(mainAnchor)
+    }
+
+    rightArrowSimilarMoviesSliderDiv.addEventListener('click', function (e) {
+        e.preventDefault()
+        similarMoviesSlider.scrollLeft += 300
+    })
+
+    leftArrowSimilarMoviesSlider.addEventListener('click', function (e) {
+        e.preventDefault()
+        similarMoviesSlider.scrollLeft -= 300
+    })
+    //Similar movies Slider Ends
 }
 else {
     console.log('will make for series');

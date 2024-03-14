@@ -88,3 +88,28 @@ input[type="password"]::-webkit-search-results-decoration {
     scrollbar-width: none;
 }
 
+
+.topCastSlider::-webkit-scrollbar{
+    display: none;
+}
+
+.topCastSlider{
+    scrollbar-width: none;
+}
+
+
+.recommendedMoviesSlider::-webkit-scrollbar{
+    display: none;
+}
+
+.recommendedMoviesSlider{
+    scrollbar-width: none;
+}
+
+.similarMoviesSlider::-webkit-scrollbar{
+    display: none;
+}
+
+.similarMoviesSlider{
+    scrollbar-width: none;
+}
