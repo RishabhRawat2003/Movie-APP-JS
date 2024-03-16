@@ -237,13 +237,17 @@ if (moviesOrSeriesParam === 'movies') {
 
     //image Slider functionality starts
     const imagesSlider = document.querySelector('.imagesSlider')
+    const imagesSliderDiv = document.querySelector('.imagesSliderDiv')
     const imagesSliderLeftArrow = document.querySelector('.leftArrowSlider')
     const imagesSliderRightArrow = document.querySelector('.rightArrowSlider')
 
     imagesListMovies.then((val) => {
         const valueArray = val.backdrops.slice(0, 20)
+        if (valueArray.length < 1) {
+            imagesSliderDiv.classList.add('hidden')
+        }
         //const valueArray = val.logos.slice(0,20)
-        //const valueArray = val.posters.slice(0,20)
+        //const valueArray1 = val.posters.slice(0,20)
         valueArray.map((items) => {
             const image = items.file_path
             imageSliderFunc(image)
@@ -351,16 +355,42 @@ if (moviesOrSeriesParam === 'movies') {
         mainDivElem.appendChild(heading)
         mainDivElem.appendChild(summaryElem)
         mainDiv.appendChild(mainDivElem)
+        let a = document.querySelector('html')
+        if(a.clientWidth < '640'){
+            watchlistElem.addEventListener('click',function(e){
+                e.preventDefault()
+                watchlistElem.classList.toggle('bg-slate-500')
+            })
+            likedElem.addEventListener('click',function(e){
+                e.preventDefault()
+                likedElem.classList.toggle('bg-slate-500')
+            })
+        }else{
+            watchlistElem.addEventListener('click',function(e){
+                e.preventDefault()
+                watchlistElem.classList.add('bg-slate-500')
+                watchlistElem.innerHTML = '<i class="fa-regular fa-bookmark" style="color: #ffffff;"></i>' + '<span class="hidden font-newFont text-white text-lg sm:inline"> Added</span>'
+            })
+            likedElem.addEventListener('click',function(e){
+                e.preventDefault()
+                likedElem.classList.add('bg-slate-500')
+                likedElem.innerHTML = '<i class="fa-regular fa-thumbs-up" style="color: #ffffff;"></i>' + '<span class="text-white hidden font-newFont text-lg sm:inline"> Liked</span>'
+            })
+        }
     }
     //moviesDetails functionality ends
 
     //Top Cast functionality starts
     const topCastSlider = document.querySelector('.topCastSlider')
+    const topCastSliderMainDiv = document.querySelector('.topCastSliderMainDiv')
     const leftArrowTopCastSlider = document.querySelector('.leftArrowTopCastSlider')
     const rightArrowTopCastSlider = document.querySelector('.rightArrowTopCastSlider')
 
     crewMember.then((val) => {
         const cast = val.cast.slice(0, 10)
+        if (cast.length < 1) {
+            topCastSliderMainDiv.classList.add('hidden')
+        }
         cast.map((items) => {
             //console.log(items);
             const characterName = items.character
@@ -390,7 +420,7 @@ if (moviesOrSeriesParam === 'movies') {
 
         image.src = `https://image.tmdb.org/t/p/w500${images}`
         image.alt = 'image Unavailable'
-        charName.innerHTML = characterName
+        charName.innerHTML = characterName.slice(0, 33)
         realNameElem.innerHTML = realName
 
         imageSpanElem.appendChild(image)
@@ -416,11 +446,15 @@ if (moviesOrSeriesParam === 'movies') {
 
     //Recommended movies slider starts
     const recommendedMoviesSlider = document.querySelector('.recommendedMoviesSlider')
+    const recommendedMoviesSliderDiv = document.querySelector('.recommendedMoviesSliderDiv')
     const leftArrowRecommendedMoviesSlider = document.querySelector('.leftArrowRecommendedMoviesSlider')
-    const rightArrowRecommendedMoviesSliderDiv = document.querySelector('.rightArrowRecommendedMoviesSliderDiv')
+    const rightArrowRecommendedMoviesSliderDiv = document.querySelector('.rightArrowRecommendedMoviesSlider')
 
     recommended.then((val) => {
         const arrMovie = val.results
+        if (arrMovie.length < 1) {
+            recommendedMoviesSliderDiv.classList.add('hidden')
+        }
         arrMovie.map((items) => {
             //console.log(items);
             const id = items.id
@@ -473,24 +507,24 @@ if (moviesOrSeriesParam === 'movies') {
 
     rightArrowRecommendedMoviesSliderDiv.addEventListener('click', function (e) {
         e.preventDefault()
-        recommendedMoviesSlider.scrollLeft += 300
+        recommendedMoviesSlider.scrollLeft += 500
     })
 
     leftArrowRecommendedMoviesSlider.addEventListener('click', function (e) {
         e.preventDefault()
-        recommendedMoviesSlider.scrollLeft -= 300
+        recommendedMoviesSlider.scrollLeft -= 500
     })
     //Recommended movies slider ends
 
     //Similar movies Slider Starts
     const similarMoviesSlider = document.querySelector('.similarMoviesSlider')
     const leftArrowSimilarMoviesSlider = document.querySelector('.leftArrowSimilarMoviesSlider')
-    const rightArrowSimilarMoviesSliderDiv = document.querySelector('.rightArrowSimilarMoviesSliderDiv')
+    const rightArrowSimilarMoviesSliderDiv = document.querySelector('.rightArrowSimilarMoviesSlider')
 
     similar.then((val) => {
         const arrSimilar = val.results
         arrSimilar.map((items) => {
-            console.log(items);
+            //console.log(items);
             const id = items.id
             const thumbnail = items.backdrop_path ? items.backdrop_path : items.poster_path
             const name = items.title
@@ -540,12 +574,12 @@ if (moviesOrSeriesParam === 'movies') {
 
     rightArrowSimilarMoviesSliderDiv.addEventListener('click', function (e) {
         e.preventDefault()
-        similarMoviesSlider.scrollLeft += 300
+        similarMoviesSlider.scrollLeft += 500
     })
 
     leftArrowSimilarMoviesSlider.addEventListener('click', function (e) {
         e.preventDefault()
-        similarMoviesSlider.scrollLeft -= 300
+        similarMoviesSlider.scrollLeft -= 500
     })
     //Similar movies Slider Ends
 }
@@ -621,12 +655,28 @@ else {
         return data
     }
 
+    async function seasonsEpisodes(epiNum = 1) {
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${Api_Key}`
+            }
+        };
+
+        const response = await fetch(`https://api.themoviedb.org/3/tv/${paramValue}/season/${epiNum}?language=en-US`, options)
+        const data = await response.json()
+        return data
+    }
+
     const imagesListSeries = imagesForSeries()
     const seriesDetails = detailsForSeries()
     const crewMember = seriesCrew()
     const recommended = recommendedSeries()
     const similar = similarSeries()
+    const episodes = seasonsEpisodes()
 
+    const seasonsEpisodesDiv = document.querySelector('.seasonsEp')
     const recommendedH1 = document.querySelector('.recommendedH1 ')
     const recommendedH1Elem2 = document.querySelector('.recommendedH2 ')
     recommendedH1.innerHTML = 'Recommended Series'
@@ -634,11 +684,15 @@ else {
 
     //image Slider functionality starts
     const imagesSlider = document.querySelector('.imagesSlider')
+    const imagesSliderDiv = document.querySelector('.imagesSliderDiv')
     const imagesSliderLeftArrow = document.querySelector('.leftArrowSlider')
     const imagesSliderRightArrow = document.querySelector('.rightArrowSlider')
 
     imagesListSeries.then((val) => {
         const valueArray = val.backdrops.slice(0, 20)
+        if (valueArray.length < 1) {
+            imagesSliderDiv.classList.add('hidden')
+        }
         //const valueArray = val.logos.slice(0,20)
         //const valueArray = val.posters.slice(0,20)
         valueArray.map((items) => {
@@ -669,9 +723,9 @@ else {
 
     //Series Details functionality starts
     const mainDiv = document.querySelector('.mainDiv')
+    const seaonsNum = document.querySelector('.seriesSeasonNum')
 
     seriesDetails.then((val) => {
-        //console.log(val);
         const name = val.name
         const genres = val.genres
         const overview = val.overview
@@ -701,6 +755,46 @@ else {
         const nameElem = document.createElement('p')
         const infoElem = document.createElement('p')
         const summaryElem = document.createElement('p')
+
+        //Seasons Functionality starts
+        for (let index = 1; index <= seasons; index++) {
+            const div = document.createElement('div')
+            const p = document.createElement('p')
+            div.setAttribute('class', 'h-full min-w-32')
+            p.setAttribute('id', index)
+            p.setAttribute('class', 'seasonsNum h-full text-white text-lg font-bold cursor-pointer')
+            p.innerHTML = 'Season ' + index
+            div.appendChild(p)
+            seaonsNum.appendChild(div)
+            const seasons = document.querySelectorAll('.seasonsNum')
+            let a = seasons[0]
+            a.classList.add('underline', 'underline-offset-8')
+            seasons.forEach(span => {
+                span.addEventListener('click', () => {
+                    seasons.forEach(s => {
+                        s.classList.remove('underline', 'underline-offset-8');
+                    });
+                    span.classList.add('underline', 'underline-offset-8');
+                });
+            });
+            p.addEventListener('click', function (e) {
+                e.preventDefault()
+                seasonsEpisodesDiv.innerHTML = ''
+                const id = e.target.id
+                const episodes = seasonsEpisodes(id)
+                episodes.then((val) => {
+                    const epArr = val.episodes
+                    epArr.map((items) => {
+                        //console.log(items);
+                        const date = items.air_date
+                        const epNum = items.episode_number
+                        const image = items.still_path
+                        seasonEpFunc(date, epNum, image)
+                    })
+                })
+            })
+        }
+        //Seasons Functionality ends
 
         //setting attributes to the elements and also setting css
         infoElem.setAttribute('class', 'text-xs text-gray-500 font-newFont md:text-sm xl:text-base')
@@ -742,18 +836,44 @@ else {
         mainDivElem.appendChild(heading)
         mainDivElem.appendChild(summaryElem)
         mainDiv.appendChild(mainDivElem)
+        let a = document.querySelector('html')
+        if(a.clientWidth < '640'){
+            watchlistElem.addEventListener('click',function(e){
+                e.preventDefault()
+                watchlistElem.classList.toggle('bg-slate-500')
+            })
+            likedElem.addEventListener('click',function(e){
+                e.preventDefault()
+                likedElem.classList.toggle('bg-slate-500')
+            })
+        }else{
+            watchlistElem.addEventListener('click',function(e){
+                e.preventDefault()
+                watchlistElem.classList.add('bg-slate-500')
+                watchlistElem.innerHTML = '<i class="fa-regular fa-bookmark" style="color: #ffffff;"></i>' + '<span class="hidden font-newFont text-white text-lg sm:inline"> Added</span>'
+            })
+            likedElem.addEventListener('click',function(e){
+                e.preventDefault()
+                likedElem.classList.add('bg-slate-500')
+                likedElem.innerHTML = '<i class="fa-regular fa-thumbs-up" style="color: #ffffff;"></i>' + '<span class="text-white hidden font-newFont text-lg sm:inline"> Liked</span>'
+            })
+        }
     }
     //Series Details functionality ends
 
     //Top Cast functionality starts
     const topCastSlider = document.querySelector('.topCastSlider')
+    const topCastSliderMainDiv = document.querySelector('.topCastSliderMainDiv')
     const leftArrowTopCastSlider = document.querySelector('.leftArrowTopCastSlider')
     const rightArrowTopCastSlider = document.querySelector('.rightArrowTopCastSlider')
 
     crewMember.then((val) => {
         const cast = val.cast.slice(0, 15)
+        if (cast.length < 1) {
+            topCastSliderMainDiv.classList.add('hidden')
+        }
         cast.map((items) => {
-            console.log(items);
+            //console.log(items);
             const characterName = items.character
             const realName = items.original_name
             const image = items.profile_path
@@ -781,7 +901,7 @@ else {
 
         image.src = `https://image.tmdb.org/t/p/w500${images}`
         image.alt = 'image Unavailable'
-        charName.innerHTML = characterName
+        charName.innerHTML = characterName.slice(0, 33)
         realNameElem.innerHTML = realName
 
         imageSpanElem.appendChild(image)
@@ -807,11 +927,15 @@ else {
 
     //Recommended movies slider starts
     const recommendedMoviesSlider = document.querySelector('.recommendedMoviesSlider')
+    const recommendedMoviesSliderDiv = document.querySelector('.recommendedMoviesSliderDiv')
     const leftArrowRecommendedMoviesSlider = document.querySelector('.leftArrowRecommendedMoviesSlider')
-    const rightArrowRecommendedMoviesSliderDiv = document.querySelector('.rightArrowRecommendedMoviesSliderDiv')
+    const rightArrowRecommendedMoviesSliderDiv = document.querySelector('.rightArrowRecommendedMoviesSlider')
 
     recommended.then((val) => {
         const arrMovie = val.results
+        if (arrMovie.length < 1) {
+            recommendedMoviesSliderDiv.classList.add('hidden')
+        }
         arrMovie.map((items) => {
             const id = items.id
             const thumbnail = items.backdrop_path ? items.backdrop_path : items.poster_path
@@ -841,7 +965,7 @@ else {
         const image = document.createElement('img')
         const nameElem = document.createElement('p')
         const ratingGenresElem = document.createElement('p')
-        const mainType = type + 's'
+        const mainType = 'series'
 
         mainAnchor.setAttribute('class', 'h-full min-w-[64vw] flex flex-col sm:min-w-[44vw] md:min-w-[35vw] lg:min-w-[30vw] xl:min-w-[24vw] 2xl:min-w-[19vw]')
         image.setAttribute('class', 'h-40 w-full rounded-xl object-cover text-white text-xs')
@@ -863,19 +987,19 @@ else {
 
     rightArrowRecommendedMoviesSliderDiv.addEventListener('click', function (e) {
         e.preventDefault()
-        recommendedMoviesSlider.scrollLeft += 300
+        recommendedMoviesSlider.scrollLeft += 500
     })
 
     leftArrowRecommendedMoviesSlider.addEventListener('click', function (e) {
         e.preventDefault()
-        recommendedMoviesSlider.scrollLeft -= 300
+        recommendedMoviesSlider.scrollLeft -= 500
     })
     //Recommended movies slider ends
 
     //Similar movies Slider Starts
     const similarMoviesSlider = document.querySelector('.similarMoviesSlider')
     const leftArrowSimilarMoviesSlider = document.querySelector('.leftArrowSimilarMoviesSlider')
-    const rightArrowSimilarMoviesSliderDiv = document.querySelector('.rightArrowSimilarMoviesSliderDiv')
+    const rightArrowSimilarMoviesSliderDiv = document.querySelector('.rightArrowSimilarMoviesSlider')
 
     similar.then((val) => {
         const arrSimilar = val.results
@@ -930,13 +1054,66 @@ else {
 
     rightArrowSimilarMoviesSliderDiv.addEventListener('click', function (e) {
         e.preventDefault()
-        similarMoviesSlider.scrollLeft += 300
+        similarMoviesSlider.scrollLeft += 500
     })
 
     leftArrowSimilarMoviesSlider.addEventListener('click', function (e) {
         e.preventDefault()
-        similarMoviesSlider.scrollLeft -= 300
+        similarMoviesSlider.scrollLeft -= 500
     })
     //Similar movies Slider Ends
+
+    //Seasons and Episodes functionality starts
+    const seaonsNumDiv = document.querySelector('.seriesSeasonDiv')
+    const leftArrowSeasonSlider = document.querySelector('.leftArrowSeasonSlider')
+    const rightArrowSeasonSlider = document.querySelector('.rightArrowSeasonSlider')
+    seaonsNumDiv.classList.remove('hidden')
+    episodes.then((val) => {
+        const epArr = val.episodes
+        epArr.map((items) => {
+            //console.log(items);
+            const date = items.air_date
+            const epNum = items.episode_number
+            const image = items.still_path
+            seasonEpFunc(date, epNum, image)
+        })
+    })
+
+    function seasonEpFunc(date, epNum, image) {
+        const mainDiv = document.createElement('div')
+        const imgDiv = document.createElement('div')
+        const img = document.createElement('img')
+        const epNumElem = document.createElement('p')
+        const dateElem = document.createElement('p')
+
+        mainDiv.setAttribute('class', 'h-auto w-full flex justify-center shadow-lg shadow-gray-900 border-[1px] border-gray-600 rounded-md sm:min-w-80')
+        imgDiv.setAttribute('class', 'h-auto w-full min-h-20 text-xs text-white relative sm:h-full')
+        img.setAttribute('class', 'h-auto min-w-full object-contain rounded-md sm:h-full')
+        epNumElem.setAttribute('class', 'text-white font-bold text-lg absolute bottom-0 left-1 sm:bottom-3')
+        dateElem.setAttribute('class', 'text-gray-300 font-bold text-xs text-end absolute bottom-0 right-2 sm:bottom-1')
+
+        img.src = `https://image.tmdb.org/t/p/w500${image}`
+        img.alt = 'image unavailable'
+        epNumElem.innerHTML = 'Episode No. ' + epNum
+        dateElem.innerHTML = date
+
+
+        imgDiv.appendChild(img)
+        imgDiv.appendChild(epNumElem)
+        imgDiv.appendChild(dateElem)
+        mainDiv.appendChild(imgDiv)
+        seasonsEpisodesDiv.appendChild(mainDiv)
+    }
+
+    rightArrowSeasonSlider.addEventListener('click', function (e) {
+        e.preventDefault()
+        seasonsEpisodesDiv.scrollLeft += 500
+    })
+
+    leftArrowSeasonSlider.addEventListener('click', function (e) {
+        e.preventDefault()
+        seasonsEpisodesDiv.scrollLeft -= 500
+    })
+    //Seasons and Episodes functionality ends
 
 }

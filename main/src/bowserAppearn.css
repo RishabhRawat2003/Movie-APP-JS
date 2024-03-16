@@ -113,3 +113,19 @@ input[type="password"]::-webkit-search-results-decoration {
 .similarMoviesSlider{
     scrollbar-width: none;
 }
+
+.seriesSeasonNum::-webkit-scrollbar{
+    display: none;
+}
+
+.seriesSeasonNum{
+    scrollbar-width: none;
+}
+
+.seasonsEp::-webkit-scrollbar{
+    display: none;
+}
+
+.seasonsEp{
+    scrollbar-width: none;
+}
