@@ -4,16 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CinaMania Watch Your Favourite Movies Here</title>
+    <title>About this CinaMania Project</title>
     <link rel="stylesheet" href="./src/output.css">
-    <link rel="stylesheet" href="./src/bowserAppearn.css">
     <script src="https://kit.fontawesome.com/ef961f7c58.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="bg-slate-800">
     <!--Header Functionality Starts-->
     <!--Header Starts-->
-    <header class="w-full absolute h-auto top-0 z-40">
+    <header class="w-full relative h-auto top-0 z-40">
         <div class="h-20 w-full  flex justify-between">
             <!--Logo Starts-->
             <div class="h-16 w-auto">
@@ -121,32 +120,24 @@
             <div class="h-16 w-auto hidden md:flex md:justify-center md:items-center">
                 <ul
                     class="flex h-full w-full justify-center items-center gap-6 font-semibold lg:gap-12 xl:gap-16 2xl:gap-20">
-                    <li class="text-white underline cursor-pointer font-newFont text-lg xl:text-xl">Home</li>
+                    <li
+                        class="homeBtn text-gray-500 cursor-pointer hover:text-white hover:underline font-newFont text-lg xl:text-xl">
+                        Home</li>
                     <li
                         class="genreBtn text-gray-500 hover:text-white hover:underline cursor-pointer font-newFont text-lg xl:text-xl">
-                        Genre</li>
+                        Genre
+                    </li>
                     <li
                         class="moviesNews text-gray-500 hover:text-white hover:underline cursor-pointer font-newFont text-lg xl:text-xl">
                         Movies-News</li>
-                    <li
-                        class="about text-gray-500 hover:text-white hover:underline cursor-pointer font-newFont text-lg xl:text-xl">
+                    <li class="text-white underline cursor-pointer font-newFont text-lg xl:text-xl">
                         About</li>
                 </ul>
             </div>
             <!--Navbar Content For big devices ends-->
 
-            <!--Search Icons and Bars starts-->
+            <!--Bars starts-->
             <div class="h-16 w-auto flex justify-center items-center mr-3">
-
-                <input type="text" placeholder="Search Movies or Series"
-                    class="search hidden duration-200 w-40 h-7 mx-1 bg-slate-300 outline-none rounded-md px-2 lg:w-48 xl:w-52">
-
-                <!--Search Icon Starts-->
-                <span class="searchIcon h-14 flex items-center w-6 mx-1">
-                    <i class="fa-solid fa-magnifying-glass fa-xl hover:cursor-pointer" style="color: #ffffff;"></i>
-                </span>
-                <!--Search Icon Ends-->
-
                 <!--Username for big devices Starts-->
                 <span
                     class="userName h-14 w-auto text-white font-bold mx-4 hidden md:flex justify-center items-center"></span>
@@ -168,7 +159,7 @@
                 </span>
                 <!--SideBar Icon for Small devices Ends-->
             </div>
-            <!--Search Icons and Bars Ends-->
+            <!--Bars Ends-->
 
         </div>
     </header>
@@ -195,12 +186,16 @@
 
         <div class="h-[2px] w-[80%] bg-gray-800 mx-auto mt-2"></div>
         <div class="w-full h-auto my-2 flex flex-col justify-center gap-3 select-none">
-            <p class="text-center text-white text-lg font-bold underline cursor-pointer">Home</p>
-            <p class="genreBtn text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
+            <p
+                class="homeBtn text-center text-gray-500 active:text-white active:underline text-lg font-bold cursor-pointer">
+                Home</p>
+            <p
+                class="genreBtn text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
                 Genre</p>
-            <p class="moviesNews text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
+            <p
+                class="moviesNews text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
                 Movies-News</p>
-            <p class="about text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
+            <p class="text-center text-white underline text-lg font-bold cursor-pointer">
                 About</p>
             <p
                 class="loginLogout text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
@@ -240,117 +235,75 @@
     <!--Sidebar for big devices Ends-->
     <!--Header Functionality Ends-->
 
-    <!--Body Functionality Starts-->
-    <!--Auto Slider Starts-->
-    <div class="h-full bg-slate-800 relative z-0 top-0 w-full sm:h-[80vh]">
-        <div class="slides blur-none h-full w-full flex scroll-smooth justify-start overflow-hidden"></div>
+    <!--Main About Section Starts-->
+    <div class="w-[97%] h-auto mx-auto my-2 py-2 px-2 rounded-lg font-serif">
+        <div class="w-full h-auto flex flex-col">
+            <h1 class="mx-2 text-base mt-5 text-gray-400 underline-offset-8 underline md:text-xl xl:text-2xl">1.
+                Introduction</h1>
+            <p class="text-sm mx-2 my-2 md:text-lg text-white lg:text-xl 2xl:text-2xl">Hello Everyone, I am Rishabh
+                Rawat and I am
+                the one who made this site. I have deep Interest in Front end development and this is one of my project.
+                I have made this site just for my own practice. </p>
+        </div>
+        <div class="w-full h-auto flex flex-col">
+            <h1 class="mx-2 text-base mt-5 md:text-xl text-gray-400 underline-offset-8 underline xl:text-2xl">2. About
+                This Site</h1>
+            <p class="text-sm mx-2 my-2 md:text-lg text-white lg:text-xl 2xl:text-2xl">I have made this project by using
+                TMDB API (<a class="text-blue-500 underline underline-offset-2"
+                    href="https://developer.themoviedb.org/docs/getting-started">API Link</a>). Everything in this
+                site is coming from this API. For Using This TMDB Api You have to login the Site. I have also used
+                another API For Movies and Celebrities Related News Which is MovieVerse in Rapid Api (<a
+                    class="text-blue-500 underline underline-offset-2"
+                    href="https://rapidapi.com/Murad123/api/moviesverse1/">API Link</a>). </p>
+        </div>
+        <div class="w-full h-auto flex flex-col">
+            <h1 class="mx-2 text-base mt-5 md:text-xl text-gray-400 underline-offset-8 underline xl:text-2xl">3. What
+                Functionality Works</h1>
+            <p class="text-sm mx-2 my-2 md:text-lg text-white lg:text-xl 2xl:text-2xl">Almost Everything in this site
+                works. for
+                example :- If you click in any movies or series you will get more details about that particular
+                movie/series and you will also get some recommended and similar movies/series.</p>
+        </div>
+        <div class="w-full h-auto flex flex-col">
+            <h1 class="mx-2 text-base mt-5 md:text-xl text-gray-400 underline-offset-8 underline xl:text-2xl">4. What
+                Functionality Doesn't Works</h1>
+            <p class="text-sm mx-2 my-2 md:text-lg text-white lg:text-xl 2xl:text-2xl">(a) Login page is not properly in
+                working phase but you can register your name in username of login page so that the site will call you by
+                your username. In login page you can enter you username and in password field you can write anything
+                because there is no role of backend in this site to store you password.<br>(b) You can click Add
+                Watchlist button but there is no functionality written to add it, therefore Watchlist Functionality
+                Doesn't Work.<br>(c) Similar to Watchlist functionality you can click Like button but it's not in
+                working phase.
+            </p>
+        </div>
+        <div class="w-full h-auto flex flex-col">
+            <h1 class="mx-2 text-base text-gray-400 underline-offset-8 underline mt-5 md:text-xl xl:text-2xl">5. What
+                helps me to build this site.</h1>
+            <p class="text-sm mx-2 my-2 text-white md:text-lg lg:text-xl 2xl:text-2xl">I have used <a
+                    class="text-blue-500 underline underline-offset-2" href="https://fontawesome.com/search">Font
+                    Awesome</a> site to get some Fonts. I have also used
+                Chatgpt for some problems. I used Two API's to make this site ( link of API is in a 2 Point).</p>
+        </div>
+        <div class="w-full h-auto flex flex-col">
+            <h1 class="mx-2 text-base mt-5 text-gray-400 underline-offset-8 underline md:text-xl xl:text-2xl">6. Connect
+                With Me</h1>
+            <p class="text-sm mx-2 my-2 text-white md:text-lg lg:text-xl 2xl:text-2xl">Twitter:- <a
+                    class="text-blue-500 underline underline-offset-2" href="https://twitter.com/simpleman2003">My X
+                    Account</a><br>Github:- <a class="text-blue-500 underline underline-offset-2"
+                    href="https://github.com/RishabhRawat2003">My Github Account</a>
+                <br>Source Code:- <a class="text-blue-500 underline underline-offset-2"
+                    href="https://github.com/RishabhRawat2003/Movie-APP-JS.git">Source Code</a>
+            </p>
+        </div>
     </div>
-    <!--Auto Slider Ends-->
-
-    <!--Ott Platform Logos Slider Starts-->
-    <div class="ottSlider w-full h-28 flex items-center gap-4 overflow-scroll">
-        <a href="https://www.netflix.com/in/" target="_blank"
-            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/netflixlogo.webp"
-                alt="Netflix Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.hotstar.com/in/movies" target="_blank"
-            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/disney.jpg"
-                alt="Disney Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.jiocinema.com/" target="_blank"
-            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/jiologo.webp"
-                alt="JioCinema Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.mxplayer.in/" target="_blank"
-            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/mxlogo.jpg"
-                alt="Mx Player Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.primevideo.com/offers/nonprimehomepage/ref=dv_web_force_root" target="_blank"
-            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/primelogo.jpg"
-                alt="Amazon Prime Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.sonyliv.com/" target="_blank"
-            class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img src="./img/small/sonylivlogo.jpg"
-                alt="Sony Liv Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
-                src="./img/small/vootlogo.jpg" alt="Voot Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.zee5.com/" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
-                src="./img/small/zee5logo.png" alt="Zee5 Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.marvel.com/" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
-                src="./img/small/marvellogo.jpg" alt="Zee5 Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://www.hbo.com/" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
-                src="./img/small/hbo.jpg" alt="Zee5 Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-        <a href="https://altt.co.in/" target="_blank" class="h-20 w-auto rounded-3xl border-2 border-slate-500"><img
-                src="./img/small/altlogo.jpg" alt="Zee5 Logo" class="rounded-3xl h-full min-w-40 object-cover"></a>
-    </div>
-    <!--Ott Platform Logos Slider Ends-->
-
-    <!--Just Release Slider Starts-->
-    <div class="h-auto w-[95%] my-5 mx-auto relative">
-        <h1 class="text-xl font-bold font-newFont text-white md:text-2xl lg:text-3xl">Top Rated</h1>
-        <div class="justRelease scroll-smooth w-full h-auto overflow-scroll flex my-3"></div>
-        <span
-            class="justReleaseLeftArrow h-auto w-auto rounded-full p-1 px-3 absolute top-[153px] left-0 bg-slate-600 hidden md:block hover:bg-slate-900 cursor-pointer opacity-60 hover:opacity-100"><i
-                class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></span>
-        <span
-            class="justReleaseRightArrow h-auto w-auto rounded-full p-1 px-3 absolute top-[153px] right-0 bg-slate-600 hidden md:block hover:bg-slate-900 cursor-pointer opacity-60 hover:opacity-100"><i
-                class="fa-solid fa-chevron-left fa-rotate-180" style="color: #ffffff;"></i></span>
-    </div>
-    <!--Just Release Slider Ends-->
-
-    <!--Popular of the week Slider starts-->
-    <div class="h-auto w-[95%] my-5 mx-auto relative">
-        <h1 class="text-xl font-bold font-newFont text-white md:text-2xl lg:text-3xl">Popular Of The Week</h1>
-        <div class="trending scroll-smooth w-full h-auto overflow-scroll flex my-3"></div>
-        <span
-            class="popularSliderLeftArrow h-auto w-auto rounded-full p-1 px-3 absolute top-[104px] left-0 bg-slate-600 hidden md:block hover:bg-slate-900 cursor-pointer opacity-60 hover:opacity-100"><i
-                class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></span>
-        <span
-            class="popularSliderRightArrow h-auto w-auto rounded-full p-1 px-3 absolute top-[104px] right-0 bg-slate-600 hidden md:block hover:bg-slate-900 cursor-pointer opacity-60 hover:opacity-100"><i
-                class="fa-solid fa-chevron-left fa-rotate-180" style="color: #ffffff;"></i></span>
-    </div>
-    <!--Popular of the week Slider Ends-->
-
-    <!--Featured Slider Starts-->
-    <div class="h-[90vh] w-full my-3 relative flex">
-        <div class="featured full w-full relative flex overflow-hidden shadow-xl scroll-smooth"></div>
-        <span
-            class="leftArrowFeatured h-auto w-auto rounded-full p-1 px-3 absolute top-[50%] left-2 bg-slate-600 active:bg-slate-900 active:opacity-100 md:hover:bg-slate-900 cursor-pointer opacity-60 md:hover:opacity-100 z-30"><i
-                class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></span>
-        <span
-            class="rightArrowFeatured h-auto w-auto rounded-full p-1 px-3 absolute top-[50%] right-2 bg-slate-600 active:bg-slate-900 active:opacity-100 md:hover:bg-slate-900 cursor-pointer opacity-60 md:hover:opacity-100 z-30"><i
-                class="fa-solid fa-chevron-left fa-rotate-180" style="color: #ffffff;"></i></span>
-    </div>
-    <!--Featured Slider Ends-->
-
-    <!--Movies Slider Starts-->
-    <div class="h-auto w-full my-3 relative">
-        <h1 class="text-2xl text-white font-bold font-newFont mx-3 mb-3 md:text-3xl md:mx-6">Movies</h1>
-        <div class="moviesSlider h-[57vh] w-full flex overflow-scroll pl-3 scroll-smooth overflow-y-hidden"></div>
-        <span
-            class="leftArrowMoviesSlider h-auto w-auto rounded-full p-1 px-3 absolute top-[50%] left-2 bg-slate-600 hidden md:block md:hover:bg-slate-900 cursor-pointer opacity-60 md:hover:opacity-100 z-30"><i
-                class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></span>
-        <span
-            class="rightArrowMoviesSlider h-auto w-auto rounded-full p-1 px-3 absolute top-[50%] right-2 bg-slate-600 hidden md:block md:hover:bg-slate-900 cursor-pointer opacity-60 md:hover:opacity-100 z-30"><i
-                class="fa-solid fa-chevron-left fa-rotate-180" style="color: #ffffff;"></i></span>
-    </div>
-    <!--Movies Slider Ends-->
-
-    <!--Series Slider Starts-->
-    <div class="h-auto w-full my-3 relative">
-        <h1 class="text-2xl text-white font-bold font-newFont mx-3 mb-3 md:text-3xl md:mx-6">Series</h1>
-        <div class="seriesSlider h-[57vh] w-full flex overflow-scroll pl-3 scroll-smooth overflow-y-hidden"></div>
-        <span
-            class="leftArrowSeriesSlider h-auto w-auto rounded-full p-1 px-3 absolute top-[50%] left-2 bg-slate-600 hidden md:block md:hover:bg-slate-900 cursor-pointer opacity-60 md:hover:opacity-100 z-30"><i
-                class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></span>
-        <span
-            class="rightArrowSeriesSlider h-auto w-auto rounded-full p-1 px-3 absolute top-[50%] right-2 bg-slate-600 hidden md:block md:hover:bg-slate-900 cursor-pointer opacity-60 md:hover:opacity-100 z-30"><i
-                class="fa-solid fa-chevron-left fa-rotate-180" style="color: #ffffff;"></i></span>
-    </div>
-    <!--Series Slider Ends-->
-    <!--Body Functionality Ends-->
+    <!--Main About Section Ends-->
 
     <!--Footer functionality starts-->
     <footer class="h-auto w-full border-t-[1px] border-t-gray-400 flex flex-col relative">
         <div class="h-auto w-full text-white font-newFont font-semibold text-2xl p-3 lg:text-3xl md:w-96 lg:w-[55vw]">
             Our platform is trusted by millions & features best updated movies all around the world.
         </div>
-        
+
         <div class="h-auto w-full flex items-center gap-4 pl-3 md:absolute md:justify-end md:pr-8">
             <svg width="60px" height="60px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"
                 transform="rotate(0)matrix(1, 0, 0, 1, 0, 0)" stroke="lightgray" class="cursor-pointer">
@@ -373,7 +326,8 @@
                 </g>
 
             </svg>
-            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="cursor-pointer">
+            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="cursor-pointer">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M20 1C21.6569 1 23 2.34315 23 4V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H20ZM20 3C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H15V13.9999H17.0762C17.5066 13.9999 17.8887 13.7245 18.0249 13.3161L18.4679 11.9871C18.6298 11.5014 18.2683 10.9999 17.7564 10.9999H15V8.99992C15 8.49992 15.5 7.99992 16 7.99992H18C18.5523 7.99992 19 7.5522 19 6.99992V6.31393C19 5.99091 18.7937 5.7013 18.4813 5.61887C17.1705 5.27295 16 5.27295 16 5.27295C13.5 5.27295 12 6.99992 12 8.49992V10.9999H10C9.44772 10.9999 9 11.4476 9 11.9999V12.9999C9 13.5522 9.44771 13.9999 10 13.9999H12V21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3H20Z"
                     fill="lightgray" />
@@ -383,8 +337,9 @@
                 <path
                     d="M245.65723,77.65674l-30.16407,30.16455C209.4707,177.70215,150.53809,232,80,232c-14.52441,0-26.49414-2.30273-35.57764-6.84473-7.33056-3.665-10.33349-7.59912-11.07861-8.71777a8,8,0,0,1,3.84717-11.92822c.25732-.09717,23.84814-9.15772,39.09521-26.40869a109.574,109.574,0,0,1-24.72656-24.355c-13.708-18.60352-28.206-50.91114-19.43066-99.17676a8.00023,8.00023,0,0,1,13.52832-4.22559c.35254.35156,33.64209,33.1709,74.3374,43.772L120,87.99609a48.31863,48.31863,0,0,1,48.6084-47.99267,48.11329,48.11329,0,0,1,40.96875,23.99609L240,64a8.0001,8.0001,0,0,1,5.65723,13.65674Z" />
             </svg>
-            <svg fill="lightgray" width="40px" height="40px" viewBox="0 0 128 128" id="Layer_1" version="1.1" class="cursor-pointer"
-                xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg fill="lightgray" width="40px" height="40px" viewBox="0 0 128 128" id="Layer_1" version="1.1"
+                class="cursor-pointer" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
 
                 <g>
 
@@ -397,7 +352,8 @@
 
             </svg>
         </div>
-        <div class="h-auto w-full flex text-white items-center justify-center text-sm font-semibold my-2 gap-3 font-serif md:text-3xl lg:gap-20 ">
+        <div
+            class="h-auto w-full flex text-white items-center justify-center text-sm font-semibold my-2 gap-3 font-serif md:text-3xl lg:gap-20 ">
             <span class="cursor-pointer">Home</span>
             <span>/</span>
             <span class="cursor-pointer">Discover</span>
@@ -406,7 +362,8 @@
             <span>/</span>
             <span class="cursor-pointer">Release</span>
         </div>
-        <div class="h-auto w-full flex text-sm text-gray-500 font-semibold justify-center items-center gap-4 my-3 md:text-xl lg:gap-20">
+        <div
+            class="h-auto w-full flex text-sm text-gray-500 font-semibold justify-center items-center gap-4 my-3 md:text-xl lg:gap-20">
             <span class="cursor-pointer">Privacy policy</span>
             <span class="cursor-pointer">Term of service</span>
             <span class="cursor-pointer">Language</span>
@@ -416,8 +373,8 @@
         </div>
     </footer>
     <!--Footer functionality Ends-->
-
-    <script src="mainWindow.js"></script>
+    
+    <script src="about.js"></script>
 </body>
 
 </html>

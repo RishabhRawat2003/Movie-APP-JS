@@ -147,7 +147,7 @@ const paramValue = paramValue1.slice(6)
 const moviesOrSeriesParam = paramValue1.slice(0, 6)
 
 
-const Api_Key = 'API_KEY'
+const Api_Key = 'Api_key'
 
 
 if (moviesOrSeriesParam === 'movies') {
@@ -901,8 +901,8 @@ else {
 
         image.src = `https://image.tmdb.org/t/p/w500${images}`
         image.alt = 'image Unavailable'
-        charName.innerHTML = characterName.slice(0, 33)
-        realNameElem.innerHTML = realName
+        charName.innerHTML = characterName.slice(0, 30)
+        realNameElem.innerHTML = realName.slice(0,20)
 
         imageSpanElem.appendChild(image)
         imgDiv.appendChild(imageSpanElem)
@@ -1086,9 +1086,9 @@ else {
         const epNumElem = document.createElement('p')
         const dateElem = document.createElement('p')
 
-        mainDiv.setAttribute('class', 'h-auto w-full flex justify-center shadow-lg shadow-gray-900 border-[1px] border-gray-600 rounded-md sm:min-w-80')
+        mainDiv.setAttribute('class', 'group h-auto w-full flex justify-center shadow-lg shadow-gray-900 border-[1px] border-gray-600 rounded-md sm:min-w-80 cursor-pointer')
         imgDiv.setAttribute('class', 'h-auto w-full min-h-20 text-xs text-white relative sm:h-full')
-        img.setAttribute('class', 'h-auto min-w-full object-contain rounded-md sm:h-full')
+        img.setAttribute('class', 'h-auto min-w-full object-contain rounded-md sm:h-full sm:group-hover:opacity-60 group-active:opacity-60')
         epNumElem.setAttribute('class', 'text-white font-bold text-lg absolute bottom-0 left-1 sm:bottom-3')
         dateElem.setAttribute('class', 'text-gray-300 font-bold text-xs text-end absolute bottom-0 right-2 sm:bottom-1')
 

@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const paramValue = urlParams.get('param');
 
-const Api_key = 'API_KEY'
+const Api_key = 'Api_key'
 
 async function moviesNews() {
     const options = {
@@ -110,6 +110,8 @@ if (paramValue === 'Guest') {
 //Navbar Click Event Listener Functionality Starts
 const homeBtn = document.querySelectorAll('.homeBtn')
 const genreBtn = document.querySelectorAll('.genreBtn')
+const about = document.querySelectorAll('.about')
+
 
 genreBtn.forEach((items)=>{
     items.addEventListener('click', function (e) {
@@ -124,7 +126,13 @@ homeBtn.forEach((items) => {
         window.location.href = `mainWindow.html?param=${paramValue}`;
     })
 })
+about.forEach((items) => {
+    items.addEventListener('click', function (e) {
+        e.preventDefault()
+        window.location.href = `about.html?param=${paramValue}`;
 
+    })
+})
 //Navbar Click Event Listener Functionality Ends
 //Header Functionality Ends
 

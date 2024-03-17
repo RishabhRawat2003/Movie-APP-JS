@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const paramValue = urlParams.get('param');
 
-const Api_Key = 'API_KEY'
+const Api_Key = 'Api_key'
 
 async function topImageSlider() {
     const options = {
@@ -12,7 +12,7 @@ async function topImageSlider() {
         }
     };
 
-    const response = await fetch('https://api.themoviedb.org/3/trending/person/day?language=en-US', options)
+    const response = await fetch('https://api.themoviedb.org/3/trending/person/week?language=en-US', options)
     const data = await response.json()
     return data
 }
@@ -332,6 +332,7 @@ if (paramValue === 'Guest') {
 //Navbar Click Event Listener Functionality Starts
 const moviesNews = document.querySelectorAll('.moviesNews')
 const genreBtn = document.querySelectorAll('.genreBtn')
+const about = document.querySelectorAll('.about')
 
 genreBtn.forEach((items) => {
     items.addEventListener('click', function (e) {
@@ -349,6 +350,15 @@ moviesNews.forEach((items) => {
     })
 })
 
+about.forEach((items) => {
+    items.addEventListener('click', function (e) {
+        e.preventDefault()
+        window.location.href = `about.html?param=${paramValue}`;
+
+    })
+})
+
+
 //Navbar Click Event Listener Functionality Ends
 //Header Functionality Ends
 
@@ -358,13 +368,15 @@ const slides = document.querySelector('.slides')
 
 forTopImageSlider.then((val) => {
     const valueArray = val.results
+    //console.log(val.results);
     valueArray.map((items) => {
-        const images = items.known_for[0].poster_path
+        const images = items.known_for[0].poster_path || items.known_for[0].backdrop_path
         const id = items.known_for[0].id
         let genres = items.known_for[0].genre_ids
-        const name = items.known_for[0].original_title || items.known_for[0].original_name
+        const name = items.known_for[0].title || items.known_for[0].original_name
         const rating = items.known_for[0].vote_average
         const summary = items.known_for[0].overview
+        const type = items.known_for[0].media_type
         function findMatchingNames(genres, list2) {
             const matchingNames = [];
 
@@ -378,12 +390,11 @@ forTopImageSlider.then((val) => {
             return matchingNames;
         }
         const matchingNames = findMatchingNames(genres, list2);
-        silderImages(images, name, matchingNames, summary, rating, id)
-
+        silderImages(images, name, matchingNames, summary, rating, id , type)
     })
 })
 
-function silderImages(img, nameOfTheShow, genres, summary, rating, id) {
+function silderImages(img, nameOfTheShow, genres, summary, rating, id , type) {
     let anchor = document.createElement('a')
     let image = document.createElement('img')
     let name = document.createElement('span')
@@ -393,6 +404,7 @@ function silderImages(img, nameOfTheShow, genres, summary, rating, id) {
     let watchlist = document.createElement('span')
     let ratingStar = document.createElement('p')
     let div = document.createElement('div')
+    let types = type ==='movie'?'movies': 'series'
 
     //setting attributes to the elements and also setting css
     yearGenres.setAttribute('class', 'absolute bottom-52 mx-5 w-full z-10 text-gray-400 font-bold text-sm font-newFont xl:text-base')
@@ -408,12 +420,12 @@ function silderImages(img, nameOfTheShow, genres, summary, rating, id) {
 
     //appending content inside elements
     image.alt = 'img'
-    watchTrailer.href = `singleItemInfo.html?param=${'movies' + id}`
+    watchTrailer.href = `singleItemInfo.html?param=${types + id}`
     watchTrailer.innerHTML = '<span class="mx-1 w-5 h-5 bg-white rounded-full flex justify-center items-center"><i class="fa-solid fa-play" style="color: #4ade80;"></i></span><span class="h-6 w-auto flex justify-center items-center lg:text-lg">Watch Trailer</span>'
     watchlist.innerHTML = '<i class="fa-regular fa-bookmark mx-1"></i> Add Watchlist'
     ratingStar.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${rating.toFixed(1)}`
-    summaryText.innerHTML += `${summary.slice(0, 350)} <a href='singleItemInfo.html?param=${'movies' + id}' class='text-blue-500 select-none cursor-pointer active:text-blue-600 active:underline font-bold font-newFont md:text-sm xl:text-base md:hover:text-blue-600 md:hover:underline'>See More</a> `
-    yearGenres.innerHTML += `${genres}`
+    summaryText.innerHTML += `${summary.slice(0, 350)} ${summary?`<a href='singleItemInfo.html?param=${types + id}' class='text-blue-500 select-none cursor-pointer active:text-blue-600 active:underline font-bold font-newFont md:text-sm xl:text-base md:hover:text-blue-600 md:hover:underline'>See More</a>`: ''}`
+    yearGenres.innerHTML += `${genres.length <5 ? genres : genres[0] +','+ genres[1] +','+ genres[2]}`
     name.innerHTML = nameOfTheShow
     image.src = `https://image.tmdb.org/t/p/w500${img}`
 

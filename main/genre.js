@@ -1,6 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const paramValue = urlParams.get('param');
-const Api_Key = 'API_KEY'
+const Api_Key = 'Api_key'
 
 async function moviesGenreLists() {
     const options = {
@@ -136,6 +136,9 @@ if (paramValue === 'Guest') {
 //Navbar Click Event Listener Functionality Starts
 const moviesNews = document.querySelectorAll('.moviesNews')
 const homeBtn = document.querySelectorAll('.homeBtn')
+const about = document.querySelectorAll('.about')
+
+
 homeBtn.forEach((items) => {
     items.addEventListener('click', function (e) {
         e.preventDefault()
@@ -147,6 +150,13 @@ moviesNews.forEach((items)=>{
         e.preventDefault()
         window.location.href = `moviesNews.html?param=${paramValue}`;
     
+    })
+})
+about.forEach((items) => {
+    items.addEventListener('click', function (e) {
+        e.preventDefault()
+        window.location.href = `about.html?param=${paramValue}`;
+
     })
 })
 
