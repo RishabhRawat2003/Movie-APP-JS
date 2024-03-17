@@ -147,7 +147,7 @@ const paramValue = paramValue1.slice(6)
 const moviesOrSeriesParam = paramValue1.slice(0, 6)
 
 
-const Api_Key = 'Api_key'
+const Api_Key = 'API_KEY'
 
 
 if (moviesOrSeriesParam === 'movies') {
@@ -518,11 +518,15 @@ if (moviesOrSeriesParam === 'movies') {
 
     //Similar movies Slider Starts
     const similarMoviesSlider = document.querySelector('.similarMoviesSlider')
+    const similarMoviesSliderDiv = document.querySelector('.similarMoviesSliderDiv')
     const leftArrowSimilarMoviesSlider = document.querySelector('.leftArrowSimilarMoviesSlider')
     const rightArrowSimilarMoviesSliderDiv = document.querySelector('.rightArrowSimilarMoviesSlider')
 
     similar.then((val) => {
         const arrSimilar = val.results
+        if (arrSimilar.length < 1) {
+            similarMoviesSliderDiv.classList.add('hidden')
+        }
         arrSimilar.map((items) => {
             //console.log(items);
             const id = items.id
@@ -998,11 +1002,15 @@ else {
 
     //Similar movies Slider Starts
     const similarMoviesSlider = document.querySelector('.similarMoviesSlider')
+    const similarMoviesSliderDiv = document.querySelector('.similarMoviesSliderDiv')
     const leftArrowSimilarMoviesSlider = document.querySelector('.leftArrowSimilarMoviesSlider')
     const rightArrowSimilarMoviesSliderDiv = document.querySelector('.rightArrowSimilarMoviesSlider')
 
     similar.then((val) => {
         const arrSimilar = val.results
+        if (arrSimilar.length < 1) {
+            similarMoviesSliderDiv.classList.add('hidden')
+        }
         arrSimilar.map((items) => {
             //console.log(items);
             const id = items.id

@@ -1,6 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const paramValue = urlParams.get('param');
-const Api_Key = 'Api_key'
+const Api_Key = 'API_KEY'
 
 async function moviesGenreLists() {
     const options = {

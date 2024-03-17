@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const paramValue = urlParams.get('param');
 
-const Api_Key = 'Api_key'
+const Api_Key = 'API_KEY'
 
 async function topImageSlider() {
     const options = {
@@ -252,6 +252,9 @@ const searchIcon = document.querySelector('.searchIcon')
 const searchField = document.querySelector('.search')
 
 //Search Functionality Starts
+if (window.location.reload) {
+    searchField.value = ''
+}
 searchField.addEventListener('input', function (e) {
     e.preventDefault()
     searchField.value = e.target.value
@@ -264,7 +267,9 @@ searchIcon.addEventListener('click', function (e) {
         searchField.value = ''
     }
     else if (searchField.value.length > 2) {
-        // Search Api Here
+        const param = searchField.value
+        window.location.href = `searchWindow.html?param=${paramValue}&param1=${param}`
+        searchField.value = ''
     }
 })
 //Search Functionality ends
@@ -390,11 +395,11 @@ forTopImageSlider.then((val) => {
             return matchingNames;
         }
         const matchingNames = findMatchingNames(genres, list2);
-        silderImages(images, name, matchingNames, summary, rating, id , type)
+        silderImages(images, name, matchingNames, summary, rating, id, type)
     })
 })
 
-function silderImages(img, nameOfTheShow, genres, summary, rating, id , type) {
+function silderImages(img, nameOfTheShow, genres, summary, rating, id, type) {
     let anchor = document.createElement('a')
     let image = document.createElement('img')
     let name = document.createElement('span')
@@ -404,7 +409,7 @@ function silderImages(img, nameOfTheShow, genres, summary, rating, id , type) {
     let watchlist = document.createElement('span')
     let ratingStar = document.createElement('p')
     let div = document.createElement('div')
-    let types = type ==='movie'?'movies': 'series'
+    let types = type === 'movie' ? 'movies' : 'series'
 
     //setting attributes to the elements and also setting css
     yearGenres.setAttribute('class', 'absolute bottom-52 mx-5 w-full z-10 text-gray-400 font-bold text-sm font-newFont xl:text-base')
@@ -424,8 +429,8 @@ function silderImages(img, nameOfTheShow, genres, summary, rating, id , type) {
     watchTrailer.innerHTML = '<span class="mx-1 w-5 h-5 bg-white rounded-full flex justify-center items-center"><i class="fa-solid fa-play" style="color: #4ade80;"></i></span><span class="h-6 w-auto flex justify-center items-center lg:text-lg">Watch Trailer</span>'
     watchlist.innerHTML = '<i class="fa-regular fa-bookmark mx-1"></i> Add Watchlist'
     ratingStar.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${rating.toFixed(1)}`
-    summaryText.innerHTML += `${summary.slice(0, 350)} ${summary?`<a href='singleItemInfo.html?param=${types + id}' class='text-blue-500 select-none cursor-pointer active:text-blue-600 active:underline font-bold font-newFont md:text-sm xl:text-base md:hover:text-blue-600 md:hover:underline'>See More</a>`: ''}`
-    yearGenres.innerHTML += `${genres.length <5 ? genres : genres[0] +','+ genres[1] +','+ genres[2]}`
+    summaryText.innerHTML += `${summary.slice(0, 350)} ${summary ? `<a href='singleItemInfo.html?param=${types + id}' class='text-blue-500 select-none cursor-pointer active:text-blue-600 active:underline font-bold font-newFont md:text-sm xl:text-base md:hover:text-blue-600 md:hover:underline'>See More</a>` : ''}`
+    yearGenres.innerHTML += `${genres.length < 5 ? genres : genres[0] + ',' + genres[1] + ',' + genres[2]}`
     name.innerHTML = nameOfTheShow
     image.src = `https://image.tmdb.org/t/p/w500${img}`
 
