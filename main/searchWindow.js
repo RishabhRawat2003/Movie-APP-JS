@@ -173,12 +173,12 @@ document.title = 'Search For : ' + paramValue2
 
 searchItem.then((val) => {
     const searchResults = val.results
-    if(searchResults.length<1){
+    if (searchResults.length < 1) {
         searchResultsDiv.innerHTML = `<span class="text-white text-lg font-bold">No Result Found For : ${paramValue2}</span>`
-     }
+    }
     searchResults.map((items) => {
         //console.log(items);
-        if(items.poster_path){
+        if (items.poster_path) {
             if (items.media_type === 'movie' || items.media_type === 'tv') {
                 const image = items.poster_path
                 const name = items.name || items.original_name || items.title || items.original_title
@@ -186,9 +186,9 @@ searchItem.then((val) => {
                 const id = items.id
                 const rating = items.vote_average || items.popularity
                 searchResultsFunc(name, image, type, id, rating)
-                if(loading){
+                if (loading) {
                     console.log('loading');
-                }else{
+                } else {
                     loader.classList.add('hidden')
                 }
             }
@@ -201,7 +201,7 @@ function searchResultsFunc(name, thumbnail, type, id, rating) {
     let img = document.createElement('img')
     let title = document.createElement('p')
     let ratingStar = document.createElement('p')
-    let media_type = type ==='movie' ? 'movies' : 'series'
+    let media_type = type === 'movie' ? 'movies' : 'series'
 
     //setting attributes and css
     anchor.setAttribute('class', 'h-60 w-40 relative rounded-md shadow-lg border-[1px] border-gray-700 sm:h-64 sm:w-48')
@@ -223,6 +223,6 @@ function searchResultsFunc(name, thumbnail, type, id, rating) {
     searchResultsDiv.appendChild(anchor)
     footer.classList.remove('hidden')
     footer.classList.add('flex')
-    loading = false 
+    loading = false
 }
 //body Functionality ends
