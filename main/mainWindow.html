@@ -4,13 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CinaMania Watch Your Favourite Movies Here</title>
+    <title>CinaMania Watch Your Favourite Movies/Series Here</title>
     <link rel="stylesheet" href="./src/output.css">
     <link rel="stylesheet" href="./src/bowserAppearn.css">
     <script src="https://kit.fontawesome.com/ef961f7c58.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="bg-slate-800">
+    <div class="loading flex justify-center w-full items-center h-screen absolute z-50">
+        <div class="loader ease-linear rounded-full border-8 border-t-8 border-t-blue-500 border-gray-200 h-16 w-16 animate-spin"></div>
+    </div>
     <!--Header Functionality Starts-->
     <!--Header Starts-->
     <header class="w-full absolute h-auto top-0 z-40">
@@ -196,11 +199,14 @@
         <div class="h-[2px] w-[80%] bg-gray-800 mx-auto mt-2"></div>
         <div class="w-full h-auto my-2 flex flex-col justify-center gap-3 select-none">
             <p class="text-center text-white text-lg font-bold underline cursor-pointer">Home</p>
-            <p class="genreBtn text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
+            <p
+                class="genreBtn text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
                 Genre</p>
-            <p class="moviesNews text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
+            <p
+                class="moviesNews text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
                 Movies-News</p>
-            <p class="about text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
+            <p
+                class="about text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
                 About</p>
             <p
                 class="loginLogout text-center text-gray-500 text-lg font-bold active:text-white active:underline cursor-pointer">
@@ -350,7 +356,7 @@
         <div class="h-auto w-full text-white font-newFont font-semibold text-2xl p-3 lg:text-3xl md:w-96 lg:w-[55vw]">
             Our platform is trusted by millions & features best updated movies all around the world.
         </div>
-        
+
         <div class="h-auto w-full flex items-center gap-4 pl-3 md:absolute md:justify-end md:pr-8">
             <svg width="60px" height="60px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"
                 transform="rotate(0)matrix(1, 0, 0, 1, 0, 0)" stroke="lightgray" class="cursor-pointer">
@@ -373,7 +379,8 @@
                 </g>
 
             </svg>
-            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="cursor-pointer">
+            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="cursor-pointer">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M20 1C21.6569 1 23 2.34315 23 4V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H20ZM20 3C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H15V13.9999H17.0762C17.5066 13.9999 17.8887 13.7245 18.0249 13.3161L18.4679 11.9871C18.6298 11.5014 18.2683 10.9999 17.7564 10.9999H15V8.99992C15 8.49992 15.5 7.99992 16 7.99992H18C18.5523 7.99992 19 7.5522 19 6.99992V6.31393C19 5.99091 18.7937 5.7013 18.4813 5.61887C17.1705 5.27295 16 5.27295 16 5.27295C13.5 5.27295 12 6.99992 12 8.49992V10.9999H10C9.44772 10.9999 9 11.4476 9 11.9999V12.9999C9 13.5522 9.44771 13.9999 10 13.9999H12V21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3H20Z"
                     fill="lightgray" />
@@ -383,8 +390,9 @@
                 <path
                     d="M245.65723,77.65674l-30.16407,30.16455C209.4707,177.70215,150.53809,232,80,232c-14.52441,0-26.49414-2.30273-35.57764-6.84473-7.33056-3.665-10.33349-7.59912-11.07861-8.71777a8,8,0,0,1,3.84717-11.92822c.25732-.09717,23.84814-9.15772,39.09521-26.40869a109.574,109.574,0,0,1-24.72656-24.355c-13.708-18.60352-28.206-50.91114-19.43066-99.17676a8.00023,8.00023,0,0,1,13.52832-4.22559c.35254.35156,33.64209,33.1709,74.3374,43.772L120,87.99609a48.31863,48.31863,0,0,1,48.6084-47.99267,48.11329,48.11329,0,0,1,40.96875,23.99609L240,64a8.0001,8.0001,0,0,1,5.65723,13.65674Z" />
             </svg>
-            <svg fill="lightgray" width="40px" height="40px" viewBox="0 0 128 128" id="Layer_1" version="1.1" class="cursor-pointer"
-                xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg fill="lightgray" width="40px" height="40px" viewBox="0 0 128 128" id="Layer_1" version="1.1"
+                class="cursor-pointer" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
 
                 <g>
 
@@ -397,7 +405,8 @@
 
             </svg>
         </div>
-        <div class="h-auto w-full flex text-white items-center justify-center text-sm font-semibold my-2 gap-3 font-serif md:text-3xl lg:gap-20 ">
+        <div
+            class="h-auto w-full flex text-white items-center justify-center text-sm font-semibold my-2 gap-3 font-serif md:text-3xl lg:gap-20 ">
             <span class="cursor-pointer">Home</span>
             <span>/</span>
             <span class="cursor-pointer">Discover</span>
@@ -406,7 +415,8 @@
             <span>/</span>
             <span class="cursor-pointer">Release</span>
         </div>
-        <div class="h-auto w-full flex text-sm text-gray-500 font-semibold justify-center items-center gap-4 my-3 md:text-xl lg:gap-20">
+        <div
+            class="h-auto w-full flex text-sm text-gray-500 font-semibold justify-center items-center gap-4 my-3 md:text-xl lg:gap-20">
             <span class="cursor-pointer">Privacy policy</span>
             <span class="cursor-pointer">Term of service</span>
             <span class="cursor-pointer">Language</span>

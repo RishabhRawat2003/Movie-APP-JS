@@ -238,6 +238,11 @@ const list2 = [{
 }
 ]
 
+//loading functionality starts
+const loader = document.querySelector('.loading')
+let loading = true
+//loading functionality ends
+
 //Header Functionality starts
 
 const sideBarIcon = document.querySelector('.sidebarIcon')
@@ -444,7 +449,6 @@ function silderImages(img, nameOfTheShow, genres, summary, rating, id, type) {
     anchor.appendChild(div)
     anchor.appendChild(image)
     slides.appendChild(anchor)
-
     //watchlist btn functionality starts
     watchlist.addEventListener('click', function (e) {
         e.preventDefault()
@@ -453,8 +457,6 @@ function silderImages(img, nameOfTheShow, genres, summary, rating, id, type) {
     })
     //watchlist btn functionality ends
 }
-
-
 setInterval(() => {
     let a = slides.firstElementChild.offsetWidth * 9
     if (slides.scrollLeft >= a) {
@@ -812,6 +814,11 @@ series.then((val) => {
         }
         const matchingNames = findMatchingNames(genre, list2);
         seriesSlider(id, title, type, image, rating, matchingNames)
+        if(loading){
+            console.log('loading');
+        }else{
+            loader.classList.add('hidden')
+        }
     })
 })
 
@@ -836,6 +843,7 @@ function seriesSlider(id, name, type, poster, stars, genres) {
     mainAnchor.appendChild(title)
     mainAnchor.appendChild(rating)
     seriesSliderDiv.appendChild(mainAnchor)
+    loading = false 
 }
 
 seriesSliderArrowRight.addEventListener('click', function (e) {
@@ -847,5 +855,4 @@ seriesSliderArrowLeft.addEventListener('click', function (e) {
     e.preventDefault()
     seriesSliderDiv.scrollLeft -= 500
 })
-
 //Series Slider functionality Ends

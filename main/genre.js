@@ -145,11 +145,11 @@ homeBtn.forEach((items) => {
         window.location.href = `mainWindow.html?param=${paramValue}`;
     })
 })
-moviesNews.forEach((items)=>{
+moviesNews.forEach((items) => {
     items.addEventListener('click', function (e) {
         e.preventDefault()
         window.location.href = `moviesNews.html?param=${paramValue}`;
-    
+
     })
 })
 about.forEach((items) => {
@@ -163,6 +163,7 @@ about.forEach((items) => {
 
 //Navbar Click Event Listener Functionality Ends
 //Header Functionality Ends
+
 
 //Body Functionality starts
 const movies = document.querySelector('.movies')
@@ -228,16 +229,16 @@ function genreMoviesLists(name, id) {
         genreNameDiv.innerHTML += e.target.textContent + ':'
         const id = e.target.id
         const moviesLists = moviesByGenre(id)
-        moviesLists.then((val)=>{
+        moviesLists.then((val) => {
             const list = val.results;
-            list.map((items)=>{
+            list.map((items) => {
                 //console.log(items);
                 const id = items.id
                 const name = items.original_title
                 const poster = items.poster_path
-                const year = items.release_date.slice(0,4)
+                const year = items.release_date.slice(0, 4)
                 const rating = items.vote_average
-                moviesListByGenre(name , id , poster , year , rating)
+                moviesListByGenre(name, id, poster, year, rating)
             })
         })
     })
@@ -245,16 +246,16 @@ function genreMoviesLists(name, id) {
 //Movie Genre list Functionality ends
 
 //Movie Genre list items Functionality starts
-function moviesListByGenre(name , id , thumbnail , year , rating){
+function moviesListByGenre(name, id, thumbnail, year, rating) {
     const main = document.createElement('a')
     const image = document.createElement('img')
     const title = document.createElement('p')
     const stars = document.createElement('p')
 
-    main.setAttribute('class','w-40 rounded-2xl h-60 flex flex-col relative shadow-md md:w-60 md:h-80 xl:w-80 xl:h-96')
-    image.setAttribute('class','h-full min-w-full object-cover opacity-60 rounded-2xl z-10')
-    title.setAttribute('class','h-auto w-auto text-white font-bold text-lg absolute opacity-100 z-20 bottom-7 px-2 lg:text-xl lg:bottom-9')
-    stars.setAttribute('class','h-auto w-auto text-white font-bold text-xs absolute bottom-2 px-2 opacity-100 z-20 lg:text-lg')
+    main.setAttribute('class', 'w-40 rounded-2xl h-60 flex flex-col relative shadow-md md:w-60 md:h-80 xl:w-80 xl:h-96')
+    image.setAttribute('class', 'h-full min-w-full object-cover opacity-60 rounded-2xl z-10')
+    title.setAttribute('class', 'h-auto w-auto text-white font-bold text-lg absolute opacity-100 z-20 bottom-7 px-2 lg:text-xl lg:bottom-9')
+    stars.setAttribute('class', 'h-auto w-auto text-white font-bold text-xs absolute bottom-2 px-2 opacity-100 z-20 lg:text-lg')
 
     main.href = `singleItemInfo.html?param=${id}`
     image.src = `https://image.tmdb.org/t/p/w500${thumbnail}`
@@ -304,16 +305,16 @@ function genreSeriesLists(name, id) {
         genreNameDiv.innerHTML += e.target.textContent + ':'
         const id = e.target.id
         const seriesLists = seriesByGenre(id)
-        seriesLists.then((val)=>{
+        seriesLists.then((val) => {
             const list = val.results;
-            list.map((items)=>{
+            list.map((items) => {
                 //console.log(items);
                 const id = items.id
                 const name = items.original_name
                 const poster = items.poster_path
-                const year = items.first_air_date.slice(0,4)
+                const year = items.first_air_date.slice(0, 4)
                 const rating = items.vote_average
-                seriesListByGenre(name , id , poster , year , rating)
+                seriesListByGenre(name, id, poster, year, rating)
             })
         })
     })
@@ -321,16 +322,16 @@ function genreSeriesLists(name, id) {
 //Series Genre list Functionality ends
 
 //Series Genre list items Functionality starts
-function seriesListByGenre(name , id , thumbnail , year , rating){
+function seriesListByGenre(name, id, thumbnail, year, rating) {
     const main = document.createElement('a')
     const image = document.createElement('img')
     const title = document.createElement('p')
     const stars = document.createElement('p')
 
-    main.setAttribute('class','w-40 rounded-2xl h-60 flex flex-col relative shadow-md md:w-60 md:h-80 xl:w-80 xl:h-96')
-    image.setAttribute('class','h-full min-w-full object-cover opacity-60 rounded-2xl z-10')
-    title.setAttribute('class','h-auto w-auto text-white font-bold text-lg absolute opacity-100 z-20 bottom-7 px-2 lg:text-xl lg:bottom-9')
-    stars.setAttribute('class','h-auto w-auto text-white font-bold text-xs absolute bottom-2 px-2 opacity-100 z-20 lg:text-lg')
+    main.setAttribute('class', 'w-40 rounded-2xl h-60 flex flex-col relative shadow-md md:w-60 md:h-80 xl:w-80 xl:h-96')
+    image.setAttribute('class', 'h-full min-w-full object-cover opacity-60 rounded-2xl z-10')
+    title.setAttribute('class', 'h-auto w-auto text-white font-bold text-lg absolute opacity-100 z-20 bottom-7 px-2 lg:text-xl lg:bottom-9')
+    stars.setAttribute('class', 'h-auto w-auto text-white font-bold text-xs absolute bottom-2 px-2 opacity-100 z-20 lg:text-lg')
 
     main.href = `singleItemInfo.html?param=${id}`
     image.src = `https://image.tmdb.org/t/p/w500${thumbnail}`
@@ -345,5 +346,4 @@ function seriesListByGenre(name , id , thumbnail , year , rating){
     footer.classList.add('flex')
 }
 //Series Genre list items Functionality Ends
-
 //body Functionality Ends

@@ -4,6 +4,11 @@ const paramValue2 = urlParams.get('param1')
 
 const Api_Key = 'API_KEY'
 
+//loading functionality starts
+const loader = document.querySelector('.loading')
+let loading = true
+//loading functionality ends
+
 async function search() {
     const options = {
         method: 'GET',
@@ -161,6 +166,7 @@ about.forEach((items) => {
 //body Functionality starts
 const searchH1 = document.querySelector('.searchH1')
 const searchResultsDiv = document.querySelector('.searchResultsDiv')
+const footer = document.querySelector('.footer')
 
 searchH1.innerHTML = 'Search Result For :' + `<span class="text-white font-semibold"> ${paramValue2}</span>`
 document.title = 'Search For : ' + paramValue2
@@ -180,6 +186,11 @@ searchItem.then((val) => {
                 const id = items.id
                 const rating = items.vote_average || items.popularity
                 searchResultsFunc(name, image, type, id, rating)
+                if(loading){
+                    console.log('loading');
+                }else{
+                    loader.classList.add('hidden')
+                }
             }
         }
     })
@@ -210,4 +221,8 @@ function searchResultsFunc(name, thumbnail, type, id, rating) {
     anchor.appendChild(title)
     anchor.appendChild(ratingStar)
     searchResultsDiv.appendChild(anchor)
+    footer.classList.remove('hidden')
+    footer.classList.add('flex')
+    loading = false 
 }
+//body Functionality ends

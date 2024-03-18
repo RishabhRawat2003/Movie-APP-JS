@@ -136,7 +136,14 @@ about.forEach((items) => {
 //Navbar Click Event Listener Functionality Ends
 //Header Functionality Ends
 
-//body Functionality Stars
+//loading functionality starts
+const loader = document.querySelector('.loading')
+setTimeout(() => {
+    loader.classList.add('hidden')
+}, 2000);
+//loading functionality ends
+
+//body Functionality Starts
 const moviesNewsBtn = document.querySelector('.moviesNewsSpan')
 const celebritieNewsBtn = document.querySelector('.celebritiesNewsSpan')
 const ball = document.querySelector('.ball')
@@ -246,3 +253,4 @@ function celebritiesNewsFunc(mainImg , title , overview , mainLink){
     celebritiesNewsDiv.appendChild(mainDiv)
 }
 //Celebrities News Functionlaity ends
+//body Functionality ends

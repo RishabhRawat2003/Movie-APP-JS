@@ -152,6 +152,11 @@ const Api_Key = 'API_KEY'
 
 if (moviesOrSeriesParam === 'movies') {
 
+    //loading functionality starts
+    const loader = document.querySelector('.loading')
+    var loading = true
+    //loading functionality ends
+
     async function imagesForMovies() {
         const options = {
             method: 'GET',
@@ -356,22 +361,22 @@ if (moviesOrSeriesParam === 'movies') {
         mainDivElem.appendChild(summaryElem)
         mainDiv.appendChild(mainDivElem)
         let a = document.querySelector('html')
-        if(a.clientWidth < '640'){
-            watchlistElem.addEventListener('click',function(e){
+        if (a.clientWidth < '640') {
+            watchlistElem.addEventListener('click', function (e) {
                 e.preventDefault()
                 watchlistElem.classList.toggle('bg-slate-500')
             })
-            likedElem.addEventListener('click',function(e){
+            likedElem.addEventListener('click', function (e) {
                 e.preventDefault()
                 likedElem.classList.toggle('bg-slate-500')
             })
-        }else{
-            watchlistElem.addEventListener('click',function(e){
+        } else {
+            watchlistElem.addEventListener('click', function (e) {
                 e.preventDefault()
                 watchlistElem.classList.add('bg-slate-500')
                 watchlistElem.innerHTML = '<i class="fa-regular fa-bookmark" style="color: #ffffff;"></i>' + '<span class="hidden font-newFont text-white text-lg sm:inline"> Added</span>'
             })
-            likedElem.addEventListener('click',function(e){
+            likedElem.addEventListener('click', function (e) {
                 e.preventDefault()
                 likedElem.classList.add('bg-slate-500')
                 likedElem.innerHTML = '<i class="fa-regular fa-thumbs-up" style="color: #ffffff;"></i>' + '<span class="text-white hidden font-newFont text-lg sm:inline"> Liked</span>'
@@ -548,6 +553,11 @@ if (moviesOrSeriesParam === 'movies') {
             }
             const matchingNames = findMatchingNames(genres, list2);
             similarMoviesFunc(name, rating, thumbnail, matchingNames, id)
+            if (loading) {
+                console.log('loading');
+            } else {
+                loader.classList.add('hidden')
+            }
         })
     })
 
@@ -574,8 +584,8 @@ if (moviesOrSeriesParam === 'movies') {
         mainAnchor.appendChild(nameElem)
         mainAnchor.appendChild(ratingGenresElem)
         similarMoviesSlider.appendChild(mainAnchor)
+        loading = false
     }
-
     rightArrowSimilarMoviesSliderDiv.addEventListener('click', function (e) {
         e.preventDefault()
         similarMoviesSlider.scrollLeft += 500
@@ -589,6 +599,10 @@ if (moviesOrSeriesParam === 'movies') {
 }
 else {
 
+    //loading functionality starts
+    const loader = document.querySelector('.loading')
+    var loading = true
+    //loading functionality ends    
     async function imagesForSeries() {
         const options = {
             method: 'GET',
@@ -841,22 +855,22 @@ else {
         mainDivElem.appendChild(summaryElem)
         mainDiv.appendChild(mainDivElem)
         let a = document.querySelector('html')
-        if(a.clientWidth < '640'){
-            watchlistElem.addEventListener('click',function(e){
+        if (a.clientWidth < '640') {
+            watchlistElem.addEventListener('click', function (e) {
                 e.preventDefault()
                 watchlistElem.classList.toggle('bg-slate-500')
             })
-            likedElem.addEventListener('click',function(e){
+            likedElem.addEventListener('click', function (e) {
                 e.preventDefault()
                 likedElem.classList.toggle('bg-slate-500')
             })
-        }else{
-            watchlistElem.addEventListener('click',function(e){
+        } else {
+            watchlistElem.addEventListener('click', function (e) {
                 e.preventDefault()
                 watchlistElem.classList.add('bg-slate-500')
                 watchlistElem.innerHTML = '<i class="fa-regular fa-bookmark" style="color: #ffffff;"></i>' + '<span class="hidden font-newFont text-white text-lg sm:inline"> Added</span>'
             })
-            likedElem.addEventListener('click',function(e){
+            likedElem.addEventListener('click', function (e) {
                 e.preventDefault()
                 likedElem.classList.add('bg-slate-500')
                 likedElem.innerHTML = '<i class="fa-regular fa-thumbs-up" style="color: #ffffff;"></i>' + '<span class="text-white hidden font-newFont text-lg sm:inline"> Liked</span>'
@@ -906,7 +920,7 @@ else {
         image.src = `https://image.tmdb.org/t/p/w500${images}`
         image.alt = 'image Unavailable'
         charName.innerHTML = characterName.slice(0, 30)
-        realNameElem.innerHTML = realName.slice(0,20)
+        realNameElem.innerHTML = realName.slice(0, 20)
 
         imageSpanElem.appendChild(image)
         imgDiv.appendChild(imageSpanElem)
@@ -1084,9 +1098,14 @@ else {
             const epNum = items.episode_number
             const image = items.still_path
             seasonEpFunc(date, epNum, image)
+            if (loading) {
+                console.log('loading');
+            } else {
+                loader.classList.add('hidden')
+            }
         })
     })
-
+    
     function seasonEpFunc(date, epNum, image) {
         const mainDiv = document.createElement('div')
         const imgDiv = document.createElement('div')
@@ -1111,8 +1130,8 @@ else {
         imgDiv.appendChild(dateElem)
         mainDiv.appendChild(imgDiv)
         seasonsEpisodesDiv.appendChild(mainDiv)
+        loading = false
     }
-
     rightArrowSeasonSlider.addEventListener('click', function (e) {
         e.preventDefault()
         seasonsEpisodesDiv.scrollLeft += 500
@@ -1123,5 +1142,4 @@ else {
         seasonsEpisodesDiv.scrollLeft -= 500
     })
     //Seasons and Episodes functionality ends
-
 }
