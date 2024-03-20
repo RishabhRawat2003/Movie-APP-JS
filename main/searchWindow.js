@@ -174,7 +174,13 @@ document.title = 'Search For : ' + paramValue2
 searchItem.then((val) => {
     const searchResults = val.results
     if (searchResults.length < 1) {
+        loading = false
         searchResultsDiv.innerHTML = `<span class="text-white text-lg font-bold">No Result Found For : ${paramValue2}</span>`
+        if (loading) {
+            console.log('loading');
+        } else {
+            loader.classList.add('hidden')
+        }
     }
     searchResults.map((items) => {
         //console.log(items);

@@ -303,6 +303,11 @@ if (moviesOrSeriesParam === 'movies') {
         })
         moviesDetailsFunc(name, overview, release, tagline, arrayGenres, movieRuntime)
         document.title = name + "-" + tagline
+        if (loading) {
+            console.log('loading');
+        } else {
+            loader.classList.add('hidden')
+        }
     })
 
     function moviesDetailsFunc(name, overview, release, tagline, arrayGenres, movieRuntime) {
@@ -360,6 +365,7 @@ if (moviesOrSeriesParam === 'movies') {
         mainDivElem.appendChild(heading)
         mainDivElem.appendChild(summaryElem)
         mainDiv.appendChild(mainDivElem)
+        loading = false
         let a = document.querySelector('html')
         if (a.clientWidth < '640') {
             watchlistElem.addEventListener('click', function (e) {
@@ -398,11 +404,15 @@ if (moviesOrSeriesParam === 'movies') {
         }
         cast.map((items) => {
             //console.log(items);
-            const characterName = items.character
+            const characterName = items.character || items.original_name
             const realName = items.original_name
             const image = items.profile_path
             topCastFunc(image, characterName, realName)
-
+            if (loading) {
+                console.log('loading');
+            } else {
+                loader.classList.add('hidden')
+            }
         })
     })
 
@@ -435,6 +445,7 @@ if (moviesOrSeriesParam === 'movies') {
         castSlider.appendChild(imgDiv)
         castSlider.appendChild(infoDiv)
         topCastSlider.appendChild(castSlider)
+        loading = false
     }
 
     rightArrowTopCastSlider.addEventListener('click', function (e) {
@@ -461,27 +472,34 @@ if (moviesOrSeriesParam === 'movies') {
             recommendedMoviesSliderDiv.classList.add('hidden')
         }
         arrMovie.map((items) => {
+            let thumbnail = items.backdrop_path ? items.backdrop_path : items.poster_path
             //console.log(items);
-            const id = items.id
-            const thumbnail = items.backdrop_path ? items.backdrop_path : items.poster_path
-            const name = items.title
-            const rating = items.vote_average
-            const genres = items.genre_ids
-            const type = items.media_type
-            function findMatchingNames(genres, list2) {
-                const matchingNames = [];
+            if (thumbnail) {
+                const id = items.id
+                const name = items.title
+                const rating = items.vote_average
+                const genres = items.genre_ids
+                const type = items.media_type
+                function findMatchingNames(genres, list2) {
+                    const matchingNames = [];
 
-                genres.forEach(id => {
-                    const matchingObject = list2.find(obj => obj.id === id);
-                    if (matchingObject) {
-                        matchingNames.push(matchingObject.name);
-                    }
-                });
+                    genres.forEach(id => {
+                        const matchingObject = list2.find(obj => obj.id === id);
+                        if (matchingObject) {
+                            matchingNames.push(matchingObject.name);
+                        }
+                    });
 
-                return matchingNames;
+                    return matchingNames;
+                }
+                const matchingNames = findMatchingNames(genres, list2);
+                recommendedMoviesFunc(name, rating, thumbnail, matchingNames, type, id)
+                if (loading) {
+                    console.log('loading');
+                } else {
+                    loader.classList.add('hidden')
+                }
             }
-            const matchingNames = findMatchingNames(genres, list2);
-            recommendedMoviesFunc(name, rating, thumbnail, matchingNames, type, id)
         })
     })
 
@@ -508,6 +526,7 @@ if (moviesOrSeriesParam === 'movies') {
         mainAnchor.appendChild(nameElem)
         mainAnchor.appendChild(ratingGenresElem)
         recommendedMoviesSlider.appendChild(mainAnchor)
+        loading = false
     }
 
     rightArrowRecommendedMoviesSliderDiv.addEventListener('click', function (e) {
@@ -534,29 +553,31 @@ if (moviesOrSeriesParam === 'movies') {
         }
         arrSimilar.map((items) => {
             //console.log(items);
-            const id = items.id
-            const thumbnail = items.backdrop_path ? items.backdrop_path : items.poster_path
-            const name = items.title
-            const rating = items.vote_average
-            const genres = items.genre_ids
-            function findMatchingNames(genres, list2) {
-                const matchingNames = [];
+            let thumbnail = items.backdrop_path ? items.backdrop_path : items.poster_path
+            if (thumbnail) {
+                const id = items.id
+                const name = items.title
+                const rating = items.vote_average
+                const genres = items.genre_ids
+                function findMatchingNames(genres, list2) {
+                    const matchingNames = [];
 
-                genres.forEach(id => {
-                    const matchingObject = list2.find(obj => obj.id === id);
-                    if (matchingObject) {
-                        matchingNames.push(matchingObject.name);
-                    }
-                });
+                    genres.forEach(id => {
+                        const matchingObject = list2.find(obj => obj.id === id);
+                        if (matchingObject) {
+                            matchingNames.push(matchingObject.name);
+                        }
+                    });
 
-                return matchingNames;
-            }
-            const matchingNames = findMatchingNames(genres, list2);
-            similarMoviesFunc(name, rating, thumbnail, matchingNames, id)
-            if (loading) {
-                console.log('loading');
-            } else {
-                loader.classList.add('hidden')
+                    return matchingNames;
+                }
+                const matchingNames = findMatchingNames(genres, list2);
+                similarMoviesFunc(name, rating, thumbnail, matchingNames, id)
+                if (loading) {
+                    console.log('loading');
+                } else {
+                    loader.classList.add('hidden')
+                }
             }
         })
     })
@@ -756,6 +777,11 @@ else {
             arrayGenres.push(items.name)
         })
         moviesDetailsFunc(name, overview, release, tagline, arrayGenres, seasons, episodes)
+        if (loading) {
+            console.log('loading');
+        } else {
+            loader.classList.add('hidden')
+        }
         document.title = name + "-" + tagline
     })
 
@@ -854,6 +880,7 @@ else {
         mainDivElem.appendChild(heading)
         mainDivElem.appendChild(summaryElem)
         mainDiv.appendChild(mainDivElem)
+        loading = false
         let a = document.querySelector('html')
         if (a.clientWidth < '640') {
             watchlistElem.addEventListener('click', function (e) {
@@ -896,7 +923,11 @@ else {
             const realName = items.original_name
             const image = items.profile_path
             topCastFunc(image, characterName, realName)
-
+            if (loading) {
+                console.log('loading');
+            } else {
+                loader.classList.add('hidden')
+            }
         })
     })
 
@@ -929,6 +960,7 @@ else {
         castSlider.appendChild(imgDiv)
         castSlider.appendChild(infoDiv)
         topCastSlider.appendChild(castSlider)
+        loading = false
     }
 
     rightArrowTopCastSlider.addEventListener('click', function (e) {
@@ -955,26 +987,33 @@ else {
             recommendedMoviesSliderDiv.classList.add('hidden')
         }
         arrMovie.map((items) => {
-            const id = items.id
-            const thumbnail = items.backdrop_path ? items.backdrop_path : items.poster_path
-            const name = items.name
-            const rating = items.vote_average
-            const genres = items.genre_ids
-            const type = items.media_type
-            function findMatchingNames(genres, list2) {
-                const matchingNames = [];
+            let thumbnail = items.backdrop_path ? items.backdrop_path : items.poster_path
+            if (thumbnail) {
+                const id = items.id
+                const name = items.name
+                const rating = items.vote_average
+                const genres = items.genre_ids
+                const type = items.media_type
+                function findMatchingNames(genres, list2) {
+                    const matchingNames = [];
 
-                genres.forEach(id => {
-                    const matchingObject = list2.find(obj => obj.id === id);
-                    if (matchingObject) {
-                        matchingNames.push(matchingObject.name);
-                    }
-                });
+                    genres.forEach(id => {
+                        const matchingObject = list2.find(obj => obj.id === id);
+                        if (matchingObject) {
+                            matchingNames.push(matchingObject.name);
+                        }
+                    });
 
-                return matchingNames;
+                    return matchingNames;
+                }
+                const matchingNames = findMatchingNames(genres, list2);
+                recommendedMoviesFunc(name, rating, thumbnail, matchingNames, type, id)
+                if (loading) {
+                    console.log('loading');
+                } else {
+                    loader.classList.add('hidden')
+                }
             }
-            const matchingNames = findMatchingNames(genres, list2);
-            recommendedMoviesFunc(name, rating, thumbnail, matchingNames, type, id)
         })
     })
 
@@ -1001,6 +1040,7 @@ else {
         mainAnchor.appendChild(nameElem)
         mainAnchor.appendChild(ratingGenresElem)
         recommendedMoviesSlider.appendChild(mainAnchor)
+        loading = false
     }
 
     rightArrowRecommendedMoviesSliderDiv.addEventListener('click', function (e) {
@@ -1026,26 +1066,32 @@ else {
             similarMoviesSliderDiv.classList.add('hidden')
         }
         arrSimilar.map((items) => {
-            //console.log(items);
-            const id = items.id
-            const thumbnail = items.backdrop_path ? items.backdrop_path : items.poster_path
-            const name = items.name
-            const rating = items.vote_average
-            const genres = items.genre_ids
-            function findMatchingNames(genres, list2) {
-                const matchingNames = [];
+            let thumbnail = items.backdrop_path ? items.backdrop_path : items.poster_path
+            if (thumbnail) {
+                const id = items.id
+                const name = items.name
+                const rating = items.vote_average
+                const genres = items.genre_ids
+                function findMatchingNames(genres, list2) {
+                    const matchingNames = [];
 
-                genres.forEach(id => {
-                    const matchingObject = list2.find(obj => obj.id === id);
-                    if (matchingObject) {
-                        matchingNames.push(matchingObject.name);
-                    }
-                });
+                    genres.forEach(id => {
+                        const matchingObject = list2.find(obj => obj.id === id);
+                        if (matchingObject) {
+                            matchingNames.push(matchingObject.name);
+                        }
+                    });
 
-                return matchingNames;
+                    return matchingNames;
+                }
+                const matchingNames = findMatchingNames(genres, list2);
+                similarMoviesFunc(name, rating, thumbnail, matchingNames, id)
+                if (loading) {
+                    console.log('loading');
+                } else {
+                    loader.classList.add('hidden')
+                }
             }
-            const matchingNames = findMatchingNames(genres, list2);
-            similarMoviesFunc(name, rating, thumbnail, matchingNames, id)
         })
     })
 
@@ -1072,6 +1118,7 @@ else {
         mainAnchor.appendChild(nameElem)
         mainAnchor.appendChild(ratingGenresElem)
         similarMoviesSlider.appendChild(mainAnchor)
+        loading = false
     }
 
     rightArrowSimilarMoviesSliderDiv.addEventListener('click', function (e) {
@@ -1105,7 +1152,7 @@ else {
             }
         })
     })
-    
+
     function seasonEpFunc(date, epNum, image) {
         const mainDiv = document.createElement('div')
         const imgDiv = document.createElement('div')
