@@ -417,10 +417,10 @@ function silderImages(img, nameOfTheShow, genres, summary, rating, id, type) {
     let types = type === 'movie' ? 'movies' : 'series'
 
     //setting attributes to the elements and also setting css
-    yearGenres.setAttribute('class', 'absolute bottom-52 mx-5 w-full z-10 text-gray-400 font-bold text-sm font-newFont xl:text-base')
+    yearGenres.setAttribute('class', 'absolute bottom-52 mx-5 w-[80%] z-10 text-gray-400 font-bold text-sm font-newFont xl:text-base')
     image.setAttribute('class', 'min-h-full min-w-full object-cover opacity-40 overflow-hidden sm:object-contain ')
     anchor.setAttribute('class', 'min-h-full min-w-full overflow-hidden')
-    name.setAttribute('class', 'absolute bottom-60 mx-5 w-full z-10 text-white font-bold text-4xl font-newFont')
+    name.setAttribute('class', 'absolute bottom-60 mx-5 w-[80%] z-10 text-white font-bold text-4xl font-newFont')
     summaryText.setAttribute('class', 'absolute bottom-20 w-[94%] ml-5 z-10 text-white text-xs font-bold font-newFont md:text-sm xl:text-base md:w-[70%]')
     ratingStar.setAttribute('class', 'absolute top-16 z-10 mx-4 w-14 text-white font-bold text-lg')
     div.setAttribute('class', 'absolute bottom-0 z-10 w-[97%] my-4 h-auto flex justify-evenly items-center md:justify-start md:gap-5 md:mx-5')
@@ -764,7 +764,7 @@ function moviesSlider(id, name, type, poster, stars, genres) {
     mainAnchor.href = `singleItemInfo.html?param=${'movies' + id}`
     image.src = `https://image.tmdb.org/t/p/w500${poster}`
     image.alt = 'Image'
-    title.innerHTML = name
+    title.innerHTML = name.slice(0,38)
     rating.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${stars.toFixed(1)} <span class="text-gray-500 font-bold text-xs">| ${genres[0]} • ${type.toUpperCase()}</span> `
 
     mainAnchor.appendChild(image)
@@ -836,7 +836,7 @@ function seriesSlider(id, name, type, poster, stars, genres) {
     mainAnchor.href = `singleItemInfo.html?param=${'series' + id}`
     image.src = `https://image.tmdb.org/t/p/w500${poster}`
     image.alt = 'Image'
-    title.innerHTML = name
+    title.innerHTML = name.slice(0,38)
     rating.innerHTML = `<i class="fa-solid fa-star" style="color: #FFD43B;"></i> ${stars.toFixed(1)} <span class="text-gray-500 font-bold text-xs">| ${genres[0]} • ${type.toUpperCase()}</span> `
 
     mainAnchor.appendChild(image)
